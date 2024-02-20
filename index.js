@@ -4,9 +4,9 @@ const cors = require('cors');
 const { dbConnection } = require('./database/config_nosql');
 
 
-
 // Crear el servidor de express
 const app = express();
+
 
 
 // Base de datos No SQL
@@ -27,6 +27,7 @@ app.use('/api/auth', require('./routes/auth') );
 app.use('/api/profesor', require('./routes/profesor') );
 
 app.use('/api/estudiante', require('./routes/estudiante') );
+
 
 
 // Escuchar peticiones
