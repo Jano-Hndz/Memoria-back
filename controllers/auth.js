@@ -102,16 +102,20 @@ const RevalidarToken=async(req,res=response)=>{
     const { uid, name } = req;
 
     // Generar JWT
-    const token = await generarJWT( "6488e0e4a3da8e44e78f6e57","admin"  );
+    const token = await generarJWT( uid, name );
+
+    const usuarioObj = await Usuario.findById( uid );
+
 
     res.json({
         ok: true,
-        uid: "6488e0e4a3da8e44e78f6e57", 
-        name: "admin",
-        rol: "admin",
+        uid, 
+        name,
+        rol: usuarioObj.rol,
         token
     })
 }
+
 
 
 module.exports={
