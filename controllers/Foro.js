@@ -16,7 +16,8 @@ const PublicarForo=async(req,res=response)=>{
         const RespDB = await ForoNEW.save()
 
         res.json({
-            ok: true
+            ok: true,
+            id:RespDB._id
         });
     } catch (error) {
         console.log(error);
@@ -95,6 +96,7 @@ const ComentarForo=async(req,res=response)=>{
 
         res.json({
             ok: true,
+            id_comentario:RespDB._id
         });
     } catch (error) {
         console.log(error);
