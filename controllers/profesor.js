@@ -40,6 +40,7 @@ const AgregarEjercicio=async(req,res=response)=>{
             Problema: req.body.Problema,
             Respuesta: respuesta.choices[0].message.content,
             Usuario: req.uid,
+            Tags:req.body.Tags
         });
 
         const RespDB = await EjerciciosPropuestoNEW.save();
@@ -73,8 +74,30 @@ const ObtenerEjercicio=async(req,res=response)=>{
         });
 }
 
+const ObtenerEjercicioTag=async(req,res=response)=>{
+    
+    const RespDB = await EjerciciosPropuesto.find({ Tags: { $in: [req.body.Tag] } });
+    let respuesta=[]
+
+    for (const elemento of RespDB) {
+        let respuestaUsuario = await Usuario.findById(elemento.Usuario);
+        respuesta.push({
+            ...elemento._doc,
+            Nombre:respuestaUsuario.name
+        })
+    }
+
+
+    res.json({
+        ok: true,
+        lista:respuesta
+    });
+}
+
+
 module.exports={
     GetDataAlumnos,
     AgregarEjercicio,
-    ObtenerEjercicio
+    ObtenerEjercicio,
+    ObtenerEjercicioTag
 }

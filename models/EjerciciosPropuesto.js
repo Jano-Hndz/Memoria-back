@@ -19,7 +19,7 @@ const EjerciciosPropuestoSchema = Schema({
         required: true
     },
     Tags: {
-        type: [String], // Esto define un arreglo de strings
+        type: [String], 
         required: true
     }
 });

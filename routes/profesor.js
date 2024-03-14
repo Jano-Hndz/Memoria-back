@@ -1,7 +1,7 @@
 const {Router} = require('express')
 const {check} = require ('express-validator');
 const { validarJWT } = require('../middlewares/validar-jwt');
-const {GetDataAlumnos,AgregarEjercicio,ObtenerEjercicio} = require("../controllers/profesor")
+const {GetDataAlumnos,AgregarEjercicio,ObtenerEjercicio,ObtenerEjercicioTag} = require("../controllers/profesor")
 
 const router = Router();
 
@@ -12,6 +12,8 @@ router.use( validarJWT );
 router.get('/dataAlumnos',GetDataAlumnos)
 router.post('/ejercicios/agregar',AgregarEjercicio)
 router.post('/ejercicios',ObtenerEjercicio)
+router.post('/ejercicios/tag',ObtenerEjercicioTag)
+
 
 
 
