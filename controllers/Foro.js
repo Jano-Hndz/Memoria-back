@@ -13,6 +13,7 @@ const PublicarForo=async(req,res=response)=>{
             ...req.body,
             Usuario: req.uid
         })
+
         const RespDB = await ForoNEW.save()
 
         res.json({
@@ -72,6 +73,28 @@ const GetRetroalimentacion=async(req,res=response)=>{
         res.json({
             ok: true,
             data:respuesta
+        });
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({
+            ok: false,
+            msg: "Hable con el administrador",
+        });
+    }
+}
+
+
+const GetConsulta=async(req,res=response)=>{
+
+    try {
+
+        let respRetroalimentacion = await Retroalimentacion.findById(req.body.id_consulta);
+        let respConsulta=await Consulta.findById(respRetroalimentacion.Consulta)
+
+
+        res.json({
+            ok: true,
+            data:respConsulta
         });
     } catch (error) {
         console.log(error);
@@ -144,5 +167,6 @@ module.exports={
     GetForo,
     GetRetroalimentacion,
     ComentarForo,
-    GetComentarios
+    GetComentarios,
+    GetConsulta
 }

@@ -14,6 +14,10 @@ const ForoSchema = Schema({
     Comentario: {
         type: String,
         required: true
+    },
+    verRetroalimentacion: {
+        type: Boolean,
+        default: true
     }
 });
 
