@@ -22,6 +22,10 @@ const RetroalimentacionSchema = Schema({
     RespuestaLLM: {
         type: String,
         required: true
+    },
+    EJ: {
+        type: Boolean,
+        default: false
     }
 });
 

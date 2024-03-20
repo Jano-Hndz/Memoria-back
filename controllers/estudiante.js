@@ -113,7 +113,8 @@ const RevisionChatGPT = async (req, res = response) => {
             RespuestaEstudiante:req.body.responded,
             Usuario: req.uid,
             RespuestaLLM: respuesta.choices[0].message.content,
-            Titulo:req.body.titulo
+            Titulo:req.body.titulo,
+            EJ:req.body.EJ
         });
 
         const RespDB = await RetroalimentacionNEW.save();
