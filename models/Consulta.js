@@ -10,10 +10,14 @@ const ConsultaSchema = Schema({
         type: String,
         required: true
     },
-    Respuesta: {
-        type: String,
+    Respuesta: [{
+        type: Schema.Types.Mixed,
         required: true
-    },
+    }],
+    Date: {
+        type: Date,
+        default: () => new Date(new Date().getTime() - (4 * 60 * 60 * 1000))
+    }
 });
 
 

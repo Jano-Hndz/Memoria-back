@@ -6,9 +6,14 @@ const RetroalimentacionSchema = Schema({
         ref: 'Usuario',
         required: true
     },
-    Consulta: {
+    ConsultaID: {
         type: Schema.Types.ObjectId,
         ref: 'Consulta',
+        required: false
+    },
+    EjercicioPropuestoID: {
+        type: Schema.Types.ObjectId,
+        ref: 'EjerciciosPropuesto',
         required: false
     },
     Titulo: {
@@ -20,12 +25,16 @@ const RetroalimentacionSchema = Schema({
         required: true
     },
     RespuestaLLM: {
-        type: String,
+        type: Schema.Types.Mixed,
         required: true
     },
-    EJ: {
+    Propuesto: {
         type: Boolean,
         default: false
+    },
+    Date: {
+        type: Date,
+        default: () => new Date(new Date().getTime() - (4 * 60 * 60 * 1000))
     }
 });
 
