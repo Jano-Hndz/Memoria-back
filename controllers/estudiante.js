@@ -20,7 +20,8 @@ const ConsultaChatGPT = async (req, res = response) => {
         });
 
         const respuesta = await openAIInstance.chat.completions.create({
-            model: "gpt-4",
+            // model: "gpt-4",
+            model: "gpt-3.5-turbo",
             messages: [{ role: "system", content: consulta_enviar }],
             temperature: 0.5,
         });
@@ -71,7 +72,8 @@ const RevisionChatGPT = async (req, res = response) => {
             });
 
             const respuesta = await openAIInstance.chat.completions.create({
-                model: "gpt-4",
+                // model: "gpt-4",
+                model: "gpt-3.5-turbo",
                 messages: [{ role: "system", content: consulta_enviar }],
                 temperature: 0.5,
             });
@@ -144,7 +146,8 @@ const CrearProblema = async (req, res = response) => {
 
 
         const respuesta = await openAIInstance.chat.completions.create({
-            model: "gpt-4",
+            // model: "gpt-4",
+            model: "gpt-3.5-turbo",
             messages: [{ role: "system", content: `
             Eres un profesor de programación de Python. Se te entregará una serie de textos componentes con instrucciones, reglas, ejemplos de formato de respuestas y finalmente un documento a revisar. El primer texto componente es instruction_text, está encasillado entre las etiquetas <instruction> y </instruction>. El segundo texto componente será un formato para tus respuestas, este se llama example_responses_text, y está encasillado entre las etiquetas <example_responses> y </example_responses>. El siguiente texto componente será un texto llamado response_example_explanation_text, encasillado entre las etiquetas <response_example_explanation> y </response_example_explanation> y te permitirá entender cómo responder. Usando instruction_text como tus instrucciones y responde de acuerdo con el formato descrito en response_example_text usando las reglas especificadas en response_example_explanation_text. Responde en formato de un de JSON format, con sus llaves y valores en castellano tal como se especificó en response_example_explanation_text
             <instruction>
