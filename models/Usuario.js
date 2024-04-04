@@ -16,10 +16,11 @@ const UsuarioSchema = Schema({
     },
     rol: {
         type: String,
-        required: true,
-        unique: true
+        required: true
     },
-    
+    paralelo:{
+        type: Number
+    }
 });
 
 

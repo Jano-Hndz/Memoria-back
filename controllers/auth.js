@@ -8,6 +8,7 @@ const Usuario = require('../models/Usuario')
 const CrearUsuario = async(req,res=response)=>{
     
     const { email, password } = req.body;
+    console.log(req.body);
 
     try {
 
@@ -36,7 +37,6 @@ const CrearUsuario = async(req,res=response)=>{
             ok:true,
             uid: usuario.id,
             name: usuario.name,
-            rol: "admin",
             token
         })
 
