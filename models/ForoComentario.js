@@ -15,6 +15,10 @@ const ForoComentarioSchema = Schema({
     Comentario: {
         type: String,
         required: true
+    },
+    Date: {
+        type: Date,
+        default: () => new Date(new Date().getTime() - (4 * 60 * 60 * 1000))
     }
 });
 

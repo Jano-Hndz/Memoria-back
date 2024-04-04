@@ -6,6 +6,8 @@ const {
 } = require("../data/plantillas");
 const Consulta = require("../models/Consulta");
 const Retroalimentacion = require("../models/Retroalimentacion");
+const EjerciciosPropuesto = require("../models/EjerciciosPropuesto");
+
 
 const openAIInstance = new openAI({
     apiKey: process.env.API_KEY_OPEAI,
@@ -53,50 +55,62 @@ const ConsultaChatGPT = async (req, res = response) => {
 const RevisionChatGPT = async (req, res = response) => {
     try {
         console.log("Revision");
+        console.log();
+    
+        const respuestaEstudiante = (req.body.requested).map(obj => {
+            // Buscar si el nombre del objeto está en el JSON
+            const nombre = obj.Nombre;
+            if ((req.body.responded).hasOwnProperty(nombre)) {
+                // Asignar el valor correspondiente del JSON al nuevo atributo
+                obj.RespuestaEstudiante = (req.body.responded)[nombre];
+            }
+            return obj;
+            });
+            
+        const  stringRespuiestaEstudiante=JSON.stringify(respuestaEstudiante)
+        let consulta_enviar = revision_plantilla({
+            texto_1: stringRespuiestaEstudiante
+        });
+
+        const respuesta = await openAIInstance.chat.completions.create({
+            model: "gpt-4",
+            // model: "gpt-3.5-turbo",
+            messages: [{ role: "system", content: consulta_enviar }],
+            temperature: 0.5,
+        });
+
+
+        const lista_retroalimentacion= JSON.parse(respuesta.choices[0].message.content)
+        let RetroalimentacionNEW
         if (req.body.EJ) {
             console.log("Entro en la parte de ejercicio propuesto");
-        } else {
-            const respuestaEstudiante = (req.body.requested).map(obj => {
-                // Buscar si el nombre del objeto está en el JSON
-                const nombre = obj.Nombre;
-                if ((req.body.responded).hasOwnProperty(nombre)) {
-                  // Asignar el valor correspondiente del JSON al nuevo atributo
-                  obj.RespuestaEstudiante = (req.body.responded)[nombre];
-                }
-                return obj;
-              });
-              
-            const  stringRespuiestaEstudiante=JSON.stringify(respuestaEstudiante)
-            let consulta_enviar = revision_plantilla({
-                texto_1: stringRespuiestaEstudiante
-            });
-
-            const respuesta = await openAIInstance.chat.completions.create({
-                // model: "gpt-4",
-                model: "gpt-3.5-turbo",
-                messages: [{ role: "system", content: consulta_enviar }],
-                temperature: 0.5,
-            });
-
-
-            const lista_retroalimentacion= JSON.parse(respuesta.choices[0].message.content)
-
-            const RetroalimentacionNEW = new Retroalimentacion({
-                Consulta: req.body.id_consulta,
-                RespuestaEstudiante:respuestaEstudiante,
+            RetroalimentacionNEW = new Retroalimentacion({
+                EjercicioPropuestoID: req.body.id_consulta,
+                RespuestaEstudiante:req.body.responded,
                 Usuario: req.uid,
                 RespuestaLLM: lista_retroalimentacion,
                 Titulo:req.body.titulo,
-                EJ:req.body.EJ
+                Propuesto:true
             });
-
-            const RespDB = await RetroalimentacionNEW.save();
-
-            res.json({
-                ok: true,
-                resp: lista_retroalimentacion,
+        } else {
+            console.log("Entro en la parte de ejercicio normal");
+            RetroalimentacionNEW = new Retroalimentacion({
+                ConsultaID: req.body.id_consulta,
+                RespuestaEstudiante:req.body.responded,
+                Usuario: req.uid,
+                RespuestaLLM: lista_retroalimentacion,
+                Titulo:req.body.titulo
             });
         }
+
+
+        const RespDB = await RetroalimentacionNEW.save();
+
+        res.json({
+            ok: true,
+            resp: lista_retroalimentacion,
+        });
+        
 
     } catch (error) {
         console.log(error);
@@ -111,18 +125,34 @@ const Historial = async (req, res = response) => {
     try {
         const respDB = await Retroalimentacion.find({ Usuario: req.uid });
         var lista_resp = [];
-
+        let respConsulta
+        let json_push
         for (const elemento of respDB) {
-            let respConsulta = await Consulta.findById(elemento.Consulta);
-            let json_push = {
-                Problema: respConsulta.Problema,
-                RespuestaSubojetivos: respConsulta.Respuesta,
-                id_consulta: respConsulta._id,
-                id_retroalimento: elemento._id,
-                Respuesta_Estudiante: elemento.RespuestaEstudiante,
-                Retroalimentacion: elemento.RespuestaLLM,
-                Titulo:elemento.Titulo
-            };
+            if (elemento.Propuesto == true) {
+                respConsulta = await EjerciciosPropuesto.findById(elemento.EjercicioPropuestoID);
+                json_push = {
+                    Problema: respConsulta.Problema,
+                    RespuestaSubojetivos: respConsulta.Respuesta,
+                    id_EjercicioPropuesto: respConsulta._id,
+                    id_Retroalimentacion: elemento._id,
+                    Respuesta_Estudiante: elemento.RespuestaEstudiante,
+                    Retroalimentacion: elemento.RespuestaLLM,
+                    Titulo:elemento.Titulo,
+                    Propuesto:true
+                };
+            } else {
+                respConsulta = await Consulta.findById(elemento.ConsultaID);
+                json_push = {
+                    Problema: respConsulta.Problema,
+                    RespuestaSubojetivos: respConsulta.Respuesta,
+                    id_consulta: respConsulta._id,
+                    id_Retroalimentacion: elemento._id,
+                    Respuesta_Estudiante: elemento.RespuestaEstudiante,
+                    Retroalimentacion: elemento.RespuestaLLM,
+                    Titulo:elemento.Titulo,
+                    Propuesto:false
+                };
+            }
             lista_resp.push(json_push);
         }
 

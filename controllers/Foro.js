@@ -4,6 +4,7 @@ const Retroalimentacion = require("../models/Retroalimentacion");
 const Consulta = require("../models/Consulta");
 const Usuario = require('../models/Usuario')
 const ForoComentario = require("../models/ForoComentario")
+const EjerciciosPropuesto = require("../models/EjerciciosPropuesto");
 
 
 const PublicarForo=async(req,res=response)=>{
@@ -38,8 +39,10 @@ const GetForo=async(req,res=response)=>{
 
         for (const elemento of respDB) {
             let respuestaUsuario = await Usuario.findById(elemento.Usuario);
+            let respRetroalimentacion = await Retroalimentacion.findById(elemento.RetroalimentacionID);
             respuesta.push({
                 ...elemento._doc,
+                Propuesto:respRetroalimentacion.Propuesto,
                 Usuario:respuestaUsuario.name
             })
         }
@@ -61,14 +64,27 @@ const GetRetroalimentacion=async(req,res=response)=>{
 
     try {
         let respRetroalimentacion = await Retroalimentacion.findById(req.body.RetroalimentacionID);
-        let respConsulta=await Consulta.findById(respRetroalimentacion.Consulta)
-
-        const respuesta = {
-            inputs: respRetroalimentacion.RespuestaEstudiante,
-            retroalimentacion:respRetroalimentacion.RespuestaLLM,
-            lista_funciones: JSON.parse(respConsulta.Respuesta),
-            problema: respConsulta.Problema,
-        } 
+        let respConsulta
+        let respuesta
+        if (respRetroalimentacion.Propuesto) {
+            respConsulta=await EjerciciosPropuesto.findById(respRetroalimentacion.EjercicioPropuestoID)
+            respuesta={
+                inputs: respRetroalimentacion.RespuestaEstudiante,
+                retroalimentacion:respRetroalimentacion.RespuestaLLM,
+                lista_funciones: respConsulta.Respuesta,
+                problema: respConsulta.Problema,
+                Propuesto:true
+            }
+        } else {
+            respConsulta=await Consulta.findById(respRetroalimentacion.ConsultaID)
+            respuesta={
+                inputs: respRetroalimentacion.RespuestaEstudiante,
+                retroalimentacion:respRetroalimentacion.RespuestaLLM,
+                lista_funciones: respConsulta.Respuesta,
+                problema: respConsulta.Problema,
+                Propuesto:false
+            }
+        }
 
         res.json({
             ok: true,
@@ -87,14 +103,33 @@ const GetRetroalimentacion=async(req,res=response)=>{
 const GetConsulta=async(req,res=response)=>{
 
     try {
-
         let respRetroalimentacion = await Retroalimentacion.findById(req.body.id_consulta);
-        let respConsulta=await Consulta.findById(respRetroalimentacion.Consulta)
+        let respConsulta
+        let respuesta
+        if (respRetroalimentacion.Propuesto) {
+            respConsulta=await EjerciciosPropuesto.findById(respRetroalimentacion.EjercicioPropuestoID)
+            respuesta={
+                Date:respConsulta.Date,
+                Problema:respConsulta.Problema,
+                Respuesta:respConsulta.Respuesta,
+                _id:respConsulta._id,
+                Propuesto:true
+            }
+        } else {
+            respConsulta=await Consulta.findById(respRetroalimentacion.ConsultaID)
+            respuesta={
+                Date:respConsulta.Date,
+                Problema:respConsulta.Problema,
+                Respuesta:respConsulta.Respuesta,
+                _id:respConsulta._id,
+                Propuesto:false
+            }
+        }
 
 
         res.json({
             ok: true,
-            data:respConsulta
+            data:respuesta
         });
     } catch (error) {
         console.log(error);
