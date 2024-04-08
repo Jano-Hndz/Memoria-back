@@ -5,6 +5,7 @@ const {
 } = require("../data/plantillas");
 const EjerciciosPropuesto = require("../models/EjerciciosPropuesto");
 const Usuario = require('../models/Usuario')
+const Retroalimentacion = require("../models/Retroalimentacion");
 
 
 
@@ -69,7 +70,7 @@ const AgregarEjercicio=async(req,res=response)=>{
 
 const ObtenerEjercicio=async(req,res=response)=>{
 
-        const RespDB = await EjerciciosPropuesto.find();
+        const RespDB = await EjerciciosPropuesto.find({Usuario:req.uid});
         let respuesta=[]
 
         for (const elemento of RespDB) {
@@ -108,9 +109,32 @@ const ObtenerEjercicioTag=async(req,res=response)=>{
 }
 
 
+const ObtenerRendimientoEjercicio=async(req,res=response)=>{
+
+    
+    const RespDB = await Retroalimentacion.find({EjercicioPropuestoID:req.body.EjercicioPropuestoID});
+
+    let respuesta=[]
+    for (const elemento of RespDB) {
+        let respuestaUsuario = await Usuario.findById(elemento.Usuario);
+        respuesta.push({
+            ...elemento._doc,
+            Nombre:respuestaUsuario.name
+        })
+    }
+
+
+    res.json({
+        ok: true,
+        lista:respuesta
+    });
+}
+
+
 module.exports={
     GetDataAlumnos,
     AgregarEjercicio,
     ObtenerEjercicio,
-    ObtenerEjercicioTag
+    ObtenerEjercicioTag,
+    ObtenerRendimientoEjercicio
 }

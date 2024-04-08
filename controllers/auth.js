@@ -2,6 +2,7 @@ const {response} = require('express')
 const bcrypt = require('bcryptjs');
 const { generarJWT } = require('../helpers/jwt');
 const Usuario = require('../models/Usuario')
+const Retroalimentacion = require("../models/Retroalimentacion");
 
 
 
@@ -116,10 +117,25 @@ const RevalidarToken=async(req,res=response)=>{
     })
 }
 
+const test=async(req,res=response)=>{
+
+    const respDB = await Retroalimentacion.find({ Usuario: req.uid });
+    
+    for (const elemento of respDB) {
+            
+
+    }
+
+    res.json({
+        ok: true
+    })
+}
+
 
 
 module.exports={
     CrearUsuario,
     LoginUsuario,
-    RevalidarToken
+    RevalidarToken,
+    test
 }
