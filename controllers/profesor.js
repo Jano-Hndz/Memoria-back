@@ -29,13 +29,22 @@ const AgregarEjercicio=async(req,res=response)=>{
     });
 
     const respuesta = await openAIInstance.chat.completions.create({
-            // model: "gpt-4",
-            model: "gpt-3.5-turbo",
+            model: "gpt-4",
+            model: "gpt-4-0125-preview",
+            // model: "gpt-3.5-turbo",
             messages: [{ role: "system", content: consulta_enviar }],
             temperature: 0.5,
         });
 
-    const lista_problemas= JSON.parse(respuesta.choices[0].message.content)
+
+    let str=respuesta.choices[0].message.content
+    let lista_problemas
+    if (str.startsWith("```json")) {
+        lista_problemas= JSON.parse(str.substring(7, str.length - 3))
+    } else {
+        lista_problemas= JSON.parse(str)
+    
+    }
     
 
 
