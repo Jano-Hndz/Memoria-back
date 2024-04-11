@@ -15,8 +15,13 @@ const openAIInstance = new openAI({
 
 
 const GetDataAlumnos=async(req,res=response)=>{
+    const { uid} = req;
 
+    const RespDBUsuario = await Usuario.findById( uid )
     
+    const RespDBlistaEstudiantes = await Usuario.find({paralelo: RespDBUsuario.paralelo, rol:'estudiante'})
+
+    console.log(RespDBlistaEstudiantes);
 
     res.json({  
         ok: true

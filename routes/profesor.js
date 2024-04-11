@@ -9,7 +9,7 @@ const router = Router();
 router.use( validarJWT );
 
 
-router.get('/dataAlumnos',GetDataAlumnos)
+router.post('/dataAlumnos',GetDataAlumnos)
 router.post('/ejercicios/agregar',AgregarEjercicio)
 router.post('/ejercicios/rendimiento',ObtenerRendimientoEjercicio)
 router.post('/ejercicios',ObtenerEjercicio)
