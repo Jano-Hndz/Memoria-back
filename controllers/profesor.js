@@ -21,10 +21,18 @@ const GetDataAlumnos=async(req,res=response)=>{
     
     const RespDBlistaEstudiantes = await Usuario.find({paralelo: RespDBUsuario.paralelo, rol:'estudiante'})
 
-    console.log(RespDBlistaEstudiantes);
+
+    let respuesta=[]
+    for (const elemento of RespDBlistaEstudiantes) {
+        let respDB = await Retroalimentacion.find({ Usuario: RespDBlistaEstudiantes[0]._id }).sort({ createdAt: -1 }).limit(5);
+        respuesta.push(respDB)
+    }
+
 
     res.json({  
-        ok: true
+        ok: true,
+        lista: respuesta,
+        estudiantes:RespDBlistaEstudiantes
     })
 }
 
@@ -35,7 +43,6 @@ const AgregarEjercicio=async(req,res=response)=>{
     });
 
     const respuesta = await openAIInstance.chat.completions.create({
-            model: "gpt-4",
             model: "gpt-4-0125-preview",
             // model: "gpt-3.5-turbo",
             messages: [{ role: "system", content: consulta_enviar }],

@@ -7,6 +7,9 @@ const {
 const Consulta = require("../models/Consulta");
 const Retroalimentacion = require("../models/Retroalimentacion");
 const EjerciciosPropuesto = require("../models/EjerciciosPropuesto");
+const Usuario = require('../models/Usuario')
+
+
 
 const openAIInstance = new openAI({
     apiKey: process.env.API_KEY_OPEAI,
@@ -134,58 +137,17 @@ const RevisionChatGPT = async (req, res = response) => {
     }
 };
 
-const Historial = async (req, res = response) => {
-    try {
-        const respDB = await Retroalimentacion.find({ Usuario: req.uid });
-        var lista_resp = [];
-        let respConsulta
-        let json_push
-        for (const elemento of respDB) {
-            if (elemento.Propuesto == true) {
-                respConsulta = await EjerciciosPropuesto.findById(elemento.EjercicioPropuestoID);
-                json_push = {
-                    Problema: respConsulta.Problema,
-                    RespuestaSubojetivos: respConsulta.Respuesta,
-                    id_EjercicioPropuesto: respConsulta._id,
-                    id_Retroalimentacion: elemento._id,
-                    Respuesta_Estudiante: elemento.RespuestaEstudiante,
-                    Retroalimentacion: elemento.RespuestaLLM,
-                    Titulo:elemento.Titulo,
-                    Propuesto:true
-                };
-            } else {
-                respConsulta = await Consulta.findById(elemento.ConsultaID);
-                json_push = {
-                    Problema: respConsulta.Problema,
-                    RespuestaSubojetivos: respConsulta.Respuesta,
-                    id_consulta: respConsulta._id,
-                    id_Retroalimentacion: elemento._id,
-                    Respuesta_Estudiante: elemento.RespuestaEstudiante,
-                    Retroalimentacion: elemento.RespuestaLLM,
-                    Titulo:elemento.Titulo,
-                    Propuesto:false
-                };
-            }
-            lista_resp.push(json_push);
-        }
-
-        res.json({
-            ok: true,
-            historial: lista_resp,
-        });
-    } catch (error) {
-        console.log(error);
-        res.status(500).json({
-            ok: false,
-            msg: "Hable con el administrador",
-        });
-    }
-};
 
 
 const HistorialPaginado = async (req, res = response) => {
     try {
-        const respDB = await Retroalimentacion.find({ Usuario: req.uid }).skip(0).limit(5);
+        console.log(req.body);
+        let cantidadDocumentos
+        if(req.body.pag == 1){
+            cantidadDocumentos = await Retroalimentacion.countDocuments({ Usuario: req.uid });
+        }
+        let skip_num = (req.body.pag - 1)* 5
+        const respDB = await Retroalimentacion.find({ Usuario: req.uid }).sort({ _id: -1 }) .skip(skip_num).limit(5);
         var lista_resp = [];
         let respConsulta
         let json_push
@@ -217,11 +179,18 @@ const HistorialPaginado = async (req, res = response) => {
             }
             lista_resp.push(json_push);
         }
-
-        res.json({
-            ok: true,
-            historial: lista_resp,
-        });
+        if(req.body.pag == 1){
+            res.json({
+                ok: true,
+                historial: lista_resp,
+                cantidad:cantidadDocumentos 
+            });
+        }else{
+            res.json({
+                ok: true,
+                historial: lista_resp,
+            });
+        }
     } catch (error) {
         console.log(error);
         res.status(500).json({
@@ -275,10 +244,75 @@ const CrearProblema = async (req, res = response) => {
 };
 
 
+const ObtenerEjercicioPropuesto=async(req,res=response)=>{
+
+    const respUsuario = await Usuario.findById(req.uid)
+
+    console.log(req.body);
+    let cantidadDocumentos
+    if(req.body.pag == 1){
+        cantidadDocumentos = await EjerciciosPropuesto.countDocuments({Usuario:respUsuario.profesor_id});
+    }
+    let skip_num = (req.body.pag - 1)* 5
+
+    const respEPBD = await EjerciciosPropuesto.find({Usuario:respUsuario.profesor_id}).sort({ _id: -1 }) .skip(skip_num).limit(5);
+
+    
+
+    
+    if(req.body.pag == 1){
+        res.json({
+            ok: true,
+            lista:respEPBD,
+            cantidad:cantidadDocumentos 
+        });
+    }else{
+        res.json({
+            ok: true,
+            lista:respEPBD
+        });
+    }
+
+}
+
+const ObtenerEjercicioPropuestoTag=async(req,res=response)=>{
+
+    const respUsuario = await Usuario.findById(req.uid)
+
+    console.log(req.body);
+    let cantidadDocumentos
+    if(req.body.pag == 1){
+        cantidadDocumentos = await EjerciciosPropuesto.countDocuments({Usuario:respUsuario.profesor_id,Tags: { $in: [req.body.Tag] }  });
+        console.log(cantidadDocumentos);
+    }
+    let skip_num = (req.body.pag - 1)* 5
+
+    const respEPBD = await EjerciciosPropuesto.find({Usuario:respUsuario.profesor_id,Tags: { $in: [req.body.Tag] }  }).sort({ _id: -1 }) .skip(skip_num).limit(5);
+
+    
+
+    
+    if(req.body.pag == 1){
+        res.json({
+            ok: true,
+            lista:respEPBD,
+            cantidad:cantidadDocumentos 
+        });
+    }else{
+        res.json({
+            ok: true,
+            lista:respEPBD
+        });
+    }
+
+}
+
+
 module.exports = {
     ConsultaChatGPT,
     RevisionChatGPT,
-    Historial,
     CrearProblema,
-    HistorialPaginado
+    HistorialPaginado,
+    ObtenerEjercicioPropuesto,
+    ObtenerEjercicioPropuestoTag
 };

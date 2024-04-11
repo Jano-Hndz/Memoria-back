@@ -34,7 +34,13 @@ const PublicarForo=async(req,res=response)=>{
 const GetForo=async(req,res=response)=>{
 
     try {
-        const respDB = await Foro.find();
+        console.log(req.body);
+        let cantidadDocumentos
+        if(req.body.pag == 1){
+            cantidadDocumentos = await Foro.countDocuments();
+        }
+        let skip_num = (req.body.pag - 1)* 5
+        const respDB = await Foro.find().sort({ _id: -1 }) .skip(skip_num).limit(5);
         let respuesta=[]
 
         for (const elemento of respDB) {
@@ -47,10 +53,20 @@ const GetForo=async(req,res=response)=>{
             })
         }
 
-        res.json({
-            ok: true,
-            data:respuesta
-        });
+        if(req.body.pag == 1){
+            res.json({
+                ok: true,
+                lista:respuesta,
+                cantidad:cantidadDocumentos 
+            });
+        }else{
+            res.json({
+                ok: true,
+                lista:respuesta
+            });
+        }
+
+        
     } catch (error) {
         console.log(error);
         res.status(500).json({

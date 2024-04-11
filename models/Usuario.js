@@ -18,8 +18,9 @@ const UsuarioSchema = Schema({
         type: String,
         required: true
     },
-    paralelo:{
-        type: Number
+    profesor_id:{
+        type: Schema.Types.ObjectId,
+        ref: 'Usuario'
     }
 });
 
