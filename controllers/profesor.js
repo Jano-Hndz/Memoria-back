@@ -19,12 +19,12 @@ const GetDataAlumnos=async(req,res=response)=>{
 
     const RespDBUsuario = await Usuario.findById( uid )
     
-    const RespDBlistaEstudiantes = await Usuario.find({paralelo: RespDBUsuario.paralelo, rol:'estudiante'})
+    const RespDBlistaEstudiantes = await Usuario.find({profesor_id: RespDBUsuario._id, rol:'estudiante'})
 
 
     let respuesta=[]
     for (const elemento of RespDBlistaEstudiantes) {
-        let respDB = await Retroalimentacion.find({ Usuario: RespDBlistaEstudiantes[0]._id }).sort({ createdAt: -1 }).limit(5);
+        let respDB = await Retroalimentacion.find({ Usuario: elemento._id }).sort({ _id: -1 }).limit(5);
         respuesta.push(respDB)
     }
 

@@ -3,12 +3,14 @@ const openAI = require("openai");
 const {
     consulta_plantilla,
     revision_plantilla,
+    analisis_plantilla,
+    creacion_problema_plantilla
 } = require("../data/plantillas");
 const Consulta = require("../models/Consulta");
 const Retroalimentacion = require("../models/Retroalimentacion");
 const EjerciciosPropuesto = require("../models/EjerciciosPropuesto");
 const Usuario = require('../models/Usuario')
-
+const Analisis_Rendimiento = require("../models/Analisis_Rendimiento")
 
 
 const openAIInstance = new openAI({
@@ -141,13 +143,12 @@ const RevisionChatGPT = async (req, res = response) => {
 
 const HistorialPaginado = async (req, res = response) => {
     try {
-        console.log(req.body);
         let cantidadDocumentos
         if(req.body.pag == 1){
             cantidadDocumentos = await Retroalimentacion.countDocuments({ Usuario: req.uid });
         }
         let skip_num = (req.body.pag - 1)* 5
-        const respDB = await Retroalimentacion.find({ Usuario: req.uid }).sort({ _id: -1 }) .skip(skip_num).limit(5);
+        const respDB = await Retroalimentacion.find({ Usuario: req.uid }).sort({ _id: -1 }).skip(skip_num).limit(5);
         var lista_resp = [];
         let respConsulta
         let json_push
@@ -191,49 +192,6 @@ const HistorialPaginado = async (req, res = response) => {
                 historial: lista_resp,
             });
         }
-    } catch (error) {
-        console.log(error);
-        res.status(500).json({
-            ok: false,
-            msg: "Hable con el administrador",
-        });
-    }
-};
-
-
-const CrearProblema = async (req, res = response) => {
-    try {
-        console.log("Crear Problema");
-
-
-        const respuesta = await openAIInstance.chat.completions.create({
-            model: "gpt-4-1106-preview",
-            // model: "gpt-3.5-turbo",
-            messages: [{ role: "system", content: `
-            Eres un profesor de programación de Python. Se te entregará una serie de textos componentes con instrucciones, reglas, ejemplos de formato de respuestas y finalmente un documento a revisar. El primer texto componente es instruction_text, está encasillado entre las etiquetas <instruction> y </instruction>. El segundo texto componente será un formato para tus respuestas, este se llama example_responses_text, y está encasillado entre las etiquetas <example_responses> y </example_responses>. El siguiente texto componente será un texto llamado response_example_explanation_text, encasillado entre las etiquetas <response_example_explanation> y </response_example_explanation> y te permitirá entender cómo responder. Usando instruction_text como tus instrucciones y responde de acuerdo con el formato descrito en response_example_text usando las reglas especificadas en response_example_explanation_text. Responde en formato de un de JSON format, con sus llaves y valores en castellano tal como se especificó en response_example_explanation_text
-            <instruction>
-            Tienes que realizar crear un problema el cual sea apto para un estudiante de programación, este problema tiene que ser apto para poder resolverlo mediante la metodología de subobjetivos
-            </instruction>
-            <example_responses>
-                {
-                    "Nombre": <nombre_problem>,
-                    "Problema": <Problem_text>
-               }
-            </example_responses>
-            <response_example_explanation>
-            Se tendrá que devolver un JSON en el formato descrito en example_responses_text. Los atributos de este JSON son “Nombre” en donde <nombre_problem> corresponde a un titulo que describa el problema que se creo. El otro atributo corresponde a “Problema” en donde <Problem_text> corresponde al problema que se creo para el que el estudiante pueda resolver un problema de programación con Python y la metodología por subobjetivos
-            </response_example_explanation>
-            `}],
-            temperature: 0.5,
-        });
-        const Json_Problema= JSON.parse(respuesta.choices[0].message.content)
-        console.log(Json_Problema);
-        res.json({
-            ok: true,
-            resp: Json_Problema
-        });
-
-
     } catch (error) {
         console.log(error);
         res.status(500).json({
@@ -308,11 +266,139 @@ const ObtenerEjercicioPropuestoTag=async(req,res=response)=>{
 }
 
 
+
+const Rendimiento_Estudiante=async(req,res=response)=>{
+
+    let respDB = await Retroalimentacion.find({ Usuario: req.uid }).sort({ _id: -1 }).limit(5);
+
+    res.json({
+        ok: true,
+        lista:respDB
+    });
+
+}
+
+
+const Analisis_Rendimiento_Estudiante=async(req,res=response)=>{
+
+    try {
+        console.log("Analisis Estudiante");
+
+        let consulta_enviar = analisis_plantilla({
+            texto_1: req.body.Rendimiento,
+        });
+
+        const respuesta = await openAIInstance.chat.completions.create({
+            model: "gpt-4-0125-preview",
+            // model: "gpt-3.5-turbo",
+            messages: [{ role: "system", content: consulta_enviar }],
+            temperature: 0.5,
+        });
+        let str=respuesta.choices[0].message.content
+        let Json_Retroalimentaion
+        if (str.startsWith("```json")) {
+            Json_Retroalimentaion= JSON.parse(str.substring(7, str.length - 3))
+        } else {
+            Json_Retroalimentaion= JSON.parse(str)
+        }
+
+        console.log("Paso Analisis");
+
+        let consulta_enviar2 = creacion_problema_plantilla({
+            texto_1: JSON.stringify(Json_Retroalimentaion),
+        });
+
+
+        const respuesta2 = await openAIInstance.chat.completions.create({
+            model: "gpt-4-0125-preview",
+            // model: "gpt-3.5-turbo",
+            messages: [{ role: "system", content: consulta_enviar2 }],
+            temperature: 0.5,
+        });
+        let stringProblema=respuesta2.choices[0].message.content
+        console.log(stringProblema);
+        let Json_Problema
+        if (stringProblema.startsWith("```json")) {
+            Json_Problema= JSON.parse(stringProblema.substring(7, stringProblema.length - 3))
+        } else {
+            Json_Problema= JSON.parse(stringProblema)
+        }
+
+        console.log("Paso creacion de problema");
+
+        
+        let consulta_enviar3 = consulta_plantilla({
+            texto_1: Json_Problema.Problema,
+        });
+
+        const respuesta3 = await openAIInstance.chat.completions.create({
+            model: "gpt-4-0125-preview",
+            // model: "gpt-3.5-turbo",
+            messages: [{ role: "system", content: consulta_enviar3 }],
+            temperature: 0.5,
+        });
+        let stringConsulta=respuesta3.choices[0].message.content
+        let lista_problemas
+        if (stringConsulta.startsWith("```json")) {
+            lista_problemas= JSON.parse(stringConsulta.substring(7, stringConsulta.length - 3))
+        } else {
+            lista_problemas= JSON.parse(stringConsulta)
+        }
+
+        console.log("Paso asistente de subobjetivos");
+
+
+            
+
+        const EjerciciosPropuestoNEW = new EjerciciosPropuesto({
+            Titulo:Json_Problema.Titulo,
+            Problema: Json_Problema.Problema,
+            Respuesta: lista_problemas,
+            Usuario: req.uid,
+            Tags:Json_Retroalimentaion.lista_topicos
+        });
+
+        const RespDB2 = await EjerciciosPropuestoNEW.save();
+
+
+
+        const AnalisisNEW = new Analisis_Rendimiento({
+            Retroalimentacion: Json_Retroalimentaion.Retroalimentacion,
+            Topicos: Json_Retroalimentaion.lista_topicos,
+            Usuario: req.uid,
+            EjercicioPropuestoID:RespDB2._id
+        });
+
+        const RespDB = await AnalisisNEW.save();
+
+        res.json({
+            ok: true,
+            retroalimentacion: Json_Retroalimentaion,
+            problema:Json_Problema,
+            lista_problemas:lista_problemas,
+            ID_Analisis:RespDB._id,
+            ID_Ejercicio_Propuesto:RespDB2._id
+        });
+
+
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({
+            ok: false,
+            msg: "Hable con el administrador",
+        });
+    }
+
+}
+
+
+
 module.exports = {
     ConsultaChatGPT,
     RevisionChatGPT,
-    CrearProblema,
     HistorialPaginado,
     ObtenerEjercicioPropuesto,
-    ObtenerEjercicioPropuestoTag
+    ObtenerEjercicioPropuestoTag,
+    Rendimiento_Estudiante,
+    Analisis_Rendimiento_Estudiante
 };

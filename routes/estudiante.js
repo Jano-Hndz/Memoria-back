@@ -1,7 +1,7 @@
 const {Router} = require('express')
 const {check} = require ('express-validator');
 const { validarJWT } = require('../middlewares/validar-jwt');
-const {ConsultaChatGPT,RevisionChatGPT,CrearProblema,HistorialPaginado,ObtenerEjercicioPropuesto,ObtenerEjercicioPropuestoTag} = require("../controllers/estudiante")
+const {ConsultaChatGPT,RevisionChatGPT,HistorialPaginado,ObtenerEjercicioPropuesto,Analisis_Rendimiento_Estudiante,Rendimiento_Estudiante,ObtenerEjercicioPropuestoTag} = require("../controllers/estudiante")
 const {PublicarForo,GetForo,GetRetroalimentacion,ComentarForo,GetComentarios,GetConsulta} =  require("../controllers/Foro")
 
 const router = Router();
@@ -10,10 +10,14 @@ const router = Router();
 router.use( validarJWT );
 
 
-router.post('/crear',CrearProblema)
 router.post('/consulta',ConsultaChatGPT)
 router.post('/revision',RevisionChatGPT)
 router.post('/historial',HistorialPaginado)
+router.post('/rendimiento',Rendimiento_Estudiante)
+router.post('/rendimiento/analisis',Analisis_Rendimiento_Estudiante)
+
+
+
 
 router.post('/ejerciciospropuestos',ObtenerEjercicioPropuesto)
 router.post('/ejerciciospropuestos/tag',ObtenerEjercicioPropuestoTag)

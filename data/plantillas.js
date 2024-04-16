@@ -144,7 +144,67 @@ const revision_plantilla = ({ texto_1 }) => {
     return texto_plantilla_revision;
 };
 
+
+const analisis_plantilla = ({ texto_1 }) => {
+    const texto_plantilla_consulta = `
+    Eres un profesor de programación de Python. Se te entregará una serie de textos componentes con instrucciones, reglas, ejemplos de formato de respuestas y finalmente un documento a revisar. El primer texto componente es instruction_text, está encasillado entre las etiquetas <instruction> y </instruction>. El segundo texto componente será un formato para tus respuestas, este se llama example_responses_text, y está encasillado entre las etiquetas <example_responses> y </example_responses>. El siguiente texto componente será un texto llamado response_example_explanation_text, encasillado entre las etiquetas <response_example_explanation> y </response_example_explanation> y te permitirá enteder como responder. Finalmente, se te entregará un texto componente llamado target_content_text, que es el texto a revisar, encasillado entre las etiquetas <target_content> y </target_content>. Usando instruction_text como tus instruciones, revisa el contenido en target_content_text  y responde de acuerdo al formato descrito en response_example_text usando las reglas de respuesta en response_example_explanation_text. Responde en formato de JSON format, con sus llaves y valores en castellano
+    <instruction>
+    Tiene que analizar la lista de strings que se te entregara en target_content_text para devuelvas un json en donde tendrás que entregarme una listas d ellos tópicos que más se han tenido errores y también una retroalimentación resumen de todas las retroalimentaciones que se te pasaron.
+    </instruction>
+    <example_responses>
+        {
+            "Retroalimentacion": <retroalimentacion_funcion>,
+            "lista_topicos": <lista_funcion>
+        }
+    </example_responses>
+    <response_example_explanation>
+     Se deberá devolver un JSON con el formato descrito en example_responses_text. En <retroalimentacion_funcion>, se espera un string que resuma todos los problemas analizados a partir de la lista de retroalimentaciones recibidas. En <lista_funcion>, se requiere una lista de strings que contenga todos los temas de programación con los cuales se detectaron problemas después de analizar la lista recibida en <target_content>.
+    </response_example_explanation>
+    <target_content>
+    ${texto_1} 
+    </target_content>    
+    `;
+    return texto_plantilla_consulta;
+};
+
+
+const creacion_problema_plantilla = ({ texto_1 }) => {
+    const texto_plantilla_consulta = `
+    Eres un profesor de programación de Python. Se te entregará una serie de textos componentes con instrucciones, reglas, ejemplos de formato de respuestas y finalmente un documento a revisar. El primer texto componente es examples_Input_requested_text, este encasillado entre las etiquetas < examples_Input_ requested > y </ examples_Input_ requested >. El segundo texto componente será un formato para tus inputs, este se llama input_examples_explanation_text, y está encasillado entre las etiquetas < input_examples_explanation > y </ input_examples_explanation >. El tercer texto componente es instruction_text, está encasillado entre las etiquetas <instruction> y </instruction>. El cuarto texto componente será un formato para tus respuestas, este se llama example_responses_text, y está encasillado entre las etiquetas <example_responses> y </example_responses>. El siguiente texto componente será un texto llamado response_example_explanation_text, encasillado entre las etiquetas <response_example_explanation> y </response_example_explanation> y te permitirá entender cómo responder. Después, se te entregará texto componente llamado target_content_requested_text, que es el texto a revisar, encasillado entre las etiquetas <target_content_requested> y </target_content_requested> que te permitirá entender lo que se pedio resolver al alumno y lo que respondió. Usando instruction_text como tus instrucciones, revisa el contenido en target_content_requested_text  y responde de acuerdo al formato descrito en response_example_text usando las reglas especificadas en response_example_explanation_text. Responde en formato de un JSON format, con sus llaves y valores en castellano tal como se especificó en response_example_explanation_text
+    < examples_Input_ requested > 
+        {
+            "Retroalimentacion": <retroalimentacion_funcion>,
+            "lista_topicos": <lista_funcion>
+        }
+   </ examples_Input_ requested >
+
+    <input_examples_explanation > 
+Es un JSON con el formato descrito en examples_Input_ requested_text. En <retroalimentacion_funcion>, se espera un string que resuma todos los problemas analizados. En <lista_funcion>, se espera una lista de strings que contenga todos los temas de programación con los cuales se detectaron problemas, los cuales serán ocupados para hacer el problema de programación en python
+    </ input_examples_explanation >.
+    <instruction>
+    Tienes que revisar los tópicos con los que a tenido problema el estudiante en target_content_requested_text  y después tendrás que crear un problema de programación de no tan alto nivel en donde se puede practicar los tópicos con los cuales se ha tenido problema el estudiante.
+    </instruction>
+    <example_responses>
+        {
+            "Titulo": <titulo_funcion>,
+            "Problema": <problema_funcion>
+        }
+    </example_responses>
+    <response_example_explanation>
+Se deberá devolver un JSON con el formato descrito en example_responses_text. En < titulo_funcion >, se espera un string que será el título del problema creado. En <problema_funcion>, se requiere un strings que contenga un problema de programación en Python de nivel medio con el que se pueda trabajar en los tópicos descritos en <target_content>, también este problema tiene que poder trabajarse con la metodología por subjetivos.
+    </response_example_explanation>
+    <target_content_requested>
+    ${texto_1} 
+    </target_content_requested> 
+ 
+    `;
+    return texto_plantilla_consulta;
+};
+
+
 module.exports = {
     consulta_plantilla,
     revision_plantilla,
+    analisis_plantilla,
+    creacion_problema_plantilla
 };
