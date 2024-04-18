@@ -392,6 +392,52 @@ const Analisis_Rendimiento_Estudiante=async(req,res=response)=>{
 }
 
 
+const GETRendimientoEstudiantes = async (req, res = response) => {
+    try {
+        let cantidadDocumentos
+        if(req.body.pag == 1){
+            cantidadDocumentos = await Analisis_Rendimiento.countDocuments({ Usuario: req.uid });
+        }
+        let skip_num = (req.body.pag - 1)* 5
+        const respDB = await Analisis_Rendimiento.find({ Usuario: req.uid }).sort({ _id: -1 }).skip(skip_num).limit(5);
+        var lista_resp = [];
+        let respConsulta
+        let json_push
+        for (const elemento of respDB) {
+            respConsulta = await EjerciciosPropuesto.findById(elemento.EjercicioPropuestoID);
+            json_push = {
+                Problema: respConsulta.Problema,
+                RespuestaSubojetivos: respConsulta.Respuesta,
+                id_EjercicioPropuesto: respConsulta._id,
+                id_Retroalimentacion: elemento._id,
+                Retroalimentacion: elemento.Retroalimentacion,
+                Topicos: elemento.Topicos,
+                Date: elemento.Date
+            }
+            lista_resp.push(json_push);
+        }
+        if(req.body.pag == 1){
+            res.json({
+                ok: true,
+                lista: lista_resp,
+                cantidad:cantidadDocumentos 
+            });
+        }else{
+            res.json({
+                ok: true,
+                lista: lista_resp,
+            });
+        }
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({
+            ok: false,
+            msg: "Hable con el administrador",
+        });
+    }
+};
+
+
 
 module.exports = {
     ConsultaChatGPT,
@@ -400,5 +446,6 @@ module.exports = {
     ObtenerEjercicioPropuesto,
     ObtenerEjercicioPropuestoTag,
     Rendimiento_Estudiante,
-    Analisis_Rendimiento_Estudiante
+    Analisis_Rendimiento_Estudiante,
+    GETRendimientoEstudiantes
 };
