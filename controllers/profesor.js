@@ -143,10 +143,22 @@ const ObtenerRendimientoEjercicio=async(req,res=response)=>{
 }
 
 
+
+const EliminarEjercicioPropuesto=async(req,res=response)=>{
+
+    const respu = await EjerciciosPropuesto.deleteOne({ _id: req.body.ID })
+
+    res.json({
+        ok: true
+    });
+}
+
+
 module.exports={
     GetDataAlumnos,
     AgregarEjercicio,
     ObtenerEjercicio,
     ObtenerEjercicioTag,
-    ObtenerRendimientoEjercicio
+    ObtenerRendimientoEjercicio,
+    EliminarEjercicioPropuesto
 }

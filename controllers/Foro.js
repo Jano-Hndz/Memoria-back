@@ -185,6 +185,8 @@ const GetComentarios=async(req,res=response)=>{
 
     try {
 
+        console.log("Entro aca");
+
         const RespDB = await ForoComentario.find({ForoID:req.body.id_foro})
 
         let respuesta=[]
@@ -196,6 +198,8 @@ const GetComentarios=async(req,res=response)=>{
                 Usuario:respuestaUsuario.name
             })
         }
+
+        console.log(data);
 
         res.json({
             ok: true,
