@@ -76,6 +76,53 @@ const GetForo=async(req,res=response)=>{
     }
 }
 
+
+
+const GetPostUsuario=async(req,res=response)=>{
+
+    try {
+        console.log(req.body);
+        let cantidadDocumentos
+        if(req.body.pag == 1){
+            cantidadDocumentos = await Foro.countDocuments({ Usuario: req.uid });
+        }
+        let skip_num = (req.body.pag - 1)* 5
+        const respDB = await Foro.find({ Usuario: req.uid }).sort({ _id: -1 }) .skip(skip_num).limit(5);
+        let respuesta=[]
+
+        for (const elemento of respDB) {
+            let respuestaUsuario = await Usuario.findById(elemento.Usuario);
+            let respRetroalimentacion = await Retroalimentacion.findById(elemento.RetroalimentacionID);
+            respuesta.push({
+                ...elemento._doc,
+                Propuesto:respRetroalimentacion.Propuesto,
+                Usuario:respuestaUsuario.name
+            })
+        }
+
+        if(req.body.pag == 1){
+            res.json({
+                ok: true,
+                lista:respuesta,
+                cantidad:cantidadDocumentos 
+            });
+        }else{
+            res.json({
+                ok: true,
+                lista:respuesta
+            });
+        }
+
+        
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({
+            ok: false,
+            msg: "Hable con el administrador",
+        });
+    }
+}
+
 const GetRetroalimentacion=async(req,res=response)=>{
 
     try {
@@ -223,5 +270,6 @@ module.exports={
     GetRetroalimentacion,
     ComentarForo,
     GetComentarios,
-    GetConsulta
+    GetConsulta,
+    GetPostUsuario
 }

@@ -6,7 +6,7 @@ const {
 const EjerciciosPropuesto = require("../models/EjerciciosPropuesto");
 const Usuario = require('../models/Usuario')
 const Retroalimentacion = require("../models/Retroalimentacion");
-
+const nodemailer = require('nodemailer');
 
 
 const openAIInstance = new openAI({
@@ -154,11 +154,50 @@ const EliminarEjercicioPropuesto=async(req,res=response)=>{
 }
 
 
+const CrearCuentas=async(req,res=response)=>{
+
+
+    const transporter = nodemailer.createTransport({
+        service: "Gmail",
+        host: "smtp.gmail.com",
+        port: 465,
+        secure: true,
+        auth: {
+          user: "notificacionesasistente5@gmail.com",
+          pass: "ecvd giyx vjni rqay",
+        },
+    });
+    
+    // Detalles del correo electrónico
+    const mailOptions = {
+        from: 'notificacionesasistente5@gmail.com', // Debe ser la misma dirección de correo que 'user' arriba
+        to: 'al.ig.he.he@gmail.com', // Dirección del destinatario
+        subject: 'Prueba de nodemailer desde Gmail',
+        text: 'Hola, este es un correo de prueba enviado con nodemailer.'
+    };
+    
+    // Envía el correo electrónico
+    transporter.sendMail(mailOptions, function(error, info) {
+        if (error) {
+            console.log(error);
+        } else {
+            console.log('Correo enviado: ' + info.response);
+        }
+    });
+
+    console.log("Crear cuentas");
+    res.json({
+        ok: true
+    });
+}
+
+
 module.exports={
     GetDataAlumnos,
     AgregarEjercicio,
     ObtenerEjercicio,
     ObtenerEjercicioTag,
     ObtenerRendimientoEjercicio,
-    EliminarEjercicioPropuesto
+    EliminarEjercicioPropuesto,
+    CrearCuentas
 }
