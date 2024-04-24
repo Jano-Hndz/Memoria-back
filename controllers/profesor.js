@@ -6,7 +6,13 @@ const {
 const EjerciciosPropuesto = require("../models/EjerciciosPropuesto");
 const Usuario = require('../models/Usuario')
 const Retroalimentacion = require("../models/Retroalimentacion");
-const nodemailer = require('nodemailer');
+const CreacionCuentas = require("../models/CreacionCuentas")
+const xlsx = require('xlsx');
+const fs = require('fs');
+const {generateRandomPassword,EnviarEmailContrasena} = require('../helpers/funciones'); 
+const {CrearUsuarioEstudiante} =require ('./auth')
+
+
 
 
 const openAIInstance = new openAI({
@@ -27,7 +33,6 @@ const GetDataAlumnos=async(req,res=response)=>{
         let respDB = await Retroalimentacion.find({ Usuario: elemento._id }).sort({ _id: -1 }).limit(5);
         respuesta.push(respDB)
     }
-
 
     res.json({  
         ok: true,
@@ -154,42 +159,67 @@ const EliminarEjercicioPropuesto=async(req,res=response)=>{
 }
 
 
-const CrearCuentas=async(req,res=response)=>{
+const CrearCuentas = async (req, res = response) => {
+    const { uid, name } = req;
+
+    try {
+        // El archivo se ha subido correctamente
+        const uploadedFile = req.file;
+        console.log('Archivo recibido:', uploadedFile);
+
+        // Ruta del archivo subido
+    const filePath = uploadedFile.path;
+
+    // Leer el archivo Excel
+    const workbook = xlsx.readFile(filePath);
+
+    // Obtener la primera hoja del archivo
+    const firstSheetName = workbook.SheetNames[0];
+    const worksheet = workbook.Sheets[firstSheetName];
+
+    // Convertir la hoja a un objeto JSON
+    const listajsonData = xlsx.utils.sheet_to_json(worksheet);
+
+    // Imprimir los datos leídos
+    console.log('Datos de la primera hoja:', listajsonData);
+
+    const creacionnew= new CreacionCuentas({
+        profesor_id:uid
+    })
+
+    const respuCreacion= await creacionnew.save()
 
 
-    const transporter = nodemailer.createTransport({
-        service: "Gmail",
-        host: "smtp.gmail.com",
-        port: 465,
-        secure: true,
-        auth: {
-          user: "notificacionesasistente5@gmail.com",
-          pass: "ecvd giyx vjni rqay",
-        },
-    });
-    
-    // Detalles del correo electrónico
-    const mailOptions = {
-        from: 'notificacionesasistente5@gmail.com', // Debe ser la misma dirección de correo que 'user' arriba
-        to: 'al.ig.he.he@gmail.com', // Dirección del destinatario
-        subject: 'Prueba de nodemailer desde Gmail',
-        text: 'Hola, este es un correo de prueba enviado con nodemailer.'
-    };
-    
-    // Envía el correo electrónico
-    transporter.sendMail(mailOptions, function(error, info) {
-        if (error) {
-            console.log(error);
-        } else {
-            console.log('Correo enviado: ' + info.response);
-        }
-    });
+    for (const elemento of listajsonData) {
+        const constrasenausuario=generateRandomPassword(14)
+        const rep = await CrearUsuarioEstudiante({
+            email:elemento.Email, 
+            password:constrasenausuario,
+            name:elemento.Nombre,
+            rol:"estudiante",
+            profesor_id:uid,
+            IDCreacionCuenta:respuCreacion._id
+        })
 
-    console.log("Crear cuentas");
+        await EnviarEmailContrasena({email:elemento.Email,contrasena:constrasenausuario})
+    }
+
+    fs.unlinkSync(filePath);
+
     res.json({
         ok: true
     });
+
+    } catch (error) {
+        // Ocurrió un error al subir el archivo
+        console.error('Error al subir archivo:', error);
+        res.json({
+            ok: false
+        });
+    }
 }
+    
+    
 
 
 module.exports={

@@ -6,46 +6,53 @@ const Retroalimentacion = require("../models/Retroalimentacion");
 
 
 
-const CrearUsuario = async(req,res=response)=>{
+const CrearUsuarioEstudiante = async( { email, password,name,rol,profesor_id,IDCreacionCuenta } )=>{
     
-    const { email, password } = req.body;
-    console.log(req.body);
-
+    console.log(email);
     try {
+        console.log(1);
 
         let usuario_re = await Usuario.findOne({ email });
 
         if ( usuario_re ) {
-            return res.status(400).json({
+            console.log("user repetido");
+            return ({
                 ok: false,
                 msg: 'El usuario ya existe'
             });
         }
 
-        const usuario=new Usuario(req.body)
+        console.log(2);
+        const usuario=new Usuario({
+            email,
+            password,
+            name,
+            rol,
+            profesor_id,
+            IDCreacionCuenta
+        })
+        console.log(usuario);
 
         // Encriptar contraseña
         const salt = bcrypt.genSaltSync();
         usuario.password = bcrypt.hashSync( password, salt );
-
-        await usuario.save()
-
+        console.log(3);
+        console.log(usuario);
+        const resp = await usuario.save()
+        console.log(4);
+        console.log(resp);
         // Generar JWT
         const token = await generarJWT( usuario.id, usuario.name );
 
-
-        return res.status(201).json({
+        console.log(4);
+        return ({
             ok:true,
-            uid: usuario.id,
-            name: usuario.name,
-            token
-        })
+            uid: usuario.id
+            })
 
     } catch (error) {
-        console.log(error)
-        return res.status(500).json({
-            ok:false,
-            msg:'Hable con el admin'
+        return ({
+            ok:false
         })
     }
     
@@ -134,7 +141,7 @@ const test=async(req,res=response)=>{
 
 
 module.exports={
-    CrearUsuario,
+    CrearUsuarioEstudiante,
     LoginUsuario,
     RevalidarToken,
     test

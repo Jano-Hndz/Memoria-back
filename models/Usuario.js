@@ -21,6 +21,14 @@ const UsuarioSchema = Schema({
     profesor_id:{
         type: Schema.Types.ObjectId,
         ref: 'Usuario'
+    },
+    Estado: {
+        type: Boolean,
+        default: true
+    },
+    IDCreacionCuenta:{
+        type: Schema.Types.ObjectId,
+        ref: 'CreacionCuentas'
     }
 });
 
