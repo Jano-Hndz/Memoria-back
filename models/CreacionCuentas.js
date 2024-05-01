@@ -8,6 +8,10 @@ const CreacionCuentasSchema = Schema({
     Date: {
         type: Date,
         default: () => new Date(new Date().getTime() - (4 * 60 * 60 * 1000))
+    },
+    Estado: {
+        type: Boolean,
+        default: true
     }
 });
 

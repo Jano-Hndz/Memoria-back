@@ -219,7 +219,55 @@ const CrearCuentas = async (req, res = response) => {
     }
 }
     
+const CrearCuentasHistorial=async(req,res=response)=>{
+
+    const respu = await CreacionCuentas.find({profesor_id:req.uid})
+    let lista = []
+    let aux = []
+    for (const elemento of respu) {
+        aux = []
+        let respu2 = await Usuario.find({IDCreacionCuenta:elemento._id})
+        for (const elemento2 of respu2) {
+            aux.push(elemento2.name)
+        }
+        lista.push({
+            lista_usuarios: aux,
+            ...elemento._doc
+        })
+    }
+
+    res.json({
+        ok: true,
+        lista: lista
+    });
+}
+
+
+
+const DesactivarCuentas=async(req,res=response)=>{
+    const respu = await Usuario.updateMany(
+        { IDCreacionCuenta: req.body.id_creacion }, 
+        { $set: { Estado: false } })
     
+    const respu2 =  await CreacionCuentas.findByIdAndUpdate(req.body.id_creacion, { $set: { Estado: false } })
+
+    res.json({
+        ok: true,
+    });
+}
+
+const ActivarCuentas=async(req,res=response)=>{
+    const respu = await Usuario.updateMany(
+        { IDCreacionCuenta: req.body.id_creacion }, 
+        { $set: { Estado: true } })
+    
+    const respu2 =  await CreacionCuentas.findByIdAndUpdate(req.body.id_creacion, { $set: { Estado: true } })
+
+    res.json({
+        ok: true,
+    });
+}
+
 
 
 module.exports={
@@ -229,5 +277,8 @@ module.exports={
     ObtenerEjercicioTag,
     ObtenerRendimientoEjercicio,
     EliminarEjercicioPropuesto,
-    CrearCuentas
+    CrearCuentas,
+    CrearCuentasHistorial,
+    DesactivarCuentas,
+    ActivarCuentas
 }
