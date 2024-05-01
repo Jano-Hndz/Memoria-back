@@ -66,7 +66,9 @@ const LoginUsuario = async (req,res=response)=>{
        
         // Desencriptar para poder comparar las constraseñas
         const usuario = await Usuario.findOne({ email });
-
+        console.log("inciianto");
+        console.log(email);
+        console.log(password);
         if ( !usuario ) {
             return res.status(400).json({
                 ok: false,
@@ -97,6 +99,7 @@ const LoginUsuario = async (req,res=response)=>{
 
 
     } catch (error) {
+
         console.log(error);
         res.status(500).json({
             ok: false,
