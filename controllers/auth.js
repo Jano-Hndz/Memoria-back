@@ -129,12 +129,7 @@ const RevalidarToken=async(req,res=response)=>{
 
 const test=async(req,res=response)=>{
 
-    const respDB = await Retroalimentacion.find({ Usuario: req.uid });
-    
-    for (const elemento of respDB) {
-            
-
-    }
+    console.log("test");
 
     res.json({
         ok: true
