@@ -129,7 +129,7 @@ const RevalidarToken=async(req,res=response)=>{
 
 const test=async(req,res=response)=>{
 
-    console.log("testin");
+    console.log("testing");
 
     res.json({
         ok: true
