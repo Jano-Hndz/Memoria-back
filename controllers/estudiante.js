@@ -29,7 +29,7 @@ const ConsultaChatGPT = async (req, res = response) => {
             model: "gpt-4-0125-preview",
             // model: "gpt-3.5-turbo",
             messages: [{ role: "system", content: consulta_enviar }],
-            temperature: 0.5,
+            temperature: 0.0,
         });
         let str = respuesta.choices[0].message.content;
         let lista_problemas;
@@ -84,7 +84,7 @@ const RevisionChatGPT = async (req, res = response) => {
             model: "gpt-4-1106-preview",
             // model: "gpt-3.5-turbo",
             messages: [{ role: "system", content: consulta_enviar }],
-            temperature: 0.5,
+            temperature: 0.0,
         });
         let str = respuesta.choices[0].message.content;
 
@@ -351,7 +351,7 @@ const Analisis_Rendimiento_Estudiante = async (req, res = response) => {
             model: "gpt-4-0125-preview",
             // model: "gpt-3.5-turbo",
             messages: [{ role: "system", content: consulta_enviar }],
-            temperature: 0.5,
+            temperature: 0.0,
         });
         let str = respuesta.choices[0].message.content;
         let Json_Retroalimentaion;
@@ -373,7 +373,7 @@ const Analisis_Rendimiento_Estudiante = async (req, res = response) => {
             model: "gpt-4-0125-preview",
             // model: "gpt-3.5-turbo",
             messages: [{ role: "system", content: consulta_enviar2 }],
-            temperature: 0.5,
+            temperature: 0.0,
         });
         let stringProblema = respuesta2.choices[0].message.content;
         console.log(stringProblema);
@@ -396,7 +396,7 @@ const Analisis_Rendimiento_Estudiante = async (req, res = response) => {
             model: "gpt-4-0125-preview",
             // model: "gpt-3.5-turbo",
             messages: [{ role: "system", content: consulta_enviar3 }],
-            temperature: 0.5,
+            temperature: 0.0,
         });
         let stringConsulta = respuesta3.choices[0].message.content;
         let lista_problemas;

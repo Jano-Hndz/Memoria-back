@@ -61,7 +61,7 @@ const LoginUsuario = async (req, res = response) => {
 
     try {
         // Desencriptar para poder comparar las constraseñas
-        const usuario = await Usuario.findOne({ email });
+        const usuario = await Usuario.findOne({ email:email, Estado:true });
 
         if (!usuario) {
             return res.status(400).json({
@@ -91,6 +91,7 @@ const LoginUsuario = async (req, res = response) => {
             token,
         });
     } catch (error) {
+
         console.log(error);
         res.status(500).json({
             ok: false,

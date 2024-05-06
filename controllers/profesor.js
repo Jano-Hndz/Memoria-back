@@ -26,6 +26,7 @@ const GetDataAlumnos = async (req, res = response) => {
         const RespDBlistaEstudiantes = await Usuario.find({
             profesor_id: RespDBUsuario._id,
             rol: "estudiante",
+            Estado:true
         });
 
         let respuesta = [];
@@ -158,10 +159,12 @@ const ObtenerRendimientoEjercicio = async (req, res = response) => {
         let respuesta = [];
         for (const elemento of RespDB) {
             let respuestaUsuario = await Usuario.findById(elemento.Usuario);
-            respuesta.push({
-                ...elemento._doc,
-                Nombre: respuestaUsuario.name,
-            });
+            if(respuestaUsuario.Estado){
+                respuesta.push({
+                    ...elemento._doc,
+                    Nombre: respuestaUsuario.name,
+                });
+            }
         }
 
         res.json({
@@ -224,20 +227,21 @@ const CrearCuentas = async (req, res = response) => {
         const respuCreacion = await creacionnew.save();
 
         for (const elemento of listajsonData) {
-            const constrasenausuario = generateRandomPassword(14);
+            // const constrasenausuario = generateRandomPassword(14);
             const rep = await CrearUsuarioEstudiante({
                 email: elemento.Email,
-                password: constrasenausuario,
+                // password: constrasenausuario,
+                password: "usmprogra",
                 name: elemento.Nombre,
                 rol: "estudiante",
                 profesor_id: uid,
                 IDCreacionCuenta: respuCreacion._id,
             });
 
-            await EnviarEmailContrasena({
-                email: elemento.Email,
-                contrasena: constrasenausuario,
-            });
+            // await EnviarEmailContrasena({
+            //     email: elemento.Email,
+            //     contrasena: constrasenausuario,
+            // });
         }
 
         fs.unlinkSync(filePath);
