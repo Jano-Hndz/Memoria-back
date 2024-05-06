@@ -214,6 +214,7 @@ const GetConsulta = async (req, res = response) => {
 
 const ComentarForo = async (req, res = response) => {
     try {
+        console.log("Entro en comentar  foro");
         const ForoNEW = new ForoComentario({
             ...req.body,
             Usuario: req.uid,
@@ -235,7 +236,7 @@ const ComentarForo = async (req, res = response) => {
 
 const GetComentarios = async (req, res = response) => {
     try {
-        console.log("Entro aca");
+        console.log(req.body);
 
         const RespDB = await ForoComentario.find({ ForoID: req.body.id_foro });
 
@@ -249,7 +250,6 @@ const GetComentarios = async (req, res = response) => {
             });
         }
 
-        console.log(data);
 
         res.json({
             ok: true,

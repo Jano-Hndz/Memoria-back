@@ -32,7 +32,7 @@ router.post('/foro/get/user',GetPostUsuario)
 
 router.post('/foro/retroalimentacion',GetRetroalimentacion)
 router.post('/foro/comentar',ComentarForo)
-router.post('/foro/get',GetComentarios)
+router.post('/foro/comentarios',GetComentarios)
 router.post('/foro/ejercicio',GetConsulta)
 
 
