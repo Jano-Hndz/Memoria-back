@@ -26,11 +26,14 @@ const ConsultaChatGPT = async (req, res = response) => {
         });
 
         const respuesta = await openAIInstance.chat.completions.create({
-            model: "gpt-4-0125-preview",
-            // model: "gpt-3.5-turbo",
+            // model: "gpt-4-0125-preview",
+            model: "gpt-4o",
             messages: [{ role: "system", content: consulta_enviar }],
             temperature: 0.0,
         });
+        console.log(respuesta.usage);
+
+
         let str = respuesta.choices[0].message.content;
         let lista_problemas;
         if (str.startsWith("```json")) {
@@ -81,11 +84,13 @@ const RevisionChatGPT = async (req, res = response) => {
         });
 
         const respuesta = await openAIInstance.chat.completions.create({
-            model: "gpt-4-1106-preview",
-            // model: "gpt-3.5-turbo",
+            // model: "gpt-4-0125-preview",
+            model: "gpt-4o",
             messages: [{ role: "system", content: consulta_enviar }],
             temperature: 0.0,
         });
+
+        console.log(respuesta.usage);
         let str = respuesta.choices[0].message.content;
 
         let lista_retroalimentacion;
@@ -348,11 +353,12 @@ const Analisis_Rendimiento_Estudiante = async (req, res = response) => {
         });
 
         const respuesta = await openAIInstance.chat.completions.create({
-            model: "gpt-4-0125-preview",
-            // model: "gpt-3.5-turbo",
+           // model: "gpt-4-0125-preview",
+           model: "gpt-4o",
             messages: [{ role: "system", content: consulta_enviar }],
             temperature: 0.0,
         });
+        console.log(respuesta.usage);
         let str = respuesta.choices[0].message.content;
         let Json_Retroalimentaion;
         if (str.startsWith("```json")) {
@@ -370,11 +376,12 @@ const Analisis_Rendimiento_Estudiante = async (req, res = response) => {
         });
 
         const respuesta2 = await openAIInstance.chat.completions.create({
-            model: "gpt-4-0125-preview",
-            // model: "gpt-3.5-turbo",
+            // model: "gpt-4-0125-preview",
+            model: "gpt-4o",
             messages: [{ role: "system", content: consulta_enviar2 }],
             temperature: 0.0,
         });
+        console.log(respuesta2.usage);
         let stringProblema = respuesta2.choices[0].message.content;
         console.log(stringProblema);
         let Json_Problema;
@@ -393,11 +400,12 @@ const Analisis_Rendimiento_Estudiante = async (req, res = response) => {
         });
 
         const respuesta3 = await openAIInstance.chat.completions.create({
-            model: "gpt-4-0125-preview",
-            // model: "gpt-3.5-turbo",
+            // model: "gpt-4-0125-preview",
+            model: "gpt-4o",
             messages: [{ role: "system", content: consulta_enviar3 }],
             temperature: 0.0,
         });
+        console.log(respuesta3.usage);
         let stringConsulta = respuesta3.choices[0].message.content;
         let lista_problemas;
         if (stringConsulta.startsWith("```json")) {
