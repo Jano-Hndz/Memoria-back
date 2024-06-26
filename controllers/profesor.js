@@ -58,8 +58,8 @@ const AgregarEjercicio = async (req, res = response) => {
         });
 
         const respuesta = await openAIInstance.chat.completions.create({
-            model: "gpt-4-0125-preview",
-            // model: "gpt-3.5-turbo",
+            // model: "gpt-4-0125-preview",
+            model: "gpt-4o",
             messages: [{ role: "system", content: consulta_enviar }],
             temperature: 0.5,
         });

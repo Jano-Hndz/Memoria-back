@@ -1,49 +1,50 @@
 const consulta_plantilla = ({ texto_1 }) => {
-    const texto_plantilla_consulta = `Eres un profesor de programación de Python. Se te entregará una serie de textos componentes con instrucciones, reglas, ejemplos de formato de respuestas y finalmente un documento a revisar. El primer texto componente es instruction_text, está encasillado entre las etiquetas <instruction> y </instruction>. El segundo texto componente será un formato para tus respuestas, este se llama example_responses_text, y está encasillado entre las etiquetas <example_responses> y </example_responses>. El siguiente texto componente será un texto llamado response_example_explanation_text, encasillado entre las etiquetas <response_example_explanation> y </response_example_explanation> y te permitirá enteder como responder. Finalmente, se te entregará un texto componente llamado target_content_text, que es el texto a revisar, encasillado entre las etiquetas <target_content> y </target_content>. Usando instruction_text como tus instruciones, revisa el contenido en target_content_text  y responde de acuerdo al formato descrito en response_example_text usando las reglas de respuesta en response_example_explanation_text. Responde en formato de una lista de  JSON format, con sus llaves y valores en castellano
-<instruction>
-Revisa el problema que se te presentara en target_content_text para que me enlistes las funciones necesarias para enseñarle a los alumnos a resolverlo usando la metodología de subobjetivos. Como si fuera un paso a paso para resolver la función.
-</instruction>
-<example_responses>
-[
-    {
-        "Nombre": <nombre_funcion>,
-        "Input": <input_funcion>,
-        "Output": <output_funcion>,
-        "Descripcion": <descripcion_funcion>
-    },
-        {
-        "Nombre": <nombre_funcion>,
-        "Input": <input_funcion>,
-        "Output": <output_funcion>,
-        "Descripcion": <descripcion_funcion>
-    },
-    {
-        "Nombre": <nombre_funcion>,
-        "Input": <input_funcion>,
-        "Output": <output_funcion>,
-        "Descripcion": <descripcion_funcion>
-    },
-    {
-        "Nombre": <nombre_funcion>,
-        "Input": <input_funcion>,
-        "Output": <output_funcion>,
-        "Descripcion": <descripcion_funcion>
-    },
-    {
-        "Nombre": <nombre_funcion>,
-        "Input": <input_funcion>,
-        "Output": <output_funcion>,
-        "Descripcion": <descripcion_funcion>
-    },
+    const texto_plantilla_consulta = `
+    Eres un profesor de programación de Python. Se te entregará una serie de textos componentes con instrucciones, reglas, ejemplos de formato de respuestas y finalmente un documento a revisar. El primer texto componente es instruction_text, está encasillado entre las etiquetas <instruction> y </instruction>. El segundo texto componente será un formato para tus respuestas, este se llama example_responses_text, y está encasillado entre las etiquetas <example_responses> y </example_responses>. El siguiente texto componente será un texto llamado response_example_explanation_text, encasillado entre las etiquetas <response_example_explanation> y </response_example_explanation> y te permitirá enteder como responder. Finalmente, se te entregará un texto componente llamado target_content_text, que es el texto a revisar, encasillado entre las etiquetas <target_content> y </target_content>. Usando instruction_text como tus instruciones, revisa el contenido en target_content_text  y responde de acuerdo al formato descrito en response_example_text usando las reglas de respuesta en response_example_explanation_text. Responde en formato de una lista de  JSON format, con sus llaves y valores en castellano
+    <instruction>
+        Revisa el problema que se te presentara en target_content_text para que me enlistes las funciones necesarias para enseñarle a los alumnos a resolverlo usando la metodología de subobjetivos. Como si fuera un paso a paso para resolver la función.
+    </instruction>
+    <example_responses>
+        [
+            {
+                "Nombre": <nombre_funcion>,
+                "Input": <input_funcion>,
+                "Output": <output_funcion>,
+                "Descripcion": <descripcion_funcion>
+            },
+                {
+                "Nombre": <nombre_funcion>,
+                "Input": <input_funcion>,
+                "Output": <output_funcion>,
+                "Descripcion": <descripcion_funcion>
+            },
+            {
+                "Nombre": <nombre_funcion>,
+                "Input": <input_funcion>,
+                "Output": <output_funcion>,
+                "Descripcion": <descripcion_funcion>
+            },
+            {
+                "Nombre": <nombre_funcion>,
+                "Input": <input_funcion>,
+                "Output": <output_funcion>,
+                "Descripcion": <descripcion_funcion>
+            },
+            {
+                "Nombre": <nombre_funcion>,
+                "Input": <input_funcion>,
+                "Output": <output_funcion>,
+                "Descripcion": <descripcion_funcion>
+            }
 
-]
-</example_responses>
-<response_example_explanation>
- Se tendrá que devolver unas listas de JSON en el formato descrito en example_responses_text, en donde la cantidad de funciones descritas en los JSON es variable según el problema. Los atributos de cada JSON deben describir a una función para realizar un aprendizaje por subobjetivos. En <nombre_funcion> debe ser un string que sea el nombre de la función. En <input_funcion> debe ir  un string el cual describe input que recibe la función. En  <output_funcion>  debe ir  un string el cual describe output que recibe la función. En  <descripcion_funcion> debe ir  un string el cual describe lo que hace la función.
-</response_example_explanation>
-<target_content>
-${texto_1} 
-</target_content>
+        ]
+    </example_responses>
+    <response_example_explanation>
+        Se tendrá que devolver unas listas de JSON en el formato descrito en example_responses_text, en donde la cantidad de funciones descritas en los JSON es variable según el problema. Los atributos de cada JSON deben describir a una función para realizar un aprendizaje por subobjetivos. En <nombre_funcion> debe ser un string que sea el nombre de la función. En <input_funcion> debe ir  un string el cual describe input que recibe la función. En  <output_funcion>  debe ir  un string el cual describe output que recibe la función. En  <descripcion_funcion> debe ir  un string el cual describe lo que hace la función.
+    </response_example_explanation>
+    <target_content>
+        ${texto_1} 
+    </target_content>
 `;
     return texto_plantilla_consulta;
 };
@@ -170,7 +171,7 @@ const analisis_plantilla = ({ texto_1 }) => {
 
 const creacion_problema_plantilla = ({ texto_1 }) => {
     const texto_plantilla_consulta = `
-    Eres un profesor de programación de Python. Se te entregará una serie de textos componentes con instrucciones, reglas, ejemplos de formato de respuestas y finalmente un documento a revisar. El primer texto componente es examples_Input_requested_text, este encasillado entre las etiquetas < examples_Input_ requested > y </ examples_Input_ requested >. El segundo texto componente será un formato para tus inputs, este se llama input_examples_explanation_text, y está encasillado entre las etiquetas < input_examples_explanation > y </ input_examples_explanation >. El tercer texto componente es instruction_text, está encasillado entre las etiquetas <instruction> y </instruction>. El cuarto texto componente será un formato para tus respuestas, este se llama example_responses_text, y está encasillado entre las etiquetas <example_responses> y </example_responses>. El siguiente texto componente será un texto llamado response_example_explanation_text, encasillado entre las etiquetas <response_example_explanation> y </response_example_explanation> y te permitirá entender cómo responder. Después, se te entregará texto componente llamado target_content_requested_text, que es el texto a revisar, encasillado entre las etiquetas <target_content_requested> y </target_content_requested> que te permitirá entender lo que se pedio resolver al alumno y lo que respondió. Usando instruction_text como tus instrucciones, revisa el contenido en target_content_requested_text  y responde de acuerdo al formato descrito en response_example_text usando las reglas especificadas en response_example_explanation_text. Responde en formato de un JSON format, con sus llaves y valores en castellano tal como se especificó en response_example_explanation_text
+        Eres un profesor de programación de Python. Se te entregará una serie de textos componentes con instrucciones, reglas, ejemplos de formato de respuestas y finalmente un documento a revisar. El primer texto componente es examples_Input_requested_text, este encasillado entre las etiquetas < examples_Input_ requested > y </ examples_Input_ requested >. El segundo texto componente será un formato para tus inputs, este se llama input_examples_explanation_text, y está encasillado entre las etiquetas < input_examples_explanation > y </ input_examples_explanation >. El tercer texto componente es instruction_text, está encasillado entre las etiquetas <instruction> y </instruction>. El cuarto texto componente será un formato para tus respuestas, este se llama example_responses_text, y está encasillado entre las etiquetas <example_responses> y </example_responses>. El siguiente texto componente será un texto llamado response_example_explanation_text, encasillado entre las etiquetas <response_example_explanation> y </response_example_explanation> y te permitirá entender cómo responder. Después, se te entregará texto componente llamado target_content_requested_text, que es el texto a revisar, encasillado entre las etiquetas <target_content_requested> y </target_content_requested> que te permitirá entender lo que se pedio resolver al alumno y lo que respondió. Usando instruction_text como tus instrucciones, revisa el contenido en target_content_requested_text  y responde de acuerdo al formato descrito en response_example_text usando las reglas especificadas en response_example_explanation_text. Responde en formato de un JSON format, con sus llaves y valores en castellano tal como se especificó en response_example_explanation_text
     < examples_Input_ requested > 
         {
             "Retroalimentacion": <retroalimentacion_funcion>,
@@ -179,10 +180,10 @@ const creacion_problema_plantilla = ({ texto_1 }) => {
    </ examples_Input_ requested >
 
     <input_examples_explanation > 
-Es un JSON con el formato descrito en examples_Input_ requested_text. En <retroalimentacion_funcion>, se espera un string que resuma todos los problemas analizados. En <lista_funcion>, se espera una lista de strings que contenga todos los temas de programación con los cuales se detectaron problemas, los cuales serán ocupados para hacer el problema de programación en python
+        Es un JSON con el formato descrito en examples_Input_ requested_text. En <retroalimentacion_funcion>, se espera un string que resuma todos los problemas analizados. En <lista_funcion>, se espera una lista de strings que contenga todos los temas de programación con los cuales se detectaron problemas, los cuales serán ocupados para hacer el problema de programación en python
     </ input_examples_explanation >.
     <instruction>
-    Tienes que revisar los tópicos con los que a tenido problema el estudiante en target_content_requested_text  y después tendrás que crear un problema de programación de no tan alto nivel en donde se puede practicar los tópicos con los cuales se ha tenido problema el estudiante.
+        Tienes que revisar los tópicos con los que a tenido problema el estudiante en target_content_requested_text  y después tendrás que crear un problema de programación de no tan alto nivel en donde se puede practicar los tópicos con los cuales se ha tenido problema el estudiante.
     </instruction>
     <example_responses>
         {
@@ -191,12 +192,11 @@ Es un JSON con el formato descrito en examples_Input_ requested_text. En <retroa
         }
     </example_responses>
     <response_example_explanation>
-Se deberá devolver un JSON con el formato descrito en example_responses_text. En < titulo_funcion >, se espera un string que será el título del problema creado. En <problema_funcion>, se requiere un strings que contenga un problema de programación en Python de nivel medio con el que se pueda trabajar en los tópicos descritos en <target_content>, también este problema tiene que poder trabajarse con la metodología por subjetivos.
+        Se deberá devolver un JSON con el formato descrito en example_responses_text. En < titulo_funcion >, se espera un string que será el título del problema creado. En <problema_funcion>, se requiere un strings que contenga un problema de programación en Python de nivel medio con el que se pueda trabajar en los tópicos descritos en <target_content>, también este problema tiene que poder trabajarse con la metodología por subjetivos.
     </response_example_explanation>
     <target_content_requested>
-    ${texto_1} 
+        ${texto_1}
     </target_content_requested> 
- 
     `;
     return texto_plantilla_consulta;
 };
