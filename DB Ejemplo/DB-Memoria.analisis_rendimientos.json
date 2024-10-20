@@ -1,0 +1,371 @@
+[{
+  "_id": {
+    "$oid": "661f0635799211fdeb8d8f41"
+  },
+  "Usuario": {
+    "$oid": "660f2483f3dbd3fd0987ada7"
+  },
+  "Retroalimentacion": "Se han identificado errores recurrentes relacionados con la sintaxis y la lógica en la implementación de funciones, incluyendo el manejo incorrecto de variables, la definición inadecuada de parámetros, el uso erróneo de métodos y bucles, así como problemas en la estructura de condiciones y en la manipulación de strings y listas. Es crucial revisar los fundamentos de la programación en Python, prestando especial atención a la sintaxis correcta, la lógica de programación, y el uso adecuado de estructuras de datos y funciones.",
+  "Topicos": [
+    "Conversión de números a listas",
+    "Definición y uso de variables",
+    "Implementación de funciones",
+    "Lógica y estructura de funciones",
+    "Manejo de strings y listas",
+    "Sintaxis de Python",
+    "Uso de bucles y condiciones",
+    "Manipulación de listas y diccionarios",
+    "Errores lógicos en comparaciones y retornos"
+  ],
+  "EjercicioPropuestoID": {
+    "$oid": "661f0635799211fdeb8d8f3f"
+  },
+  "Date": {
+    "$date": "2024-04-16T19:13:57.770Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "662bee220251a3082ce27148"
+  },
+  "Usuario": {
+    "$oid": "660f2483f3dbd3fd0987ada7"
+  },
+  "Retroalimentacion": "Los errores encontrados se relacionan principalmente con problemas de sintaxis, como el uso incorrecto de 'Falso' en lugar de 'False', 'agregar' en vez de 'append', y el uso de '=' en lugar de '=='. Además, se identificaron errores lógicos, como iteraciones incorrectas, malas comparaciones, y confusión en la lógica de funciones. También se observaron problemas al acceder a las claves de diccionarios y en la implementación de funciones, como no retornar valores adecuadamente, definición incorrecta de variables y parámetros, y uso ineficiente de métodos para manipular textos y números.",
+  "Topicos": [
+    "Errores de sintaxis",
+    "Errores lógicos",
+    "Acceso incorrecto a diccionarios",
+    "Uso incorrecto de bucles y condicionales",
+    "Definición incorrecta de funciones y parámetros",
+    "Manipulación ineficiente de textos y números"
+  ],
+  "EjercicioPropuestoID": {
+    "$oid": "662bee220251a3082ce27146"
+  },
+  "Date": {
+    "$date": "2024-04-26T14:10:42.951Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "663033e2b739fe9a800ad7bc"
+  },
+  "Usuario": {
+    "$oid": "660f25f65ed19e10bed60c74"
+  },
+  "Retroalimentacion": "La mayoría de las funciones revisadas cumplen con sus propósitos correctamente, pero hay una tendencia hacia la necesidad de mejorar la eficiencia, ya sea evitando la creación de objetos intermedios, utilizando funciones integradas de manera más efectiva, iterando de manera más eficiente o evitando la repetición de cálculos. Además, se sugiere mejorar la legibilidad en algunos casos mediante el retorno directo de los resultados de comparaciones o la claridad en la verificación de condiciones. También se nota la importancia de manejar excepciones y verificar los tipos de datos de los argumentos.",
+  "Topicos": [
+    "Eficiencia y optimización",
+    "Legibilidad del código",
+    "Manejo de excepciones",
+    "Verificación de tipos de datos"
+  ],
+  "EjercicioPropuestoID": {
+    "$oid": "663033e2b739fe9a800ad7ba"
+  },
+  "Date": {
+    "$date": "2024-04-29T19:57:22.947Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66306baa1d92d2a854fdf271"
+  },
+  "Usuario": {
+    "$oid": "660f2483f3dbd3fd0987ada7"
+  },
+  "Retroalimentacion": "Los errores más comunes incluyen problemas de sintaxis como el uso incorrecto de 'Falso' en lugar de 'False', 'agregar' en lugar de 'append', y el uso de '=' en lugar de '=='. Además, hay errores lógicos como iteraciones incorrectas, comparaciones incorrectas, acceso incorrecto a claves de diccionario, y mal manejo de parámetros y retorno de funciones. Se recomienda revisar la sintaxis de Python, las estructuras de control, y las buenas prácticas en la definición y llamado de funciones.",
+  "Topicos": [
+    "Errores de sintaxis",
+    "Errores lógicos",
+    "Iteraciones incorrectas",
+    "Comparaciones incorrectas",
+    "Acceso incorrecto a claves de diccionario",
+    "Uso incorrecto de funciones",
+    "Manejo incorrecto de parámetros y retorno de funciones"
+  ],
+  "EjercicioPropuestoID": {
+    "$oid": "66306baa1d92d2a854fdf26f"
+  },
+  "Date": {
+    "$date": "2024-04-29T23:55:22.993Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6632fef26a2609625c305f99"
+  },
+  "Usuario": {
+    "$oid": "660f259c5ed19e10bed60c6e"
+  },
+  "Retroalimentacion": "Los principales problemas identificados están relacionados con la eficiencia de las funciones, principalmente debido a la creación de objetos intermedios, llamadas a funciones no optimizadas, y cálculos redundantes. Además, se sugiere mejorar la legibilidad en algunos casos mediante el retorno directo de resultados o la utilización de funciones integradas. También se recomienda verificar los tipos de datos de los argumentos y considerar aspectos como la iteración hasta la raíz cuadrada para optimizar la ejecución.",
+  "Topicos": [
+    "Eficiencia y optimización",
+    "Legibilidad del código",
+    "Manejo de excepciones",
+    "Verificación de tipos de datos",
+    "Uso de funciones integradas",
+    "Optimización de cálculos redundantes"
+  ],
+  "EjercicioPropuestoID": {
+    "$oid": "6632fef26a2609625c305f97"
+  },
+  "Date": {
+    "$date": "2024-05-01T22:48:18.406Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66332416280ca307222af8b8"
+  },
+  "Usuario": {
+    "$oid": "660f25f65ed19e10bed60c74"
+  },
+  "Retroalimentacion": "Varios problemas se identificaron en las funciones revisadas. Algunas no cumplen con la especificación requerida, hay errores de lógica que afectan la eficiencia y la funcionalidad. La legibilidad generalmente es adecuada, pero en varios casos, la eficiencia puede mejorar, por ejemplo, evitando la creación de objetos intermedios, iterando solo hasta la raíz cuadrada del número, utilizando funciones integradas de suma, y evitando repetir cálculo o código. También se sugiere mejorar la claridad mediante el uso de herramientas como 'math.isqrt' y asegurarse de que los parámetros cumplan con las condiciones necesarias (e.g., ser enteros positivos).",
+  "Topicos": [
+    "Cumplimiento de especificaciones",
+    "Errores de lógica",
+    "Legibilidad",
+    "Eficiencia",
+    "Manejo de excepciones",
+    "Verificación de condiciones",
+    "Optimización de código"
+  ],
+  "EjercicioPropuestoID": {
+    "$oid": "66332416280ca307222af8b6"
+  },
+  "Date": {
+    "$date": "2024-05-02T01:26:46.589Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6637e3f6fa7b50c64bd1cfee"
+  },
+  "Usuario": {
+    "$oid": "660f259c5ed19e10bed60c6e"
+  },
+  "Retroalimentacion": "Las principales áreas de mejora identificadas incluyen la eficiencia, especialmente en la evitación de creación de objetos intermedios, uso redundante de cálculo, y optimización de llamadas a funciones. Además, se sugiere mejorar la legibilidad mediante el retorno directo de resultados de comparaciones y la claridad al verificar tipos de datos. La implementación de manejo de excepciones y la verificación de condiciones específicas, como la desigualdad triangular y la primalidad, son adecuadas, pero hay espacio para optimizar la claridad y eficiencia.",
+  "Topicos": [
+    "Eficiencia",
+    "Legibilidad",
+    "Optimización de llamadas a funciones",
+    "Retorno directo de resultados",
+    "Verificación de tipos de datos",
+    "Manejo de excepciones",
+    "Verificación de condiciones específicas"
+  ],
+  "EjercicioPropuestoID": {
+    "$oid": "6637e3f6fa7b50c64bd1cfec"
+  },
+  "Date": {
+    "$date": "2024-05-05T15:54:30.961Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "663820fce3c0ca91dfd9dd6c"
+  },
+  "Usuario": {
+    "$oid": "660f26045ed19e10bed60c77"
+  },
+  "Retroalimentacion": "Las principales áreas de mejora incluyen la implementación correcta de la lógica según la descripción, la sustitución de vocales por números, la alternancia de mayúsculas y minúsculas, la adición de símbolos al final, la mejora de la eficiencia evitando la creación de objetos intermedios, la optimización del código para evitar llamadas de función repetidas y la verificación de entradas como enteros positivos. Además, se recomienda mejorar la legibilidad y eficiencia del código, por ejemplo, iterando solo hasta la raíz cuadrada en cálculos numéricos y utilizando funciones de suma integradas.",
+  "Topicos": [
+    "Implementación de lógica",
+    "Sustitución de vocales por números",
+    "Alternancia de mayúsculas y minúsculas",
+    "Adición de símbolos al final",
+    "Mejora de eficiencia y evitación de objetos intermedios",
+    "Optimización para evitar llamadas de función repetidas",
+    "Verificación de entradas como enteros positivos",
+    "Mejora de legibilidad y eficiencia del código"
+  ],
+  "EjercicioPropuestoID": {
+    "$oid": "663820fce3c0ca91dfd9dd6a"
+  },
+  "Date": {
+    "$date": "2024-05-05T20:14:52.457Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6638283f57222e52dffa5605"
+  },
+  "Usuario": {
+    "$oid": "660f26315ed19e10bed60c7d"
+  },
+  "Retroalimentacion": "Se han identificado problemas en cuanto a la eficiencia de las funciones debido a la creación de objetos intermedios, llamadas a otras funciones no optimizadas, y repetición de cálculos. Además, se sugiere mejorar la legibilidad y claridad en algunas funciones, así como la verificación de tipos de datos y valores. Se recomienda el uso de funciones y métodos integrados para optimizar el código y evitar código repetido.",
+  "Topicos": [
+    "Eficiencia y optimización de código",
+    "Legibilidad y claridad del código",
+    "Manejo de excepciones",
+    "Verificación de tipos de datos y valores",
+    "Uso de funciones y métodos integrados"
+  ],
+  "EjercicioPropuestoID": {
+    "$oid": "6638283f57222e52dffa5603"
+  },
+  "Date": {
+    "$date": "2024-05-05T20:45:51.359Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66383266999442e5293eba69"
+  },
+  "Usuario": {
+    "$oid": "660f26315ed19e10bed60c7d"
+  },
+  "Retroalimentacion": "Se identificaron problemas recurrentes en la implementación de funciones, especialmente en la generación de identificadores únicos, la definición de variables y la ausencia de implementación de código para funcionalidades específicas como búsqueda por título, autor, año y optimización de la biblioteca. Además, se observó la falta de entrega de código por parte de los estudiantes, lo que impide evaluar la funcionalidad, legibilidad y eficiencia de las soluciones propuestas.",
+  "Topicos": [
+    "Generación de identificadores únicos",
+    "Definición de variables",
+    "Implementación de búsqueda por título",
+    "Implementación de búsqueda por autor",
+    "Implementación de búsqueda por año",
+    "Optimización de la biblioteca",
+    "Entrega de código"
+  ],
+  "EjercicioPropuestoID": {
+    "$oid": "66383266999442e5293eba67"
+  },
+  "Date": {
+    "$date": "2024-05-05T21:29:10.546Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66390ac30371bb6449a10ca7"
+  },
+  "Usuario": {
+    "$oid": "66380494b8bbbba6d0c68963"
+  },
+  "Retroalimentacion": "Se identificaron problemas recurrentes relacionados con la legibilidad, como el uso de nombres de variables poco descriptivos y comentarios innecesarios. Además, se observaron problemas de eficiencia por el uso innecesario de variables booleanas y la repetición de solicitudes de entrada. También se destacó la ausencia de código en varias respuestas, lo que impide evaluar la funcionalidad, legibilidad y eficiencia de las funciones esperadas.",
+  "Topicos": [
+    "Legibilidad",
+    "Eficiencia",
+    "Ausencia de código",
+    "Uso de variables booleanas",
+    "Nombres de variables descriptivos",
+    "Implementación de funciones"
+  ],
+  "EjercicioPropuestoID": {
+    "$oid": "66390ac30371bb6449a10ca5"
+  },
+  "Date": {
+    "$date": "2024-05-06T12:52:19.629Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66666dff71a1751016583e86"
+  },
+  "Usuario": {
+    "$oid": "660f25f65ed19e10bed60c74"
+  },
+  "Retroalimentacion": "Se identificaron problemas principalmente en la eficiencia de las funciones, como el uso ineficiente de f-strings en bucles, la repetición innecesaria de llamadas a funciones como es_primo, y la falta de optimización mediante técnicas como la criba de Eratóstenes. También se observaron problemas en la limpieza y manejo de texto, como la no eliminación de caracteres especiales o espacios. Además, se menciona la posibilidad de mejorar la legibilidad y la claridad mediante comentarios más descriptivos y el uso de técnicas más eficientes como collections.Counter.",
+  "Topicos": [
+    "Eficiencia",
+    "Limpieza de texto",
+    "Legibilidad",
+    "Manejo de caracteres especiales",
+    "Optimización",
+    "Uso de bucles",
+    "Comentarios descriptivos",
+    "Uso de collections.Counter"
+  ],
+  "EjercicioPropuestoID": {
+    "$oid": "66666dff71a1751016583e84"
+  },
+  "Date": {
+    "$date": "2024-06-09T23:07:43.631Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "666731fe0c922c237b5271c4"
+  },
+  "Usuario": {
+    "$oid": "660f25f65ed19e10bed60c74"
+  },
+  "Retroalimentacion": "En general, las funciones cumplen con su propósito y son claras y fáciles de entender. Sin embargo, hay áreas que podrían mejorarse, como la gestión de errores en 'leer_lados', la eliminación de caracteres especiales en 'cuenta_letras', y la eficiencia en varias funciones como 'imprime_diccionario', 'es_primo', y 'suma_primos'. También se sugiere simplificar el uso de 'char.lower()' en la función de reemplazo de vocales y agregar verificaciones para strings vacíos en la función de cambio de caso de letras.",
+  "Topicos": [
+    "Gestión de errores",
+    "Eficiencia del código",
+    "Eliminación de caracteres especiales",
+    "Simplificación de código",
+    "Verificación de strings vacíos"
+  ],
+  "EjercicioPropuestoID": {
+    "$oid": "666731fe0c922c237b5271c2"
+  },
+  "Date": {
+    "$date": "2024-06-10T13:03:58.540Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6670f1ef36765f3986dd360e"
+  },
+  "Usuario": {
+    "$oid": "660f25f65ed19e10bed60c74"
+  },
+  "Retroalimentacion": "En general, las funciones cumplen con su propósito y son claras y fáciles de entender. Sin embargo, hay áreas que podrían mejorarse, como la gestión de errores en la función 'leer_lados', la simplificación del uso de 'char.lower()' en la función de reemplazo de vocales, la verificación de strings vacíos en la función de cambio de caso, y la eliminación de caracteres especiales o espacios en la función de conteo de letras. Además, se sugiere optimizar la eficiencia en varias funciones, como evitar el uso de f-strings en bucles, mejorar la eficiencia de la función 'es_primo' con comentarios más descriptivos y explorar el uso de la criba de Eratóstenes en 'suma_primos'.",
+  "Topicos": [
+    "Gestión de errores",
+    "Simplificación de código",
+    "Verificación de strings vacíos",
+    "Eliminación de caracteres especiales",
+    "Optimización de eficiencia",
+    "Comentarios descriptivos"
+  ],
+  "EjercicioPropuestoID": {
+    "$oid": "6670f1ef36765f3986dd360c"
+  },
+  "Date": {
+    "$date": "2024-06-17T22:33:19.307Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "667c9086648539dbf61b67c4"
+  },
+  "Usuario": {
+    "$oid": "660f25f65ed19e10bed60c74"
+  },
+  "Retroalimentacion": "En general, las funciones cumplen con sus tareas y son claras y eficientes. Sin embargo, hay varias áreas que podrían mejorarse: el redondeo debería ser opcional o especificado en la descripción, se podría evitar el uso de 'index' para mejorar la eficiencia, eliminar líneas en blanco innecesarias para mejorar la legibilidad, utilizar diccionarios para mejorar la eficiencia en ciertas funciones, permitir múltiples intentos en la gestión de errores, simplificar el uso de 'char.lower()' en comprensiones de listas, agregar verificaciones para strings vacíos, y evitar el uso de f-strings en bucles para mejorar la eficiencia. Además, hay funciones que no implementan la lógica necesaria o no eliminan caracteres especiales o espacios previamente.",
+  "Topicos": [
+    "Redondeo opcional",
+    "Eficiencia del código",
+    "Legibilidad del código",
+    "Uso de diccionarios",
+    "Gestión de errores",
+    "Simplificación de comprensiones de listas",
+    "Verificación de strings vacíos",
+    "Uso de f-strings en bucles",
+    "Implementación de lógica necesaria",
+    "Eliminación de caracteres especiales o espacios"
+  ],
+  "EjercicioPropuestoID": {
+    "$oid": "667c9086648539dbf61b67c2"
+  },
+  "Date": {
+    "$date": "2024-06-26T18:04:54.358Z"
+  },
+  "__v": 0
+}]

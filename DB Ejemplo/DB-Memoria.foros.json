@@ -1,0 +1,51 @@
+[{
+  "_id": {
+    "$oid": "66384bce2dcb12ef65d3f102"
+  },
+  "Usuario": {
+    "$oid": "660f25f65ed19e10bed60c74"
+  },
+  "RetroalimentacionID": {
+    "$oid": "661451ca4f36119703cc33b0"
+  },
+  "Comentario": "Comparto este ejercicio para que lo hagan, aca pueden ver lo que yo respondi",
+  "verRetroalimentacion": true,
+  "Date": {
+    "$date": "2024-05-05T23:17:34.767Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "666b9a1318d5952f5cb5f8fe"
+  },
+  "Usuario": {
+    "$oid": "660f26045ed19e10bed60c77"
+  },
+  "RetroalimentacionID": {
+    "$oid": "6638208ae3c0ca91dfd9dd34"
+  },
+  "Comentario": "Trate de resolver este problema pero no supe como resolver alguien me puede ayudar??",
+  "verRetroalimentacion": true,
+  "Date": {
+    "$date": "2024-06-13T21:17:07.133Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "666b9a4818d5952f5cb5f91a"
+  },
+  "Usuario": {
+    "$oid": "660f26415ed19e10bed60c80"
+  },
+  "RetroalimentacionID": {
+    "$oid": "661452745bcc2119fbc1a0a1"
+  },
+  "Comentario": "Este ejercicio es muy interesante por si lo quieren usar para estudiar. Se trata de los números perfectos",
+  "verRetroalimentacion": false,
+  "Date": {
+    "$date": "2024-06-13T21:18:00.774Z"
+  },
+  "__v": 0
+}]

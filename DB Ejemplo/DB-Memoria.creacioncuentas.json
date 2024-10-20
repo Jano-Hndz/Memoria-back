@@ -1,0 +1,142 @@
+[{
+  "_id": {
+    "$oid": "662961197ddeb9dfb600fc1c"
+  },
+  "profesor_id": {
+    "$oid": "660f267a5ed19e10bed60c83"
+  },
+  "Date": {
+    "$date": "2024-04-24T15:44:25.583Z"
+  },
+  "__v": 0,
+  "Estado": true
+},
+{
+  "_id": {
+    "$oid": "662961847ddeb9dfb600fc27"
+  },
+  "profesor_id": {
+    "$oid": "660f268a5ed19e10bed60c86"
+  },
+  "Date": {
+    "$date": "2024-04-24T15:46:12.855Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66316ea97453f1b0b3cd7cf3"
+  },
+  "profesor_id": {
+    "$oid": "660f267a5ed19e10bed60c83"
+  },
+  "Estado": true,
+  "Date": {
+    "$date": "2024-04-30T18:20:25.256Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6638005990e88604c05921f1"
+  },
+  "profesor_id": {
+    "$oid": "660f267a5ed19e10bed60c83"
+  },
+  "Estado": true,
+  "Date": {
+    "$date": "2024-05-05T17:55:37.864Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "663801e8390684e4d5387530"
+  },
+  "profesor_id": {
+    "$oid": "660f267a5ed19e10bed60c83"
+  },
+  "Estado": true,
+  "Date": {
+    "$date": "2024-05-05T18:02:16.343Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66380492b8bbbba6d0c68945"
+  },
+  "profesor_id": {
+    "$oid": "660f267a5ed19e10bed60c83"
+  },
+  "Estado": true,
+  "Date": {
+    "$date": "2024-05-05T18:13:38.383Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "667cd032e23367542a63180a"
+  },
+  "profesor_id": {
+    "$oid": "660f267a5ed19e10bed60c83"
+  },
+  "Estado": true,
+  "Date": {
+    "$date": "2024-06-26T22:36:34.333Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "667cd205e23367542a631879"
+  },
+  "profesor_id": {
+    "$oid": "660f267a5ed19e10bed60c83"
+  },
+  "Estado": true,
+  "Date": {
+    "$date": "2024-06-26T22:44:21.259Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "667cd38de23367542a631c1a"
+  },
+  "profesor_id": {
+    "$oid": "660f267a5ed19e10bed60c83"
+  },
+  "Estado": true,
+  "Date": {
+    "$date": "2024-06-26T22:50:53.687Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "667cd533e23367542a632219"
+  },
+  "profesor_id": {
+    "$oid": "660f267a5ed19e10bed60c83"
+  },
+  "Estado": true,
+  "Date": {
+    "$date": "2024-06-26T22:57:55.581Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "667cd600e23367542a632612"
+  },
+  "profesor_id": {
+    "$oid": "660f267a5ed19e10bed60c83"
+  },
+  "Estado": true,
+  "Date": {
+    "$date": "2024-06-26T23:01:20.351Z"
+  },
+  "__v": 0
+}]

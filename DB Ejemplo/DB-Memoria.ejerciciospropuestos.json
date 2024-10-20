@@ -1,0 +1,2932 @@
+[{
+  "_id": {
+    "$oid": "6604469b372331b37c1f42cd"
+  },
+  "Usuario": {
+    "$oid": "65a5a0ef9959b52d3802ef0e"
+  },
+  "Titulo": "Problema de creación de las claves",
+  "Problema": "Una forma común de generar automáticamente passwords, en función de una palabra o frase inicial, suele ser cambiar las vocales por números, incluir letras en minúsculas y mayúscula además de agregar un símbolo.\n------------------------------------------------------------------------------------------------------\nEscriba un programa que reciba un texto y retorne un password que realice las siguientes transformaciones:\n\n    Las vocales (a,e,i,o) se deben reemplazar por los números (4,3,1,0), sin importar mayúsculas o minúsculas.\n    La primera letra que aparezca en el password debe ser minúscula y las demás letras subsecuentes deben ser mayúsculas.\n    Los espacios se deben reemplazar por guión bajo.\n    Si la cantidad de caracteres del password resultante es par, al final se debe agregar un asterisco (*), en caso contrario se debe agrear un símbolo de exclamación (!).\n\nSuponga que siempre se ingresarán palabras que contengan al menos una consonante.\n\nEntrada\nUn string que incluye al menos una consonante y que puede contener también espacios y números.\n\nSalida\nUn string que representa una password con las características descritas en el enunciado.\n\nEjemplos\n\nEntrada\nClave dificil\n\nSalida\ncL4V3_D1F1C1L!\n\nEntrada\n12345 Clave\n\nSalida\n12345_cL4V3!",
+  "Respuesta": [
+    {
+      "Nombre": "reemplazar_vocales",
+      "Input": "Un string que incluye al menos una consonante y que puede contener también espacios y números.",
+      "Output": "Un string con las vocales reemplazadas por números (4,3,1,0).",
+      "Descripcion": "Esta función recibe un string y reemplaza las vocales por los números correspondientes (4,3,1,0), sin importar mayúsculas o minúsculas."
+    },
+    {
+      "Nombre": "primera_letra_minuscula",
+      "Input": "Un string resultante de reemplazar las vocales por números.",
+      "Output": "Un string con la primera letra en minúscula y las demás en mayúscula.",
+      "Descripcion": "Esta función toma el string resultante del reemplazo de vocales por números y coloca la primera letra en minúscula y las demás en mayúscula."
+    },
+    {
+      "Nombre": "reemplazar_espacios",
+      "Input": "Un string con la primera letra en minúscula y las demás en mayúscula.",
+      "Output": "Un string con los espacios reemplazados por guión bajo.",
+      "Descripcion": "Esta función recibe un string y reemplaza los espacios por guiones bajos."
+    },
+    {
+      "Nombre": "agregar_caracter_final",
+      "Input": "Un string con los espacios reemplazados por guión bajo.",
+      "Output": "Un string con un caracter adicional al final dependiendo de si la longitud es par o impar.",
+      "Descripcion": "Esta función recibe un string y agrega un asterisco (*) si la longitud es par y un símbolo de exclamación (!) si es impar."
+    }
+  ],
+  "Tags": [
+    "strings",
+    "listas"
+  ],
+  "Date": {
+    "$date": "2024-03-27T12:17:31.777Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6610da7a867921ff4212fe71"
+  },
+  "Usuario": {
+    "$oid": "65a5a0ef9959b52d3802ef0e"
+  },
+  "Titulo": "Problema de adivinar el número",
+  "Problema": "Crea una aplicación que permita adivinar un número. La aplicación genera un número aleatorio del 1 al 100. \\nA continuación va pidiendo números y va respondiendo si el número a adivinar es mayor o menor que el introducido, además de los intentos que te quedan (tienes 10 intentos para acertarlo). \\nEl programa termina cuando se acierta el número (además te dice en cuantos intentos lo has acertado), si se llega al límite de intentos te muestra el número que había generado",
+  "Respuesta": [
+    {
+      "Nombre": "generar_numero_aleatorio",
+      "Input": "minimo, maximo",
+      "Output": "numero_aleatorio",
+      "Descripcion": "Genera un número aleatorio entre el rango mínimo y máximo especificados."
+    },
+    {
+      "Nombre": "solicitar_numero_usuario",
+      "Input": "mensaje",
+      "Output": "numero_usuario",
+      "Descripcion": "Solicita al usuario que ingrese un número y lo devuelve."
+    },
+    {
+      "Nombre": "comparar_numeros",
+      "Input": "numero_usuario, numero_aleatorio",
+      "Output": "resultado_comparacion",
+      "Descripcion": "Compara el número ingresado por el usuario con el número aleatorio generado y devuelve si es mayor, menor o igual."
+    },
+    {
+      "Nombre": "actualizar_intentos",
+      "Input": "intentos_actuales",
+      "Output": "nuevos_intentos",
+      "Descripcion": "Reduce el número de intentos disponibles tras cada intento del usuario."
+    },
+    {
+      "Nombre": "mostrar_resultado",
+      "Input": "resultado_comparacion, intentos_restantes, numero_aleatorio",
+      "Output": "None",
+      "Descripcion": "Muestra el resultado de la comparación, los intentos restantes o el número a adivinar si se alcanza el límite de intentos o el usuario acierta."
+    }
+  ],
+  "Tags": [
+    "condicionales"
+  ],
+  "Date": {
+    "$date": "2024-04-06T01:15:38.337Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6610db04867921ff4212fe8e"
+  },
+  "Usuario": {
+    "$oid": "65a5a0ef9959b52d3802ef0e"
+  },
+  "Titulo": "Problema de la administración de la biblioteca",
+  "Problema": "Desarrolla un programa en el lenguaje de programación de tu elección para gestionar los libros de una biblioteca. El programa debe permitir a los usuarios agregar nuevos libros, buscar libros por título o autor, listar todos los libros disponibles, prestar libros y devolver libros. Cada operación debe ser manejada por una función específica, proporcionando así una interfaz clara y funcional para los usuarios de la biblioteca. Todos los libros estarán guardados dentro de una variable estantería que es una lista que contiene diccionario los cuales tienen como atributo Nombre, autor, prestado que es true si está disponible o false si esta prestado",
+  "Respuesta": [
+    {
+      "Nombre": "agregar_libro",
+      "Input": "estanteria, nombre, autor",
+      "Output": "estanteria actualizada",
+      "Descripcion": "Agrega un nuevo libro a la estanteria. El libro es representado como un diccionario con los atributos nombre, autor y prestado (inicialmente False), y se añade a la lista estanteria."
+    },
+    {
+      "Nombre": "buscar_libro_por_titulo",
+      "Input": "estanteria, titulo",
+      "Output": "lista de libros que coinciden",
+      "Descripcion": "Busca en la estanteria los libros cuyo nombre coincida con el titulo proporcionado. Retorna una lista de diccionarios de libros que coinciden."
+    },
+    {
+      "Nombre": "buscar_libro_por_autor",
+      "Input": "estanteria, autor",
+      "Output": "lista de libros del autor",
+      "Descripcion": "Busca en la estanteria los libros cuyo autor coincida con el nombre proporcionado. Retorna una lista de diccionarios de los libros que coinciden."
+    },
+    {
+      "Nombre": "listar_libros",
+      "Input": "estanteria",
+      "Output": "lista de todos los libros",
+      "Descripcion": "Retorna una lista de todos los libros en la estanteria. Cada libro es representado por un diccionario."
+    },
+    {
+      "Nombre": "prestar_libro",
+      "Input": "estanteria, titulo",
+      "Output": "estanteria actualizada",
+      "Descripcion": "Busca un libro por su titulo en la estanteria y cambia su estado a prestado (True) si el libro está disponible. Retorna la estanteria actualizada."
+    },
+    {
+      "Nombre": "devolver_libro",
+      "Input": "estanteria, titulo",
+      "Output": "estanteria actualizada",
+      "Descripcion": "Busca un libro por su titulo en la estanteria y cambia su estado a no prestado (False) si el libro estaba prestado. Retorna la estanteria actualizada."
+    }
+  ],
+  "Tags": [
+    "diccionarios",
+    "listas"
+  ],
+  "Date": {
+    "$date": "2024-04-06T01:17:56.564Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6610dbc3867921ff4212fea7"
+  },
+  "Usuario": {
+    "$oid": "65a5a0ef9959b52d3802ef0e"
+  },
+  "Titulo": "Problema de las notas",
+  "Problema": "Dadas las 3 notas de los certámenes, la nota de laboratorio, la nota de trabajo en equipo y la nota del certamen recuperativo, el programa debe calcular la nota final y el estado final de un alumno del curso, aplicando las reglas ya conocidas. Si un alumno no rinde el certamen recuperativo esto se indica con un valor negativo en esa nota. En caso de rendirlo, reemplaza siempre al certamen de menor nota, aunque esto perjudique al alumno. El programa debe calcular la nota individual, ponderando con 75% el promedio de certámenes y 25% la nota de laboratorio. Si la nota individual, una vez redondeada, es menor a 55, la nota final es igual a la nota individual. Si la nota individual es igual o superior a 55, la nota final se calcula ponderando con 60% el promedio de certámenes, con 20% los laboratorios y con 20% el trabajo en equipo. En cada cálculo, intermedio o final, debe aplicarse redondeo al entero más cercano",
+  "Respuesta": [
+    {
+      "Nombre": "calcular_promedio_certamenes",
+      "Input": "tres notas de los certámenes, nota del certamen recuperativo",
+      "Output": "promedio de certámenes",
+      "Descripcion": "Calcula el promedio de los certámenes, reemplazando la nota más baja por la del certamen recuperativo si esta es mayor."
+    },
+    {
+      "Nombre": "calcular_nota_individual",
+      "Input": "promedio de certámenes, nota de laboratorio",
+      "Output": "nota individual",
+      "Descripcion": "Calcula la nota individual ponderando con 75% el promedio de certámenes y 25% la nota de laboratorio, aplicando redondeo."
+    },
+    {
+      "Nombre": "calcular_nota_final",
+      "Input": "nota individual, promedio de certámenes, nota de laboratorio, nota de trabajo en equipo",
+      "Output": "nota final",
+      "Descripcion": "Calcula la nota final basada en la nota individual. Si es menor a 55, es igual a la nota individual. Si es igual o superior a 55, se calcula ponderando 60% el promedio de certámenes, 20% los laboratorios y 20% el trabajo en equipo, aplicando redondeo."
+    },
+    {
+      "Nombre": "determinar_estado_final",
+      "Input": "nota final",
+      "Output": "estado final del alumno",
+      "Descripcion": "Determina el estado final del alumno (aprobado o reprobado) basado en la nota final."
+    }
+  ],
+  "Tags": [
+    "condicionales",
+    "matematica"
+  ],
+  "Date": {
+    "$date": "2024-04-06T01:21:07.114Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6610dbf8867921ff4212feae"
+  },
+  "Usuario": {
+    "$oid": "65a5a0ef9959b52d3802ef0e"
+  },
+  "Titulo": "Problema del aumento de sueldo",
+  "Problema": "Una empresa aumenta un 10% a los empleados que ganan hasta $500.000, un 7% a los que ganan más que eso pero que no superan $1.000.000, y finalmente un 5% a los que ganan más que ese límite. El programa debe calcular el nuevo salario",
+  "Respuesta": [
+    {
+      "Nombre": "calcular_aumento",
+      "Input": "salario_actual (float)",
+      "Output": "nuevo_salario (float)",
+      "Descripcion": "Calcula el aumento de salario basado en el salario actual. Si el salario es hasta $500.000, el aumento es del 10%. Si el salario es más de $500.000 pero no supera $1.000.000, el aumento es del 7%. Si el salario es más de $1.000.000, el aumento es del 5%."
+    },
+    {
+      "Nombre": "imprimir_nuevo_salario",
+      "Input": "nombre_empleado (string), nuevo_salario (float)",
+      "Output": "None",
+      "Descripcion": "Imprime el nombre del empleado junto con su nuevo salario después del aumento."
+    }
+  ],
+  "Tags": [
+    "condicionales"
+  ],
+  "Date": {
+    "$date": "2024-04-06T01:22:00.405Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6610dc33867921ff4212feb6"
+  },
+  "Usuario": {
+    "$oid": "65a5a0ef9959b52d3802ef0e"
+  },
+  "Titulo": "Problema de los números primos",
+  "Problema": "Dados dos números enteros positivos $a$ y $b$ dados como entrada, donde $a\\\\leq b$, el programa debe entregar la suma de todos los números primos que existen en el rango entre $a$ y $b$, incluyendo los extremos.",
+  "Respuesta": [
+    {
+      "Nombre": "es_primo",
+      "Input": "n: int",
+      "Output": "bool",
+      "Descripcion": "Determina si el número dado n es primo. Retorna True si es primo, de lo contrario retorna False."
+    },
+    {
+      "Nombre": "suma_primos_en_rango",
+      "Input": "a: int, b: int",
+      "Output": "int",
+      "Descripcion": "Utiliza la función es_primo para verificar cada número en el rango entre a y b, incluyendo ambos extremos. Suma y retorna el total de los números primos encontrados."
+    }
+  ],
+  "Tags": [
+    "condicionales",
+    "matematica"
+  ],
+  "Date": {
+    "$date": "2024-04-06T01:22:59.206Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6610dc6f867921ff4212febf"
+  },
+  "Usuario": {
+    "$oid": "65a5a0ef9959b52d3802ef0e"
+  },
+  "Titulo": "Problema de los triángulos",
+  "Problema": "Escriba un programa que lea desde el teclado las longitudes de los lados de un triángulo. El programa debe verificar que los valores indicados permiten formar el triángulo, asegurándose de que cumplen la propiedad de desigualdad triangular, es decir, que la suma de cada par de lados es mayor al lado restante. Como salida debe indicarse el resultado de la validación.\\r\\n\\r\\n\\r\\nAdemás, pero sólo en caso de que la validación anterior sea exitosa, el programa debe indicar el tipo de triángulo del que se trata: Equilátero, Isósceles o Escaleno. Finalmente, debe verificar si se está en presencia de un triángulo rectángulo o no. Para esto último debe verificar si las longitudes de los lados cumplen con el Teorema de Pitágoras, considerando el lado más largo como la hipotenusa.\nsiguiente tabla muestra algunos valores de prueba\n5             | 5             | 5             | Triángulo equilátero          |\\r\\n| 8             | 6             | 4             | Triángulo escaleno            |\\r\\n| 8             | 7             | 8             | Triángulo isósceles           |\\r\\n| 3             | 5             | 4             | Triángulo escaleno rectángulo |\\r\\n| 3             | 8             | 4             | No es un triángulo            |\",\n",
+  "Respuesta": [
+    {
+      "Nombre": "leer_lados",
+      "Input": "Ninguno",
+      "Output": "lado1, lado2, lado3",
+      "Descripcion": "Lee tres números del teclado que representan los lados de un triángulo."
+    },
+    {
+      "Nombre": "es_triangulo",
+      "Input": "lado1, lado2, lado3",
+      "Output": "Booleano",
+      "Descripcion": "Verifica si los lados cumplen con la propiedad de desigualdad triangular para formar un triángulo."
+    },
+    {
+      "Nombre": "tipo_triangulo",
+      "Input": "lado1, lado2, lado3",
+      "Output": "String",
+      "Descripcion": "Determina si el triángulo es equilátero, isósceles o escaleno."
+    },
+    {
+      "Nombre": "es_rectangulo",
+      "Input": "lado1, lado2, lado3",
+      "Output": "Booleano",
+      "Descripcion": "Verifica si el triángulo cumple con el Teorema de Pitágoras para determinar si es un triángulo rectángulo."
+    },
+    {
+      "Nombre": "resultado_validacion",
+      "Input": "esTriangulo, tipoTriangulo, esRectangulo",
+      "Output": "String",
+      "Descripcion": "Genera el mensaje de salida del programa basado en los resultados de las verificaciones anteriores."
+    }
+  ],
+  "Tags": [
+    "matematica",
+    "dificil"
+  ],
+  "Date": {
+    "$date": "2024-04-06T01:23:59.425Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6610dca2867921ff4212fec9"
+  },
+  "Usuario": {
+    "$oid": "65a5a0ef9959b52d3802ef0e"
+  },
+  "Titulo": "Problema del número perfecto",
+  "Problema": "Un número es perfecto cuando es igual a la suma de sus divisores propios, es decir, todos sus divisores sin considerar al mismo número entre ellos.\\r\\n\\r\\nPor ejemplo, $28$ es un número perfecto pues $28 = 1 + 2 + 4 + 7 + 14$.\\r\\n\\r\\nPor otra parte, $32$ no es perfecto pues $32 \\\\neq 1 + 2 + 4 + 8 + 16 = 31$\",",
+  "Respuesta": [
+    {
+      "Nombre": "calcular_divisores",
+      "Input": "int numero",
+      "Output": "list divisores",
+      "Descripcion": "Esta función recibe un número entero y retorna una lista con todos los divisores propios del número, es decir, todos los números enteros positivos que lo dividen, excluyendo al mismo número."
+    },
+    {
+      "Nombre": "sumar_divisores",
+      "Input": "list divisores",
+      "Output": "int suma",
+      "Descripcion": "Recibe una lista de divisores propios de un número y retorna la suma de estos divisores."
+    },
+    {
+      "Nombre": "es_numero_perfecto",
+      "Input": "int numero",
+      "Output": "bool resultado",
+      "Descripcion": "Esta función determina si un número es perfecto o no. Para ello, utiliza las funciones anteriores para calcular los divisores propios del número, sumarlos, y luego compara si esta suma es igual al número original. Retorna True si el número es perfecto, de lo contrario retorna False."
+    }
+  ],
+  "Tags": [
+    "matematica"
+  ],
+  "Date": {
+    "$date": "2024-04-06T01:24:50.702Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6610dcf1867921ff4212fed4"
+  },
+  "Usuario": {
+    "$oid": "65a5a0ef9959b52d3802ef0e"
+  },
+  "Titulo": "Problema de los palíndromos",
+  "Problema": "Un palíndromo es una palabra o frase que, ignorando diferencias de mayúsculas y minúsculas, y eliminando tildes, espacios y signos de puntuación, se lee igual de izquierda a derecha que de derecha a izquierda.\\r\\n\\r\\nAsociada a los palíndromos, existe la pregunta casi filosófica de si éstos se inventan o se descubren. Nosotros nos quedaremos con la segunda opción e intentaremos descubrir si una frase particular es o no es, un palíndromo.",
+  "Respuesta": [
+    {
+      "Nombre": "normalizar_texto",
+      "Input": "cadena de texto",
+      "Output": "cadena de texto normalizada",
+      "Descripcion": "Esta función recibe una cadena de texto y la normaliza eliminando diferencias de mayúsculas y minúsculas, tildes, espacios y signos de puntuación."
+    },
+    {
+      "Nombre": "invertir_texto",
+      "Input": "cadena de texto normalizada",
+      "Output": "cadena de texto invertida",
+      "Descripcion": "Esta función toma una cadena de texto normalizada y devuelve la misma cadena pero invertida, es decir, de derecha a izquierda."
+    },
+    {
+      "Nombre": "comparar_textos",
+      "Input": "dos cadenas de texto",
+      "Output": "valor booleano",
+      "Descripcion": "Esta función compara dos cadenas de texto para determinar si son iguales o no, devolviendo True si son iguales (es decir, si la cadena original normalizada es igual a su versión invertida) o False en caso contrario."
+    },
+    {
+      "Nombre": "es_palindromo",
+      "Input": "cadena de texto",
+      "Output": "valor booleano",
+      "Descripcion": "Esta es la función principal que integra las funciones anteriores para determinar si una cadena de texto dada es un palíndromo o no. Normaliza el texto, lo invierte, lo compara con su versión original normalizada y devuelve True si es palíndromo o False si no lo es."
+    }
+  ],
+  "Tags": [
+    "strings"
+  ],
+  "Date": {
+    "$date": "2024-04-06T01:26:09.365Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6610dd52867921ff4212fee0"
+  },
+  "Usuario": {
+    "$oid": "65a5a0ef9959b52d3802ef0e"
+  },
+  "Titulo": "Problema de la feria de Pythonia",
+  "Problema": "Se está llevando la feria costumbrista de un pueblito en el sur de Pythonia. Por lo que a usted le gustaría presentarse con su función de tiro al blanco. La función `tiro_al_blanco` recibe 2 argumentos, un número entero de nueve dígitos que representa la diana de tiro y otro número entero entre 1 y 9 que representa el tiro. Se gana cuando se acierta al número y este coincide con la posición y el valor del digito dentro de la diana, un ejemplo: \\n\\nPara la diana 345471113 y el número 4, sería un acierto ya que el digito en la posición 4 es igual al valor 4.\\n```python\\nposicion: 123456789\\n     digitos: 345471113",
+  "Respuesta": [
+    {
+      "Nombre": "convertir_a_lista",
+      "Input": "un número entero",
+      "Output": "una lista de dígitos",
+      "Descripcion": "Esta función toma un número entero y lo convierte en una lista de sus dígitos para facilitar la manipulación de cada uno de ellos."
+    },
+    {
+      "Nombre": "verificar_posicion",
+      "Input": "una lista de dígitos, un número entero",
+      "Output": "un valor booleano",
+      "Descripcion": "Recibe la lista de dígitos de la diana y el número de tiro, y verifica si el dígito en la posición que indica el tiro es igual al valor del tiro. Devuelve True si es un acierto, de lo contrario, False."
+    },
+    {
+      "Nombre": "tiro_al_blanco",
+      "Input": "un número entero de nueve dígitos, un número entero entre 1 y 9",
+      "Output": "un valor booleano",
+      "Descripcion": "Esta es la función principal que utiliza las funciones 'convertir_a_lista' y 'verificar_posicion' para determinar si el tiro al blanco es un acierto o no, basándose en si el número de tiro coincide con el dígito en su respectiva posición en la diana."
+    }
+  ],
+  "Tags": [
+    "strings"
+  ],
+  "Date": {
+    "$date": "2024-04-06T01:27:46.924Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6610dd82867921ff4212feed"
+  },
+  "Usuario": {
+    "$oid": "65a5a0ef9959b52d3802ef0e"
+  },
+  "Titulo": "Problema del mínimo divisor",
+  "Problema": "En un programa se requiere la tarea de encontrar el mínimo divisor de dos números",
+  "Respuesta": [
+    {
+      "Nombre": "calcular_mcd",
+      "Input": "dos números enteros, num1 y num2",
+      "Output": "un número entero, el máximo común divisor de num1 y num2",
+      "Descripcion": "Esta función calcula el máximo común divisor de dos números utilizando el algoritmo de Euclides."
+    },
+    {
+      "Nombre": "encontrar_divisores_comunes",
+      "Input": "dos listas de números enteros, divisores_num1 y divisores_num2",
+      "Output": "una lista de números enteros, los divisores comunes entre num1 y num2",
+      "Descripcion": "Esta función encuentra los divisores comunes entre dos listas de números, que son los divisores de num1 y num2, respectivamente."
+    },
+    {
+      "Nombre": "encontrar_minimo_divisor_comun",
+      "Input": "una lista de números enteros, divisores_comunes",
+      "Output": "un número entero, el mínimo divisor común entre num1 y num2",
+      "Descripcion": "Esta función encuentra el mínimo divisor común entre dos números a partir de la lista de divisores comunes entre ellos."
+    }
+  ],
+  "Tags": [
+    "matematica"
+  ],
+  "Date": {
+    "$date": "2024-04-06T01:28:34.059Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6610ddaf867921ff4212fefb"
+  },
+  "Usuario": {
+    "$oid": "65a5a0ef9959b52d3802ef0e"
+  },
+  "Titulo": "El contador de letras",
+  "Problema": "Se quiere contar la cantidad de veces que aparece cada letra de un texto",
+  "Respuesta": [
+    {
+      "Nombre": "limpiar_texto",
+      "Input": "texto: str",
+      "Output": "texto_limpio: str",
+      "Descripcion": "Recibe un texto y retorna el texto sin espacios, signos de puntuación ni caracteres especiales, solo letras en minúsculas."
+    },
+    {
+      "Nombre": "contar_letras",
+      "Input": "texto_limpio: str",
+      "Output": "diccionario_letras: dict",
+      "Descripcion": "Recibe un texto limpio y retorna un diccionario donde las claves son las letras y los valores son la cantidad de veces que cada letra aparece en el texto."
+    },
+    {
+      "Nombre": "imprimir_resultado",
+      "Input": "diccionario_letras: dict",
+      "Output": "None",
+      "Descripcion": "Recibe un diccionario de letras con sus respectivas cantidades y lo imprime de manera legible."
+    }
+  ],
+  "Tags": [
+    "strings"
+  ],
+  "Date": {
+    "$date": "2024-04-06T01:29:19.069Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6610de01867921ff4212ff0a"
+  },
+  "Usuario": {
+    "$oid": "65a5a0ef9959b52d3802ef0e"
+  },
+  "Titulo": "Problema de los 7s",
+  "Problema": "El 7 ha sido reconocido históricamente como el número de la perfección o de la suerte. Aparece en fórmulas y religiones con frecuencia. \\nEn esta tarea jugaremos con el número 7.\nDebe solicitar al usuario que ingrese números entre 1 y 10. El programa terminará de solicitar datos cuando se hayan ingresado 7 números 7. \\nSi el usuario ingresa un número incorrecto (menor a 1 o mayor a 10), no se contabiliza en el total de números ingresados y se solicita que ingrese un número correcto con la frase \\\"INTENTE NUEVAMENTE:\\\".\\n\\nAl finalizar se debe mostrar el porcentaje de números sietes respecto del total de números ingresados redondeado a un dígito decimal.\\nAdemás, se debe imprimir varias filas numeradas cada una con 7 asteriscos, según el total de números válidos ingresados.\"",
+  "Respuesta": [
+    {
+      "Nombre": "solicitar_numero",
+      "Input": "Ninguno",
+      "Output": "int",
+      "Descripcion": "Solicita al usuario que ingrese un número entre 1 y 10. Si el número es menor a 1 o mayor a 10, se solicita nuevamente hasta que el número sea válido."
+    },
+    {
+      "Nombre": "contar_sietes",
+      "Input": "int",
+      "Output": "int",
+      "Descripcion": "Recibe un número ingresado por el usuario y si es un 7, incrementa un contador de sietes. Retorna el total de sietes ingresados."
+    },
+    {
+      "Nombre": "contar_total_numeros",
+      "Input": "int",
+      "Output": "int",
+      "Descripcion": "Recibe un número válido ingresado por el usuario y lo cuenta como parte del total de números ingresados. Retorna el total de números válidos ingresados."
+    },
+    {
+      "Nombre": "calcular_porcentaje_sietes",
+      "Input": "int, int",
+      "Output": "float",
+      "Descripcion": "Recibe el total de sietes ingresados y el total de números válidos ingresados. Calcula y retorna el porcentaje de sietes respecto al total de números."
+    },
+    {
+      "Nombre": "imprimir_asteriscos",
+      "Input": "int",
+      "Output": "Ninguno",
+      "Descripcion": "Recibe el total de números válidos ingresados y por cada uno imprime una fila numerada con 7 asteriscos."
+    },
+    {
+      "Nombre": "mostrar_resultados",
+      "Input": "float",
+      "Output": "Ninguno",
+      "Descripcion": "Recibe el porcentaje de sietes calculado y lo muestra al usuario redondeado a un dígito decimal."
+    }
+  ],
+  "Tags": [
+    "inputs",
+    "condicionales"
+  ],
+  "Date": {
+    "$date": "2024-04-06T01:30:41.671Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "661439de2590cf7bd49ef52d"
+  },
+  "Usuario": {
+    "$oid": "660f267a5ed19e10bed60c83"
+  },
+  "Titulo": "Problema de las notas",
+  "Problema": "Dadas las 3 notas de los certámenes, la nota de laboratorio, la nota de trabajo en equipo y la nota del certamen recuperativo, el programa debe calcular la nota final y el estado final de un alumno del curso, aplicando las reglas ya conocidas. Si un alumno no rinde el certamen recuperativo esto se indica con un valor negativo en esa nota. En caso de rendirlo, reemplaza siempre al certamen de menor nota, aunque esto perjudique al alumno. El programa debe calcular la nota individual, ponderando con 75% el promedio de certámenes y 25% la nota de laboratorio. Si la nota individual, una vez redondeada, es menor a 55, la nota final es igual a la nota individual. Si la nota individual es igual o superior a 55, la nota final se calcula ponderando con 60% el promedio de certámenes, con 20% los laboratorios y con 20% el trabajo en equipo. En cada cálculo, intermedio o final, debe aplicarse redondeo al entero más cercano",
+  "Respuesta": [
+    {
+      "Nombre": "calcular_promedio_certamenes",
+      "Input": "tres notas de los certámenes, nota del certamen recuperativo",
+      "Output": "promedio de certámenes",
+      "Descripcion": "Calcula el promedio de los certámenes, reemplazando la nota más baja por la del certamen recuperativo si esta es mayor."
+    },
+    {
+      "Nombre": "calcular_nota_individual",
+      "Input": "promedio de certámenes, nota de laboratorio",
+      "Output": "nota individual",
+      "Descripcion": "Calcula la nota individual ponderando con 75% el promedio de certámenes y 25% la nota de laboratorio, aplicando redondeo."
+    },
+    {
+      "Nombre": "calcular_nota_final",
+      "Input": "nota individual, promedio de certámenes, nota de laboratorio, nota de trabajo en equipo",
+      "Output": "nota final",
+      "Descripcion": "Calcula la nota final basada en la nota individual. Si es menor a 55, es igual a la nota individual. Si es igual o superior a 55, se calcula ponderando 60% el promedio de certámenes, 20% los laboratorios y 20% el trabajo en equipo, aplicando redondeo."
+    },
+    {
+      "Nombre": "determinar_estado_final",
+      "Input": "nota final",
+      "Output": "estado final del alumno",
+      "Descripcion": "Determina el estado final del alumno (aprobado o reprobado) basado en la nota final."
+    }
+  ],
+  "Tags": [
+    "condicionales",
+    "matematica"
+  ],
+  "Date": {
+    "$date": "2024-04-06T01:21:07.114Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "661439df2590cf7bd49ef52f"
+  },
+  "Usuario": {
+    "$oid": "660f267a5ed19e10bed60c83"
+  },
+  "Titulo": "Problema del aumento de sueldo",
+  "Problema": "Una empresa aumenta un 10% a los empleados que ganan hasta $500.000, un 7% a los que ganan más que eso pero que no superan $1.000.000, y finalmente un 5% a los que ganan más que ese límite. El programa debe calcular el nuevo salario",
+  "Respuesta": [
+    {
+      "Nombre": "calcular_aumento",
+      "Input": "salario_actual (float)",
+      "Output": "nuevo_salario (float)",
+      "Descripcion": "Calcula el aumento de salario basado en el salario actual. Si el salario es hasta $500.000, el aumento es del 10%. Si el salario es más de $500.000 pero no supera $1.000.000, el aumento es del 7%. Si el salario es más de $1.000.000, el aumento es del 5%."
+    },
+    {
+      "Nombre": "imprimir_nuevo_salario",
+      "Input": "nombre_empleado (string), nuevo_salario (float)",
+      "Output": "None",
+      "Descripcion": "Imprime el nombre del empleado junto con su nuevo salario después del aumento."
+    }
+  ],
+  "Tags": [
+    "condicionales"
+  ],
+  "Date": {
+    "$date": "2024-04-06T01:22:00.405Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "661439df2590cf7bd49ef537"
+  },
+  "Usuario": {
+    "$oid": "660f267a5ed19e10bed60c83"
+  },
+  "Titulo": "Problema de los palíndromos",
+  "Problema": "Un palíndromo es una palabra o frase que, ignorando diferencias de mayúsculas y minúsculas, y eliminando tildes, espacios y signos de puntuación, se lee igual de izquierda a derecha que de derecha a izquierda.\\r\\n\\r\\nAsociada a los palíndromos, existe la pregunta casi filosófica de si éstos se inventan o se descubren. Nosotros nos quedaremos con la segunda opción e intentaremos descubrir si una frase particular es o no es, un palíndromo.",
+  "Respuesta": [
+    {
+      "Nombre": "normalizar_texto",
+      "Input": "cadena de texto",
+      "Output": "cadena de texto normalizada",
+      "Descripcion": "Esta función recibe una cadena de texto y la normaliza eliminando diferencias de mayúsculas y minúsculas, tildes, espacios y signos de puntuación."
+    },
+    {
+      "Nombre": "invertir_texto",
+      "Input": "cadena de texto normalizada",
+      "Output": "cadena de texto invertida",
+      "Descripcion": "Esta función toma una cadena de texto normalizada y devuelve la misma cadena pero invertida, es decir, de derecha a izquierda."
+    },
+    {
+      "Nombre": "comparar_textos",
+      "Input": "dos cadenas de texto",
+      "Output": "valor booleano",
+      "Descripcion": "Esta función compara dos cadenas de texto para determinar si son iguales o no, devolviendo True si son iguales (es decir, si la cadena original normalizada es igual a su versión invertida) o False en caso contrario."
+    },
+    {
+      "Nombre": "es_palindromo",
+      "Input": "cadena de texto",
+      "Output": "valor booleano",
+      "Descripcion": "Esta es la función principal que integra las funciones anteriores para determinar si una cadena de texto dada es un palíndromo o no. Normaliza el texto, lo invierte, lo compara con su versión original normalizada y devuelve True si es palíndromo o False si no lo es."
+    }
+  ],
+  "Tags": [
+    "strings"
+  ],
+  "Date": {
+    "$date": "2024-04-06T01:26:09.365Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66143a483cfdbd2f433f1e8d"
+  },
+  "Usuario": {
+    "$oid": "660f268a5ed19e10bed60c86"
+  },
+  "Titulo": "Problema de creación de las claves",
+  "Problema": "Una forma común de generar automáticamente passwords, en función de una palabra o frase inicial, suele ser cambiar las vocales por números, incluir letras en minúsculas y mayúscula además de agregar un símbolo.\n------------------------------------------------------------------------------------------------------\nEscriba un programa que reciba un texto y retorne un password que realice las siguientes transformaciones:\n\n    Las vocales (a,e,i,o) se deben reemplazar por los números (4,3,1,0), sin importar mayúsculas o minúsculas.\n    La primera letra que aparezca en el password debe ser minúscula y las demás letras subsecuentes deben ser mayúsculas.\n    Los espacios se deben reemplazar por guión bajo.\n    Si la cantidad de caracteres del password resultante es par, al final se debe agregar un asterisco (*), en caso contrario se debe agrear un símbolo de exclamación (!).\n\nSuponga que siempre se ingresarán palabras que contengan al menos una consonante.\n\nEntrada\nUn string que incluye al menos una consonante y que puede contener también espacios y números.\n\nSalida\nUn string que representa una password con las características descritas en el enunciado.\n\nEjemplos\n\nEntrada\nClave dificil\n\nSalida\ncL4V3_D1F1C1L!\n\nEntrada\n12345 Clave\n\nSalida\n12345_cL4V3!",
+  "Respuesta": [
+    {
+      "Nombre": "reemplazar_vocales",
+      "Input": "Un string que incluye al menos una consonante y que puede contener también espacios y números.",
+      "Output": "Un string con las vocales reemplazadas por números (4,3,1,0).",
+      "Descripcion": "Esta función recibe un string y reemplaza las vocales por los números correspondientes (4,3,1,0), sin importar mayúsculas o minúsculas."
+    },
+    {
+      "Nombre": "primera_letra_minuscula",
+      "Input": "Un string resultante de reemplazar las vocales por números.",
+      "Output": "Un string con la primera letra en minúscula y las demás en mayúscula.",
+      "Descripcion": "Esta función toma el string resultante del reemplazo de vocales por números y coloca la primera letra en minúscula y las demás en mayúscula."
+    },
+    {
+      "Nombre": "reemplazar_espacios",
+      "Input": "Un string con la primera letra en minúscula y las demás en mayúscula.",
+      "Output": "Un string con los espacios reemplazados por guión bajo.",
+      "Descripcion": "Esta función recibe un string y reemplaza los espacios por guiones bajos."
+    },
+    {
+      "Nombre": "agregar_caracter_final",
+      "Input": "Un string con los espacios reemplazados por guión bajo.",
+      "Output": "Un string con un caracter adicional al final dependiendo de si la longitud es par o impar.",
+      "Descripcion": "Esta función recibe un string y agrega un asterisco (*) si la longitud es par y un símbolo de exclamación (!) si es impar."
+    }
+  ],
+  "Tags": [
+    "strings",
+    "listas"
+  ],
+  "Date": {
+    "$date": "2024-03-27T12:17:31.777Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66143a483cfdbd2f433f1e8f"
+  },
+  "Usuario": {
+    "$oid": "660f268a5ed19e10bed60c86"
+  },
+  "Titulo": "Problema de adivinar el número",
+  "Problema": "Crea una aplicación que permita adivinar un número. La aplicación genera un número aleatorio del 1 al 100. \\nA continuación va pidiendo números y va respondiendo si el número a adivinar es mayor o menor que el introducido, además de los intentos que te quedan (tienes 10 intentos para acertarlo). \\nEl programa termina cuando se acierta el número (además te dice en cuantos intentos lo has acertado), si se llega al límite de intentos te muestra el número que había generado",
+  "Respuesta": [
+    {
+      "Nombre": "generar_numero_aleatorio",
+      "Input": "minimo, maximo",
+      "Output": "numero_aleatorio",
+      "Descripcion": "Genera un número aleatorio entre el rango mínimo y máximo especificados."
+    },
+    {
+      "Nombre": "solicitar_numero_usuario",
+      "Input": "mensaje",
+      "Output": "numero_usuario",
+      "Descripcion": "Solicita al usuario que ingrese un número y lo devuelve."
+    },
+    {
+      "Nombre": "comparar_numeros",
+      "Input": "numero_usuario, numero_aleatorio",
+      "Output": "resultado_comparacion",
+      "Descripcion": "Compara el número ingresado por el usuario con el número aleatorio generado y devuelve si es mayor, menor o igual."
+    },
+    {
+      "Nombre": "actualizar_intentos",
+      "Input": "intentos_actuales",
+      "Output": "nuevos_intentos",
+      "Descripcion": "Reduce el número de intentos disponibles tras cada intento del usuario."
+    },
+    {
+      "Nombre": "mostrar_resultado",
+      "Input": "resultado_comparacion, intentos_restantes, numero_aleatorio",
+      "Output": "None",
+      "Descripcion": "Muestra el resultado de la comparación, los intentos restantes o el número a adivinar si se alcanza el límite de intentos o el usuario acierta."
+    }
+  ],
+  "Tags": [
+    "condicionales"
+  ],
+  "Date": {
+    "$date": "2024-04-06T01:15:38.337Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66143a483cfdbd2f433f1e91"
+  },
+  "Usuario": {
+    "$oid": "660f268a5ed19e10bed60c86"
+  },
+  "Titulo": "Problema de la administración de la biblioteca",
+  "Problema": "Desarrolla un programa en el lenguaje de programación de tu elección para gestionar los libros de una biblioteca. El programa debe permitir a los usuarios agregar nuevos libros, buscar libros por título o autor, listar todos los libros disponibles, prestar libros y devolver libros. Cada operación debe ser manejada por una función específica, proporcionando así una interfaz clara y funcional para los usuarios de la biblioteca. Todos los libros estarán guardados dentro de una variable estantería que es una lista que contiene diccionario los cuales tienen como atributo Nombre, autor, prestado que es true si está disponible o false si esta prestado",
+  "Respuesta": [
+    {
+      "Nombre": "agregar_libro",
+      "Input": "estanteria, nombre, autor",
+      "Output": "estanteria actualizada",
+      "Descripcion": "Agrega un nuevo libro a la estanteria. El libro es representado como un diccionario con los atributos nombre, autor y prestado (inicialmente False), y se añade a la lista estanteria."
+    },
+    {
+      "Nombre": "buscar_libro_por_titulo",
+      "Input": "estanteria, titulo",
+      "Output": "lista de libros que coinciden",
+      "Descripcion": "Busca en la estanteria los libros cuyo nombre coincida con el titulo proporcionado. Retorna una lista de diccionarios de libros que coinciden."
+    },
+    {
+      "Nombre": "buscar_libro_por_autor",
+      "Input": "estanteria, autor",
+      "Output": "lista de libros del autor",
+      "Descripcion": "Busca en la estanteria los libros cuyo autor coincida con el nombre proporcionado. Retorna una lista de diccionarios de los libros que coinciden."
+    },
+    {
+      "Nombre": "listar_libros",
+      "Input": "estanteria",
+      "Output": "lista de todos los libros",
+      "Descripcion": "Retorna una lista de todos los libros en la estanteria. Cada libro es representado por un diccionario."
+    },
+    {
+      "Nombre": "prestar_libro",
+      "Input": "estanteria, titulo",
+      "Output": "estanteria actualizada",
+      "Descripcion": "Busca un libro por su titulo en la estanteria y cambia su estado a prestado (True) si el libro está disponible. Retorna la estanteria actualizada."
+    },
+    {
+      "Nombre": "devolver_libro",
+      "Input": "estanteria, titulo",
+      "Output": "estanteria actualizada",
+      "Descripcion": "Busca un libro por su titulo en la estanteria y cambia su estado a no prestado (False) si el libro estaba prestado. Retorna la estanteria actualizada."
+    }
+  ],
+  "Tags": [
+    "diccionarios",
+    "listas"
+  ],
+  "Date": {
+    "$date": "2024-04-06T01:17:56.564Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66143a483cfdbd2f433f1e93"
+  },
+  "Usuario": {
+    "$oid": "660f268a5ed19e10bed60c86"
+  },
+  "Titulo": "Problema de las notas",
+  "Problema": "Dadas las 3 notas de los certámenes, la nota de laboratorio, la nota de trabajo en equipo y la nota del certamen recuperativo, el programa debe calcular la nota final y el estado final de un alumno del curso, aplicando las reglas ya conocidas. Si un alumno no rinde el certamen recuperativo esto se indica con un valor negativo en esa nota. En caso de rendirlo, reemplaza siempre al certamen de menor nota, aunque esto perjudique al alumno. El programa debe calcular la nota individual, ponderando con 75% el promedio de certámenes y 25% la nota de laboratorio. Si la nota individual, una vez redondeada, es menor a 55, la nota final es igual a la nota individual. Si la nota individual es igual o superior a 55, la nota final se calcula ponderando con 60% el promedio de certámenes, con 20% los laboratorios y con 20% el trabajo en equipo. En cada cálculo, intermedio o final, debe aplicarse redondeo al entero más cercano",
+  "Respuesta": [
+    {
+      "Nombre": "calcular_promedio_certamenes",
+      "Input": "tres notas de los certámenes, nota del certamen recuperativo",
+      "Output": "promedio de certámenes",
+      "Descripcion": "Calcula el promedio de los certámenes, reemplazando la nota más baja por la del certamen recuperativo si esta es mayor."
+    },
+    {
+      "Nombre": "calcular_nota_individual",
+      "Input": "promedio de certámenes, nota de laboratorio",
+      "Output": "nota individual",
+      "Descripcion": "Calcula la nota individual ponderando con 75% el promedio de certámenes y 25% la nota de laboratorio, aplicando redondeo."
+    },
+    {
+      "Nombre": "calcular_nota_final",
+      "Input": "nota individual, promedio de certámenes, nota de laboratorio, nota de trabajo en equipo",
+      "Output": "nota final",
+      "Descripcion": "Calcula la nota final basada en la nota individual. Si es menor a 55, es igual a la nota individual. Si es igual o superior a 55, se calcula ponderando 60% el promedio de certámenes, 20% los laboratorios y 20% el trabajo en equipo, aplicando redondeo."
+    },
+    {
+      "Nombre": "determinar_estado_final",
+      "Input": "nota final",
+      "Output": "estado final del alumno",
+      "Descripcion": "Determina el estado final del alumno (aprobado o reprobado) basado en la nota final."
+    }
+  ],
+  "Tags": [
+    "condicionales",
+    "matematica"
+  ],
+  "Date": {
+    "$date": "2024-04-06T01:21:07.114Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66143a483cfdbd2f433f1e95"
+  },
+  "Usuario": {
+    "$oid": "660f268a5ed19e10bed60c86"
+  },
+  "Titulo": "Problema del aumento de sueldo",
+  "Problema": "Una empresa aumenta un 10% a los empleados que ganan hasta $500.000, un 7% a los que ganan más que eso pero que no superan $1.000.000, y finalmente un 5% a los que ganan más que ese límite. El programa debe calcular el nuevo salario",
+  "Respuesta": [
+    {
+      "Nombre": "calcular_aumento",
+      "Input": "salario_actual (float)",
+      "Output": "nuevo_salario (float)",
+      "Descripcion": "Calcula el aumento de salario basado en el salario actual. Si el salario es hasta $500.000, el aumento es del 10%. Si el salario es más de $500.000 pero no supera $1.000.000, el aumento es del 7%. Si el salario es más de $1.000.000, el aumento es del 5%."
+    },
+    {
+      "Nombre": "imprimir_nuevo_salario",
+      "Input": "nombre_empleado (string), nuevo_salario (float)",
+      "Output": "None",
+      "Descripcion": "Imprime el nombre del empleado junto con su nuevo salario después del aumento."
+    }
+  ],
+  "Tags": [
+    "condicionales"
+  ],
+  "Date": {
+    "$date": "2024-04-06T01:22:00.405Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66143a483cfdbd2f433f1e97"
+  },
+  "Usuario": {
+    "$oid": "660f268a5ed19e10bed60c86"
+  },
+  "Titulo": "Problema de los números primos",
+  "Problema": "Dados dos números enteros positivos $a$ y $b$ dados como entrada, donde $a\\\\leq b$, el programa debe entregar la suma de todos los números primos que existen en el rango entre $a$ y $b$, incluyendo los extremos.",
+  "Respuesta": [
+    {
+      "Nombre": "es_primo",
+      "Input": "n: int",
+      "Output": "bool",
+      "Descripcion": "Determina si el número dado n es primo. Retorna True si es primo, de lo contrario retorna False."
+    },
+    {
+      "Nombre": "suma_primos_en_rango",
+      "Input": "a: int, b: int",
+      "Output": "int",
+      "Descripcion": "Utiliza la función es_primo para verificar cada número en el rango entre a y b, incluyendo ambos extremos. Suma y retorna el total de los números primos encontrados."
+    }
+  ],
+  "Tags": [
+    "condicionales",
+    "matematica"
+  ],
+  "Date": {
+    "$date": "2024-04-06T01:22:59.206Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66143a483cfdbd2f433f1e99"
+  },
+  "Usuario": {
+    "$oid": "660f268a5ed19e10bed60c86"
+  },
+  "Titulo": "Problema de los triángulos",
+  "Problema": "Escriba un programa que lea desde el teclado las longitudes de los lados de un triángulo. El programa debe verificar que los valores indicados permiten formar el triángulo, asegurándose de que cumplen la propiedad de desigualdad triangular, es decir, que la suma de cada par de lados es mayor al lado restante. Como salida debe indicarse el resultado de la validación.\\r\\n\\r\\n\\r\\nAdemás, pero sólo en caso de que la validación anterior sea exitosa, el programa debe indicar el tipo de triángulo del que se trata: Equilátero, Isósceles o Escaleno. Finalmente, debe verificar si se está en presencia de un triángulo rectángulo o no. Para esto último debe verificar si las longitudes de los lados cumplen con el Teorema de Pitágoras, considerando el lado más largo como la hipotenusa.\nsiguiente tabla muestra algunos valores de prueba\n5             | 5             | 5             | Triángulo equilátero          |\\r\\n| 8             | 6             | 4             | Triángulo escaleno            |\\r\\n| 8             | 7             | 8             | Triángulo isósceles           |\\r\\n| 3             | 5             | 4             | Triángulo escaleno rectángulo |\\r\\n| 3             | 8             | 4             | No es un triángulo            |\",\n",
+  "Respuesta": [
+    {
+      "Nombre": "leer_lados",
+      "Input": "Ninguno",
+      "Output": "lado1, lado2, lado3",
+      "Descripcion": "Lee tres números del teclado que representan los lados de un triángulo."
+    },
+    {
+      "Nombre": "es_triangulo",
+      "Input": "lado1, lado2, lado3",
+      "Output": "Booleano",
+      "Descripcion": "Verifica si los lados cumplen con la propiedad de desigualdad triangular para formar un triángulo."
+    },
+    {
+      "Nombre": "tipo_triangulo",
+      "Input": "lado1, lado2, lado3",
+      "Output": "String",
+      "Descripcion": "Determina si el triángulo es equilátero, isósceles o escaleno."
+    },
+    {
+      "Nombre": "es_rectangulo",
+      "Input": "lado1, lado2, lado3",
+      "Output": "Booleano",
+      "Descripcion": "Verifica si el triángulo cumple con el Teorema de Pitágoras para determinar si es un triángulo rectángulo."
+    },
+    {
+      "Nombre": "resultado_validacion",
+      "Input": "esTriangulo, tipoTriangulo, esRectangulo",
+      "Output": "String",
+      "Descripcion": "Genera el mensaje de salida del programa basado en los resultados de las verificaciones anteriores."
+    }
+  ],
+  "Tags": [
+    "matematica",
+    "dificil"
+  ],
+  "Date": {
+    "$date": "2024-04-06T01:23:59.425Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66143a483cfdbd2f433f1e9b"
+  },
+  "Usuario": {
+    "$oid": "660f268a5ed19e10bed60c86"
+  },
+  "Titulo": "Problema del mínimo divisor",
+  "Problema": "En un programa se requiere la tarea de encontrar el mínimo divisor de dos números",
+  "Respuesta": [
+    {
+      "Nombre": "calcular_mcd",
+      "Input": "dos números enteros, num1 y num2",
+      "Output": "un número entero, el máximo común divisor de num1 y num2",
+      "Descripcion": "Esta función calcula el máximo común divisor de dos números utilizando el algoritmo de Euclides."
+    },
+    {
+      "Nombre": "encontrar_divisores_comunes",
+      "Input": "dos listas de números enteros, divisores_num1 y divisores_num2",
+      "Output": "una lista de números enteros, los divisores comunes entre num1 y num2",
+      "Descripcion": "Esta función encuentra los divisores comunes entre dos listas de números, que son los divisores de num1 y num2, respectivamente."
+    },
+    {
+      "Nombre": "encontrar_minimo_divisor_comun",
+      "Input": "una lista de números enteros, divisores_comunes",
+      "Output": "un número entero, el mínimo divisor común entre num1 y num2",
+      "Descripcion": "Esta función encuentra el mínimo divisor común entre dos números a partir de la lista de divisores comunes entre ellos."
+    }
+  ],
+  "Tags": [
+    "matematica"
+  ],
+  "Date": {
+    "$date": "2024-04-06T01:28:34.059Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66143a483cfdbd2f433f1e9d"
+  },
+  "Usuario": {
+    "$oid": "660f268a5ed19e10bed60c86"
+  },
+  "Titulo": "Problema del número perfecto",
+  "Problema": "Un número es perfecto cuando es igual a la suma de sus divisores propios, es decir, todos sus divisores sin considerar al mismo número entre ellos.\\r\\n\\r\\nPor ejemplo, $28$ es un número perfecto pues $28 = 1 + 2 + 4 + 7 + 14$.\\r\\n\\r\\nPor otra parte, $32$ no es perfecto pues $32 \\\\neq 1 + 2 + 4 + 8 + 16 = 31$\",",
+  "Respuesta": [
+    {
+      "Nombre": "calcular_divisores",
+      "Input": "int numero",
+      "Output": "list divisores",
+      "Descripcion": "Esta función recibe un número entero y retorna una lista con todos los divisores propios del número, es decir, todos los números enteros positivos que lo dividen, excluyendo al mismo número."
+    },
+    {
+      "Nombre": "sumar_divisores",
+      "Input": "list divisores",
+      "Output": "int suma",
+      "Descripcion": "Recibe una lista de divisores propios de un número y retorna la suma de estos divisores."
+    },
+    {
+      "Nombre": "es_numero_perfecto",
+      "Input": "int numero",
+      "Output": "bool resultado",
+      "Descripcion": "Esta función determina si un número es perfecto o no. Para ello, utiliza las funciones anteriores para calcular los divisores propios del número, sumarlos, y luego compara si esta suma es igual al número original. Retorna True si el número es perfecto, de lo contrario retorna False."
+    }
+  ],
+  "Tags": [
+    "matematica"
+  ],
+  "Date": {
+    "$date": "2024-04-06T01:24:50.702Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66143a493cfdbd2f433f1e9f"
+  },
+  "Usuario": {
+    "$oid": "660f268a5ed19e10bed60c86"
+  },
+  "Titulo": "Problema de los palíndromos",
+  "Problema": "Un palíndromo es una palabra o frase que, ignorando diferencias de mayúsculas y minúsculas, y eliminando tildes, espacios y signos de puntuación, se lee igual de izquierda a derecha que de derecha a izquierda.\\r\\n\\r\\nAsociada a los palíndromos, existe la pregunta casi filosófica de si éstos se inventan o se descubren. Nosotros nos quedaremos con la segunda opción e intentaremos descubrir si una frase particular es o no es, un palíndromo.",
+  "Respuesta": [
+    {
+      "Nombre": "normalizar_texto",
+      "Input": "cadena de texto",
+      "Output": "cadena de texto normalizada",
+      "Descripcion": "Esta función recibe una cadena de texto y la normaliza eliminando diferencias de mayúsculas y minúsculas, tildes, espacios y signos de puntuación."
+    },
+    {
+      "Nombre": "invertir_texto",
+      "Input": "cadena de texto normalizada",
+      "Output": "cadena de texto invertida",
+      "Descripcion": "Esta función toma una cadena de texto normalizada y devuelve la misma cadena pero invertida, es decir, de derecha a izquierda."
+    },
+    {
+      "Nombre": "comparar_textos",
+      "Input": "dos cadenas de texto",
+      "Output": "valor booleano",
+      "Descripcion": "Esta función compara dos cadenas de texto para determinar si son iguales o no, devolviendo True si son iguales (es decir, si la cadena original normalizada es igual a su versión invertida) o False en caso contrario."
+    },
+    {
+      "Nombre": "es_palindromo",
+      "Input": "cadena de texto",
+      "Output": "valor booleano",
+      "Descripcion": "Esta es la función principal que integra las funciones anteriores para determinar si una cadena de texto dada es un palíndromo o no. Normaliza el texto, lo invierte, lo compara con su versión original normalizada y devuelve True si es palíndromo o False si no lo es."
+    }
+  ],
+  "Tags": [
+    "strings"
+  ],
+  "Date": {
+    "$date": "2024-04-06T01:26:09.365Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66143a493cfdbd2f433f1ea1"
+  },
+  "Usuario": {
+    "$oid": "660f268a5ed19e10bed60c86"
+  },
+  "Titulo": "Problema de la feria de Pythonia",
+  "Problema": "Se está llevando la feria costumbrista de un pueblito en el sur de Pythonia. Por lo que a usted le gustaría presentarse con su función de tiro al blanco. La función `tiro_al_blanco` recibe 2 argumentos, un número entero de nueve dígitos que representa la diana de tiro y otro número entero entre 1 y 9 que representa el tiro. Se gana cuando se acierta al número y este coincide con la posición y el valor del digito dentro de la diana, un ejemplo: \\n\\nPara la diana 345471113 y el número 4, sería un acierto ya que el digito en la posición 4 es igual al valor 4.\\n```python\\nposicion: 123456789\\n     digitos: 345471113",
+  "Respuesta": [
+    {
+      "Nombre": "convertir_a_lista",
+      "Input": "un número entero",
+      "Output": "una lista de dígitos",
+      "Descripcion": "Esta función toma un número entero y lo convierte en una lista de sus dígitos para facilitar la manipulación de cada uno de ellos."
+    },
+    {
+      "Nombre": "verificar_posicion",
+      "Input": "una lista de dígitos, un número entero",
+      "Output": "un valor booleano",
+      "Descripcion": "Recibe la lista de dígitos de la diana y el número de tiro, y verifica si el dígito en la posición que indica el tiro es igual al valor del tiro. Devuelve True si es un acierto, de lo contrario, False."
+    },
+    {
+      "Nombre": "tiro_al_blanco",
+      "Input": "un número entero de nueve dígitos, un número entero entre 1 y 9",
+      "Output": "un valor booleano",
+      "Descripcion": "Esta es la función principal que utiliza las funciones 'convertir_a_lista' y 'verificar_posicion' para determinar si el tiro al blanco es un acierto o no, basándose en si el número de tiro coincide con el dígito en su respectiva posición en la diana."
+    }
+  ],
+  "Tags": [
+    "strings"
+  ],
+  "Date": {
+    "$date": "2024-04-06T01:27:46.924Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66143a493cfdbd2f433f1ea3"
+  },
+  "Usuario": {
+    "$oid": "660f268a5ed19e10bed60c86"
+  },
+  "Titulo": "Problema de los 7s",
+  "Problema": "El 7 ha sido reconocido históricamente como el número de la perfección o de la suerte. Aparece en fórmulas y religiones con frecuencia. \\nEn esta tarea jugaremos con el número 7.\nDebe solicitar al usuario que ingrese números entre 1 y 10. El programa terminará de solicitar datos cuando se hayan ingresado 7 números 7. \\nSi el usuario ingresa un número incorrecto (menor a 1 o mayor a 10), no se contabiliza en el total de números ingresados y se solicita que ingrese un número correcto con la frase \\\"INTENTE NUEVAMENTE:\\\".\\n\\nAl finalizar se debe mostrar el porcentaje de números sietes respecto del total de números ingresados redondeado a un dígito decimal.\\nAdemás, se debe imprimir varias filas numeradas cada una con 7 asteriscos, según el total de números válidos ingresados.\"",
+  "Respuesta": [
+    {
+      "Nombre": "solicitar_numero",
+      "Input": "Ninguno",
+      "Output": "int",
+      "Descripcion": "Solicita al usuario que ingrese un número entre 1 y 10. Si el número es menor a 1 o mayor a 10, se solicita nuevamente hasta que el número sea válido."
+    },
+    {
+      "Nombre": "contar_sietes",
+      "Input": "int",
+      "Output": "int",
+      "Descripcion": "Recibe un número ingresado por el usuario y si es un 7, incrementa un contador de sietes. Retorna el total de sietes ingresados."
+    },
+    {
+      "Nombre": "contar_total_numeros",
+      "Input": "int",
+      "Output": "int",
+      "Descripcion": "Recibe un número válido ingresado por el usuario y lo cuenta como parte del total de números ingresados. Retorna el total de números válidos ingresados."
+    },
+    {
+      "Nombre": "calcular_porcentaje_sietes",
+      "Input": "int, int",
+      "Output": "float",
+      "Descripcion": "Recibe el total de sietes ingresados y el total de números válidos ingresados. Calcula y retorna el porcentaje de sietes respecto al total de números."
+    },
+    {
+      "Nombre": "imprimir_asteriscos",
+      "Input": "int",
+      "Output": "Ninguno",
+      "Descripcion": "Recibe el total de números válidos ingresados y por cada uno imprime una fila numerada con 7 asteriscos."
+    },
+    {
+      "Nombre": "mostrar_resultados",
+      "Input": "float",
+      "Output": "Ninguno",
+      "Descripcion": "Recibe el porcentaje de sietes calculado y lo muestra al usuario redondeado a un dígito decimal."
+    }
+  ],
+  "Tags": [
+    "inputs",
+    "condicionales"
+  ],
+  "Date": {
+    "$date": "2024-04-06T01:30:41.671Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66143a493cfdbd2f433f1ea5"
+  },
+  "Usuario": {
+    "$oid": "660f268a5ed19e10bed60c86"
+  },
+  "Titulo": "El contador de letras",
+  "Problema": "Se quiere contar la cantidad de veces que aparece cada letra de un texto",
+  "Respuesta": [
+    {
+      "Nombre": "limpiar_texto",
+      "Input": "texto: str",
+      "Output": "texto_limpio: str",
+      "Descripcion": "Recibe un texto y retorna el texto sin espacios, signos de puntuación ni caracteres especiales, solo letras en minúsculas."
+    },
+    {
+      "Nombre": "contar_letras",
+      "Input": "texto_limpio: str",
+      "Output": "diccionario_letras: dict",
+      "Descripcion": "Recibe un texto limpio y retorna un diccionario donde las claves son las letras y los valores son la cantidad de veces que cada letra aparece en el texto."
+    },
+    {
+      "Nombre": "imprimir_resultado",
+      "Input": "diccionario_letras: dict",
+      "Output": "None",
+      "Descripcion": "Recibe un diccionario de letras con sus respectivas cantidades y lo imprime de manera legible."
+    }
+  ],
+  "Tags": [
+    "strings"
+  ],
+  "Date": {
+    "$date": "2024-04-06T01:29:19.069Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "661f0635799211fdeb8d8f3f"
+  },
+  "Usuario": {
+    "$oid": "660f2483f3dbd3fd0987ada7"
+  },
+  "Titulo": "Cajero Automático Virtual",
+  "Problema": "Desarrolla un programa en Python que simule un cajero automático. El programa debe permitir al usuario realizar las siguientes operaciones: consulta de saldo, depósito, y retiro. Para esto, deberás implementar funciones específicas para cada operación. Asegúrate de definir correctamente las variables y parámetros de las funciones. Utiliza bucles y condiciones para validar las entradas del usuario y manejar los distintos escenarios, como saldo insuficiente o valores de depósito y retiro incorrectos. Además, implementa la manipulación de listas o diccionarios para simular la base de datos del cajero, donde se almacenará la información de las cuentas de los usuarios, incluyendo el saldo. Por último, presta atención a la sintaxis de Python y asegúrate de manejar adecuadamente los errores lógicos que puedan surgir durante las comparaciones y los retornos de las funciones.",
+  "Respuesta": [
+    {
+      "Nombre": "consultar_saldo",
+      "Input": "numero_cuenta",
+      "Output": "saldo_actual",
+      "Descripcion": "Esta función recibe el número de cuenta y retorna el saldo actual de la cuenta consultada."
+    },
+    {
+      "Nombre": "depositar",
+      "Input": "numero_cuenta, cantidad_deposito",
+      "Output": "nuevo_saldo",
+      "Descripcion": "Recibe el número de cuenta y la cantidad a depositar, actualiza el saldo de la cuenta y retorna el nuevo saldo después del depósito."
+    },
+    {
+      "Nombre": "retirar",
+      "Input": "numero_cuenta, cantidad_retiro",
+      "Output": "nuevo_saldo",
+      "Descripcion": "Recibe el número de cuenta y la cantidad a retirar, verifica si el saldo es suficiente, actualiza el saldo de la cuenta restando la cantidad retirada y retorna el nuevo saldo."
+    },
+    {
+      "Nombre": "validar_operacion",
+      "Input": "cantidad",
+      "Output": "es_valido",
+      "Descripcion": "Verifica si la cantidad ingresada para depósito o retiro es válida (por ejemplo, que no sea negativa) y retorna un booleano indicando si la operación es válida o no."
+    },
+    {
+      "Nombre": "actualizar_base_datos",
+      "Input": "numero_cuenta, nuevo_saldo",
+      "Output": "None",
+      "Descripcion": "Actualiza el saldo de la cuenta en la base de datos (simulada con una lista o diccionario) con el nuevo saldo después de un depósito o retiro."
+    }
+  ],
+  "Tags": [
+    "Conversión de números a listas",
+    "Definición y uso de variables",
+    "Implementación de funciones",
+    "Lógica y estructura de funciones",
+    "Manejo de strings y listas",
+    "Sintaxis de Python",
+    "Uso de bucles y condiciones",
+    "Manipulación de listas y diccionarios",
+    "Errores lógicos en comparaciones y retornos"
+  ],
+  "Date": {
+    "$date": "2024-04-16T19:13:57.698Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "662bee220251a3082ce27146"
+  },
+  "Usuario": {
+    "$oid": "660f2483f3dbd3fd0987ada7"
+  },
+  "Titulo": "Corrección de Diario Personal",
+  "Problema": "Desarrolla un programa en Python que funcione como un diario personal. El usuario podrá agregar entradas de texto con la fecha actual, ver entradas anteriores y buscar entradas por palabras clave. Se debe cumplir con lo siguiente:\n1. Utiliza una función para agregar entradas al diario. Asegúrate de que la función reciba como parámetros el texto de la entrada y la fecha. La entrada debe almacenarse en un diccionario donde la fecha sea la clave y el texto la entrada.\n2. Implementa una función para mostrar todas las entradas almacenadas, mostrando primero la fecha y luego el texto de la entrada.\n3. Crea una función que permita buscar entradas por una palabra clave. Esta función debe buscar en todos los textos de las entradas y retornar todas las entradas que contengan esa palabra.\n4. Asegúrate de utilizar bucles y condicionales correctamente para iterar sobre las entradas del diario y realizar las comparaciones necesarias.\n5. Maneja los errores comunes de sintaxis como el uso correcto de 'False', 'append' y '==' donde sea necesario.\n6. Optimiza la manipulación de textos y números usando métodos eficientes y correctos.\nNota: Recuerda definir correctamente las variables y parámetros de tus funciones, y asegúrate de que tus funciones retornen valores adecuadamente.",
+  "Respuesta": [
+    {
+      "Nombre": "agregar_entrada",
+      "Input": "texto_entrada, fecha",
+      "Output": "None",
+      "Descripcion": "Recibe el texto de la entrada y la fecha, y almacena la entrada en un diccionario donde la fecha es la clave y el texto la entrada."
+    },
+    {
+      "Nombre": "mostrar_entradas",
+      "Input": "None",
+      "Output": "None",
+      "Descripcion": "Itera sobre el diccionario de entradas y muestra cada una de ellas, presentando primero la fecha y luego el texto de la entrada."
+    },
+    {
+      "Nombre": "buscar_por_palabra_clave",
+      "Input": "palabra_clave",
+      "Output": "Lista de entradas encontradas",
+      "Descripcion": "Busca en todos los textos de las entradas y retorna todas las entradas que contengan la palabra clave especificada."
+    }
+  ],
+  "Tags": [
+    "Errores de sintaxis",
+    "Errores lógicos",
+    "Acceso incorrecto a diccionarios",
+    "Uso incorrecto de bucles y condicionales",
+    "Definición incorrecta de funciones y parámetros",
+    "Manipulación ineficiente de textos y números"
+  ],
+  "Date": {
+    "$date": "2024-04-26T14:10:42.872Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "663033e2b739fe9a800ad7ba"
+  },
+  "Usuario": {
+    "$oid": "660f25f65ed19e10bed60c74"
+  },
+  "Titulo": "Optimización y Manejo de Errores en Cálculos Matemáticos",
+  "Problema": "Se requiere desarrollar una función en Python llamada 'calcular_estadisticas' que reciba una lista de números enteros o flotantes como argumento. Esta función debe calcular el promedio, el valor máximo, el valor mínimo y la desviación estándar de los números proporcionados. La función debe cumplir con los siguientes requisitos: \n1. Debe verificar que la lista no esté vacía; si lo está, debe lanzar una excepción con un mensaje indicativo. \n2. Debe verificar que todos los elementos de la lista sean números enteros o flotantes; si encuentra algún tipo de dato diferente, debe lanzar una excepción con un mensaje adecuado. \n3. La función debe ser eficiente en términos de uso de memoria y tiempo de ejecución, evitando la creación de objetos intermedios innecesarios y utilizando las funciones integradas de Python siempre que sea posible. \n4. Los resultados deben ser retornados directamente en una tupla en el siguiente orden: (promedio, valor máximo, valor mínimo, desviación estándar). \n5. Se valorará la legibilidad del código, por lo que se debe prestar atención a la claridad de las verificaciones de condiciones y al retorno directo de los resultados. \n\nNota: Para el cálculo de la desviación estándar, se puede utilizar la función 'math.sqrt' para la raíz cuadrada y realizar los cálculos necesarios para obtener la varianza y luego la desviación estándar. Se espera que el estudiante aplique los conceptos de eficiencia y optimización, legibilidad del código, manejo de excepciones y verificación de tipos de datos aprendidos.",
+  "Respuesta": [
+    {
+      "Nombre": "verificar_lista_no_vacia",
+      "Input": "lista de números",
+      "Output": "La misma lista o una excepción",
+      "Descripcion": "Verifica si la lista de entrada está vacía; si lo está, lanza una excepción con un mensaje indicativo."
+    },
+    {
+      "Nombre": "verificar_tipos_de_datos",
+      "Input": "lista de números",
+      "Output": "La misma lista o una excepción",
+      "Descripcion": "Verifica que todos los elementos de la lista sean números enteros o flotantes; si encuentra algún tipo de dato diferente, lanza una excepción con un mensaje adecuado."
+    },
+    {
+      "Nombre": "calcular_promedio",
+      "Input": "lista de números",
+      "Output": "Promedio de la lista",
+      "Descripcion": "Calcula el promedio de los números proporcionados en la lista."
+    },
+    {
+      "Nombre": "encontrar_valor_maximo",
+      "Input": "lista de números",
+      "Output": "Valor máximo de la lista",
+      "Descripcion": "Encuentra y devuelve el valor máximo de los números proporcionados en la lista."
+    },
+    {
+      "Nombre": "encontrar_valor_minimo",
+      "Input": "lista de números",
+      "Output": "Valor mínimo de la lista",
+      "Descripcion": "Encuentra y devuelve el valor mínimo de los números proporcionados en la lista."
+    },
+    {
+      "Nombre": "calcular_desviacion_estandar",
+      "Input": "lista de números",
+      "Output": "Desviación estándar de la lista",
+      "Descripcion": "Calcula la desviación estándar de los números proporcionados en la lista, utilizando la función 'math.sqrt' para la raíz cuadrada y realizando los cálculos necesarios para obtener la varianza y luego la desviación estándar."
+    },
+    {
+      "Nombre": "calcular_estadisticas",
+      "Input": "lista de números",
+      "Output": "Tupla con (promedio, valor máximo, valor mínimo, desviación estándar)",
+      "Descripcion": "Función principal que coordina las verificaciones de la lista no vacía y de tipos de datos, y calcula el promedio, valor máximo, valor mínimo y la desviación estándar de los números proporcionados. Devuelve los resultados en una tupla."
+    }
+  ],
+  "Tags": [
+    "Eficiencia y optimización",
+    "Legibilidad del código",
+    "Manejo de excepciones",
+    "Verificación de tipos de datos"
+  ],
+  "Date": {
+    "$date": "2024-04-29T19:57:22.864Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66306baa1d92d2a854fdf26f"
+  },
+  "Usuario": {
+    "$oid": "660f2483f3dbd3fd0987ada7"
+  },
+  "Titulo": "Desafío del carrito de compras",
+  "Problema": "Se te pide desarrollar un programa en Python para manejar un carrito de compras. El usuario podrá agregar productos (representados como diccionarios con 'nombre', 'cantidad' y 'precio'), verificar si un producto ya está en el carrito, actualizar la cantidad de un producto existente, y remover productos. Además, el programa deberá permitir calcular el total a pagar.\n\nRequisitos:\n1. Utiliza una lista para almacenar los productos en el carrito.\n2. Implementa funciones para agregar, verificar, actualizar, y remover productos, así como para calcular el total a pagar.\n3. Asegúrate de manejar correctamente los parámetros y valores de retorno en tus funciones.\n4. Presta atención a la sintaxis correcta de Python, especialmente en el uso de 'False' en lugar de 'Falso', 'append' en lugar de 'agregar', y '==' para comparaciones en lugar de '='.\n5. Implementa controles de errores para evitar iteraciones incorrectas, comparaciones incorrectas, y acceso incorrecto a claves de diccionario.\n\nEste problema te permitirá practicar con errores de sintaxis, errores lógicos, iteraciones, comparaciones, acceso a diccionarios y el uso correcto de funciones en Python.",
+  "Respuesta": [
+    {
+      "Nombre": "agregar_producto",
+      "Input": "carrito, producto",
+      "Output": "None",
+      "Descripcion": "Agrega un producto al carrito. El producto es un diccionario con 'nombre', 'cantidad' y 'precio'. Si el producto ya existe, actualiza la cantidad."
+    },
+    {
+      "Nombre": "verificar_producto",
+      "Input": "carrito, nombre_producto",
+      "Output": "Boolean",
+      "Descripcion": "Verifica si un producto ya está en el carrito basado en el nombre. Retorna True si el producto está, de lo contrario False."
+    },
+    {
+      "Nombre": "actualizar_producto",
+      "Input": "carrito, nombre_producto, cantidad",
+      "Output": "None",
+      "Descripcion": "Actualiza la cantidad de un producto existente en el carrito. Si el producto no existe, no hace nada."
+    },
+    {
+      "Nombre": "remover_producto",
+      "Input": "carrito, nombre_producto",
+      "Output": "None",
+      "Descripcion": "Remueve un producto del carrito basado en el nombre. Si el producto no existe, no hace nada."
+    },
+    {
+      "Nombre": "calcular_total",
+      "Input": "carrito",
+      "Output": "float",
+      "Descripcion": "Calcula el total a pagar por los productos en el carrito. Suma el precio de cada producto multiplicado por su cantidad."
+    }
+  ],
+  "Tags": [
+    "Errores de sintaxis",
+    "Errores lógicos",
+    "Iteraciones incorrectas",
+    "Comparaciones incorrectas",
+    "Acceso incorrecto a claves de diccionario",
+    "Uso incorrecto de funciones",
+    "Manejo incorrecto de parámetros y retorno de funciones"
+  ],
+  "Date": {
+    "$date": "2024-04-29T23:55:22.919Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6632fef26a2609625c305f97"
+  },
+  "Usuario": {
+    "$oid": "660f259c5ed19e10bed60c6e"
+  },
+  "Titulo": "Optimizador de Código",
+  "Problema": "Se te ha dado la tarea de crear un programa en Python que optimice el manejo de datos y operaciones en una pequeña aplicación de análisis de datos. El programa deberá cumplir con los siguientes requisitos:\n\n1. Deberás escribir una función llamada 'optimiza_calculos' que tome como argumento una lista de números enteros. Esta función debe verificar que todos los elementos de la lista sean del tipo correcto (enteros), lanzando una excepción si se encuentra algún tipo de dato que no sea entero.\n\n2. Dentro de 'optimiza_calculos', implementa un algoritmo que elimine cualquier cálculo redundante. Por ejemplo, si la lista contiene números repetidos, realiza el cálculo solo una vez y reutiliza el resultado para mejorar la eficiencia.\n\n3. Asegúrate de que tu código sea legible, utilizando nombres de variables claros y funciones integradas de Python cuando sea posible para realizar operaciones comunes.\n\n4. Finalmente, la función debe retornar la suma de los cuadrados de los números únicos en la lista, asegurando que el cálculo se realice de la manera más eficiente posible.\n\nEjemplo de entrada: [1, 2, 3, 2, 1]\nEjemplo de salida esperada: 14\n\nNota: Recuerda manejar adecuadamente las excepciones y optimizar tu código para que sea lo más eficiente posible, evitando la creación de objetos intermedios innecesarios y utilizando la iteración de forma inteligente.",
+  "Respuesta": [
+    {
+      "Nombre": "verificar_enteros",
+      "Input": "lista de números",
+      "Output": "lista de números o excepción",
+      "Descripcion": "Verifica que todos los elementos de la lista sean del tipo entero, lanzando una excepción si se encuentra algún tipo de dato que no sea entero."
+    },
+    {
+      "Nombre": "eliminar_redundancias",
+      "Input": "lista de números enteros",
+      "Output": "lista de números únicos",
+      "Descripcion": "Elimina números repetidos en la lista para evitar cálculos redundantes, mejorando la eficiencia."
+    },
+    {
+      "Nombre": "calcular_suma_cuadrados",
+      "Input": "lista de números únicos",
+      "Output": "suma de cuadrados de los números",
+      "Descripcion": "Calcula la suma de los cuadrados de los números únicos en la lista."
+    },
+    {
+      "Nombre": "optimiza_calculos",
+      "Input": "lista de números enteros",
+      "Output": "suma de los cuadrados de los números únicos",
+      "Descripcion": "Función principal que organiza el flujo de operaciones: verifica tipos de datos, elimina redundancias y calcula la suma de cuadrados de manera eficiente."
+    }
+  ],
+  "Tags": [
+    "Eficiencia y optimización",
+    "Legibilidad del código",
+    "Manejo de excepciones",
+    "Verificación de tipos de datos",
+    "Uso de funciones integradas",
+    "Optimización de cálculos redundantes"
+  ],
+  "Date": {
+    "$date": "2024-05-01T22:48:18.337Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66332416280ca307222af8b6"
+  },
+  "Usuario": {
+    "$oid": "660f25f65ed19e10bed60c74"
+  },
+  "Titulo": "Optimizador de Recursos",
+  "Problema": "Escribe una función en Python llamada 'optimizador_recursos' que reciba dos parámetros: 'recursos_disponibles' (un entero positivo que representa la cantidad total de recursos disponibles) y 'lista_proyectos' (una lista de tuplas, donde cada tupla contiene dos elementos, el primero es un string que representa el nombre del proyecto y el segundo un entero que indica los recursos necesarios para completar dicho proyecto). La función debe verificar que los parámetros sean del tipo y forma correcta (recursos_disponibles debe ser un entero positivo y lista_proyectos una lista de tuplas con la forma especificada). La función debe retornar una lista con los nombres de los proyectos que es posible completar sin exceder los recursos disponibles. La selección de proyectos debe optimizar el uso de los recursos, intentando utilizar la menor cantidad de recursos posible para el máximo número de proyectos. Además, implementa manejo de excepciones para asegurar que los parámetros de entrada sean válidos y utiliza técnicas de eficiencia y optimización de código para mejorar el rendimiento de tu solución.",
+  "Respuesta": [
+    {
+      "Nombre": "verificar_parametros",
+      "Input": "recursos_disponibles, lista_proyectos",
+      "Output": "booleano",
+      "Descripcion": "Verifica que 'recursos_disponibles' sea un entero positivo y que 'lista_proyectos' sea una lista de tuplas con el formato correcto (string, entero). Retorna True si los parámetros son válidos, de lo contrario lanza una excepción."
+    },
+    {
+      "Nombre": "ordenar_proyectos_por_recursos",
+      "Input": "lista_proyectos",
+      "Output": "lista_proyectos_ordenada",
+      "Descripcion": "Recibe la lista de proyectos y la retorna ordenada de menor a mayor según los recursos necesarios para completar cada proyecto, facilitando la selección óptima de proyectos."
+    },
+    {
+      "Nombre": "seleccionar_proyectos",
+      "Input": "recursos_disponibles, lista_proyectos_ordenada",
+      "Output": "lista_proyectos_seleccionados",
+      "Descripcion": "Utiliza los recursos disponibles y la lista de proyectos ordenada para seleccionar el máximo número de proyectos que se pueden completar sin exceder los recursos disponibles. Retorna una lista con los nombres de los proyectos seleccionados."
+    },
+    {
+      "Nombre": "optimizador_recursos",
+      "Input": "recursos_disponibles, lista_proyectos",
+      "Output": "lista_proyectos_optimizados",
+      "Descripcion": "Función principal que integra las funciones de verificación de parámetros, ordenamiento de proyectos y selección de proyectos. Retorna la lista de los nombres de los proyectos seleccionados que optimizan el uso de los recursos disponibles."
+    }
+  ],
+  "Tags": [
+    "Cumplimiento de especificaciones",
+    "Errores de lógica",
+    "Legibilidad",
+    "Eficiencia",
+    "Manejo de excepciones",
+    "Verificación de condiciones",
+    "Optimización de código"
+  ],
+  "Date": {
+    "$date": "2024-05-02T01:26:46.464Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6637e3f6fa7b50c64bd1cfec"
+  },
+  "Usuario": {
+    "$oid": "660f259c5ed19e10bed60c6e"
+  },
+  "Titulo": "Optimiza tu Código: Retos de Eficiencia y Claridad",
+  "Problema": "Se te ha encargado desarrollar una función en Python denominada 'optimiza_primos' que tome un número entero 'n' como argumento y retorne una lista de todos los números primos hasta 'n', incluyendo 'n' si es primo. La función debe ser eficiente en términos de memoria y tiempo de ejecución, evitando la creación de objetos intermedios innecesarios y optimizando las llamadas a funciones internas. Además, debe manejar excepciones para verificar que 'n' sea un entero positivo y utilizar el retorno directo de resultados en las comparaciones. Asegúrate de que tu código sea legible, aplicando nombres claros para variables y funciones, y comentando las secciones críticas del código para explicar la lógica utilizada. Este problema te permitirá practicar la eficiencia en la gestión de recursos, la legibilidad del código, la optimización de llamadas a funciones, el retorno directo de resultados, la verificación de tipos de datos, el manejo de excepciones y la verificación de condiciones específicas como la primalidad.",
+  "Respuesta": [
+    {
+      "Nombre": "verificar_entrada",
+      "Input": "n",
+      "Output": "booleano",
+      "Descripcion": "Verifica si 'n' es un entero positivo, retornando True si lo es, o lanzando una excepción en caso contrario."
+    },
+    {
+      "Nombre": "es_primo",
+      "Input": "numero",
+      "Output": "booleano",
+      "Descripcion": "Determina si un número es primo comprobando si solo es divisible por 1 y por sí mismo, retornando True si es primo, False en caso contrario."
+    },
+    {
+      "Nombre": "generar_lista_primos",
+      "Input": "n",
+      "Output": "lista de enteros",
+      "Descripcion": "Genera una lista de números primos hasta 'n', utilizando la función 'es_primo' para verificar la primalidad de cada número."
+    },
+    {
+      "Nombre": "optimiza_primos",
+      "Input": "n",
+      "Output": "lista de enteros",
+      "Descripcion": "Función principal que primero verifica si 'n' es un entero positivo usando 'verificar_entrada', luego llama a 'generar_lista_primos' para obtener y retornar la lista de primos hasta 'n'."
+    }
+  ],
+  "Tags": [
+    "Eficiencia",
+    "Legibilidad",
+    "Optimización de llamadas a funciones",
+    "Retorno directo de resultados",
+    "Verificación de tipos de datos",
+    "Manejo de excepciones",
+    "Verificación de condiciones específicas"
+  ],
+  "Date": {
+    "$date": "2024-05-05T15:54:30.887Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "663820fce3c0ca91dfd9dd6a"
+  },
+  "Usuario": {
+    "$oid": "660f26045ed19e10bed60c77"
+  },
+  "Titulo": "Generador de Contraseñas Seguras",
+  "Problema": "Escribe un programa en Python que solicite al usuario una palabra base para generar una contraseña segura. La contraseña generada debe seguir las siguientes reglas: 1) Sustituir todas las vocales por números (a->4, e->3, i->1, o->0, u->7). 2) Alternar entre mayúsculas y minúsculas comenzando con mayúscula (ejemplo: Sol -> S0L). 3) Añadir al final un símbolo aleatorio de esta lista ['$', '#', '@', '!']. 4) Verificar que la palabra base ingresada sea solo letras y tenga una longitud mínima de 6 caracteres. Si no, solicitar al usuario que ingrese una nueva palabra base. 5) Mejorar la eficiencia del código evitando la creación de objetos intermedios y optimizando las llamadas de función. Tu programa también debe incluir una función que verifique si un número ingresado por otro usuario es un entero positivo y, en caso de no serlo, solicitar otro número. Esta función se utilizará para determinar el número de contraseñas seguras a generar. Asegúrate de que tu código sea legible y eficiente, por ejemplo, utilizando comprensiones de lista donde sea posible y funciones integradas de Python.",
+  "Respuesta": [
+    {
+      "Nombre": "verificar_palabra_base",
+      "Input": "palabra_base",
+      "Output": "bool",
+      "Descripcion": "Verifica que la palabra base ingresada sea solo letras y tenga una longitud mínima de 6 caracteres. Retorna True si cumple con las condiciones, de lo contrario, False."
+    },
+    {
+      "Nombre": "sustituir_vocales",
+      "Input": "palabra",
+      "Output": "palabra_modificada",
+      "Descripcion": "Sustituye todas las vocales en la palabra por números siguiendo el mapeo a->4, e->3, i->1, o->0, u->7."
+    },
+    {
+      "Nombre": "alternar_mayusculas",
+      "Input": "palabra",
+      "Output": "palabra_alternada",
+      "Descripcion": "Alternar entre mayúsculas y minúsculas en la palabra ingresada, comenzando con mayúscula."
+    },
+    {
+      "Nombre": "añadir_simbolo",
+      "Input": "palabra",
+      "Output": "contraseña",
+      "Descripcion": "Añade al final de la palabra un símbolo aleatorio seleccionado de la lista ['$', '#', '@', '!']."
+    },
+    {
+      "Nombre": "verificar_numero_positivo",
+      "Input": "numero",
+      "Output": "bool",
+      "Descripcion": "Verifica si el número ingresado es un entero positivo. Retorna True si lo es, de lo contrario, False."
+    },
+    {
+      "Nombre": "generar_contraseña",
+      "Input": "palabra_base",
+      "Output": "contraseña_segura",
+      "Descripcion": "Utiliza las funciones anteriores para generar una contraseña segura a partir de la palabra base ingresada."
+    }
+  ],
+  "Tags": [
+    "Implementación de lógica",
+    "Sustitución de vocales por números",
+    "Alternancia de mayúsculas y minúsculas",
+    "Adición de símbolos al final",
+    "Mejora de eficiencia y evitación de objetos intermedios",
+    "Optimización para evitar llamadas de función repetidas",
+    "Verificación de entradas como enteros positivos",
+    "Mejora de legibilidad y eficiencia del código"
+  ],
+  "Date": {
+    "$date": "2024-05-05T20:14:52.333Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6638283f57222e52dffa5603"
+  },
+  "Usuario": {
+    "$oid": "660f26315ed19e10bed60c7d"
+  },
+  "Titulo": "Optimización y manejo de datos en una biblioteca virtual",
+  "Problema": "Se requiere diseñar un sistema para una biblioteca virtual que permita a los usuarios buscar libros por título, autor o año de publicación. El sistema debe ser capaz de manejar grandes cantidades de datos de libros sin sacrificar la eficiencia. Para ello, se pide implementar las siguientes funciones:\n\n1. `agregar_libro(biblioteca, titulo, autor, año)`: Esta función recibe un diccionario que representa la biblioteca (donde las claves son identificadores únicos de cada libro, y los valores son diccionarios con las claves 'titulo', 'autor' y 'año'), el título, autor y año de publicación del libro a agregar. La función debe generar un identificador único para el nuevo libro, agregarlo a la biblioteca y asegurarse de no crear objetos intermedios innecesarios.\n\n2. `buscar_por_titulo(biblioteca, titulo)`: Función que busca en la biblioteca todos los libros que coincidan exactamente con el título proporcionado. Debe ser eficiente y devolver una lista de identificadores de libros encontrados.\n\n3. `buscar_por_autor(biblioteca, autor)`: Similar a la función anterior, pero busca libros por el nombre del autor.\n\n4. `buscar_por_año(biblioteca, año)`: Busca todos los libros publicados en un año específico.\n\nAdemás, implementa manejo de excepciones para verificar los tipos de datos de los argumentos de las funciones y asegurar que sean válidos. También, escribe una función `optimizar_biblioteca(biblioteca)` que revise la biblioteca completa y elimine cualquier redundancia o mejore la eficiencia del almacenamiento de datos sin perder información.\n\nPara mejorar la legibilidad y claridad del código, utiliza nombres de variables descriptivos y comenta tu código explicando la lógica detrás de las decisiones de diseño más importantes. Finalmente, demuestra cómo se utilizarían estas funciones con ejemplos de código.",
+  "Respuesta": [
+    {
+      "Nombre": "agregar_libro",
+      "Input": "biblioteca (diccionario), titulo (string), autor (string), año (int)",
+      "Output": "None",
+      "Descripcion": "Genera un identificador único para un nuevo libro y lo agrega a la biblioteca sin crear objetos intermedios innecesarios."
+    },
+    {
+      "Nombre": "buscar_por_titulo",
+      "Input": "biblioteca (diccionario), titulo (string)",
+      "Output": "lista de identificadores de libros (lista)",
+      "Descripcion": "Busca en la biblioteca todos los libros que coincidan exactamente con el título proporcionado y devuelve sus identificadores."
+    },
+    {
+      "Nombre": "buscar_por_autor",
+      "Input": "biblioteca (diccionario), autor (string)",
+      "Output": "lista de identificadores de libros (lista)",
+      "Descripcion": "Busca en la biblioteca todos los libros que coincidan con el nombre del autor proporcionado y devuelve sus identificadores."
+    },
+    {
+      "Nombre": "buscar_por_año",
+      "Input": "biblioteca (diccionario), año (int)",
+      "Output": "lista de identificadores de libros (lista)",
+      "Descripcion": "Busca todos los libros en la biblioteca que fueron publicados en el año especificado y devuelve sus identificadores."
+    },
+    {
+      "Nombre": "optimizar_biblioteca",
+      "Input": "biblioteca (diccionario)",
+      "Output": "None",
+      "Descripcion": "Revisa la biblioteca completa, elimina redundancias y mejora la eficiencia del almacenamiento de datos sin perder información."
+    }
+  ],
+  "Tags": [
+    "Eficiencia y optimización de código",
+    "Legibilidad y claridad del código",
+    "Manejo de excepciones",
+    "Verificación de tipos de datos y valores",
+    "Uso de funciones y métodos integrados"
+  ],
+  "Date": {
+    "$date": "2024-05-05T20:45:51.235Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66383266999442e5293eba67"
+  },
+  "Usuario": {
+    "$oid": "660f26315ed19e10bed60c7d"
+  },
+  "Titulo": "Biblioteca Virtual",
+  "Problema": "Se requiere desarrollar un sistema para una biblioteca virtual que permita gestionar los libros disponibles. El sistema debe ser capaz de asignar un identificador único a cada libro, permitir la definición de variables para almacenar información relevante de cada libro (título, autor, año de publicación), y ofrecer funcionalidades de búsqueda por título, autor y año de publicación. Además, se debe optimizar el almacenamiento y acceso a la información de los libros para mejorar la eficiencia de las búsquedas. Finalmente, es crucial que el código sea entregado de manera completa y bien documentada para su evaluación. Se espera que el estudiante implemente funciones específicas para cada una de las funcionalidades requeridas, asegurándose de utilizar identificadores únicos para cada libro y variables adecuadamente definidas para almacenar la información. La optimización puede abordarse mediante la implementación de estructuras de datos eficientes para el almacenamiento de libros y la realización de búsquedas.",
+  "Respuesta": [
+    {
+      "Nombre": "asignar_identificador",
+      "Input": "informacion_libro",
+      "Output": "identificador_unico",
+      "Descripcion": "Asigna un identificador único a cada libro basado en su información."
+    },
+    {
+      "Nombre": "almacenar_libro",
+      "Input": "identificador_unico, titulo, autor, año_publicacion",
+      "Output": "None",
+      "Descripcion": "Almacena la información de un libro en la biblioteca virtual usando su identificador único."
+    },
+    {
+      "Nombre": "buscar_por_titulo",
+      "Input": "titulo",
+      "Output": "lista_libros",
+      "Descripcion": "Busca libros en la biblioteca virtual que coincidan con el título proporcionado."
+    },
+    {
+      "Nombre": "buscar_por_autor",
+      "Input": "autor",
+      "Output": "lista_libros",
+      "Descripcion": "Busca libros en la biblioteca virtual que coincidan con el autor proporcionado."
+    },
+    {
+      "Nombre": "buscar_por_año",
+      "Input": "año_publicacion",
+      "Output": "lista_libros",
+      "Descripcion": "Busca libros en la biblioteca virtual que coincidan con el año de publicación proporcionado."
+    },
+    {
+      "Nombre": "optimizar_almacenamiento",
+      "Input": "None",
+      "Output": "None",
+      "Descripcion": "Optimiza el almacenamiento de la información de los libros para mejorar la eficiencia de las búsquedas."
+    }
+  ],
+  "Tags": [
+    "Generación de identificadores únicos",
+    "Definición de variables",
+    "Implementación de búsqueda por título",
+    "Implementación de búsqueda por autor",
+    "Implementación de búsqueda por año",
+    "Optimización de la biblioteca",
+    "Entrega de código"
+  ],
+  "Date": {
+    "$date": "2024-05-05T21:29:10.407Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66384a8b2dcb12ef65d3f035"
+  },
+  "Usuario": {
+    "$oid": "66380493b8bbbba6d0c68954"
+  },
+  "Titulo": "Desafío de Programación: Control de Flujo y Funciones",
+  "Problema": "Escribe un programa en Python que realice las siguientes tareas: \n1. Solicita al usuario ingresar un número entero positivo. Si el número ingresado no está en el rango de 1 a 100, el programa debe pedir al usuario que lo reintente hasta que ingrese un número válido. \n2. Una vez ingresado un número válido, el programa debe verificar si es un número primo o no. Si es primo, debe imprimir una fila de asteriscos igual al número ingresado. Por ejemplo, si el usuario ingresa el número 5, el programa debe imprimir '*****'. \n3. Si el número no es primo, el programa debe dividir el número entre 2 y redondear hacia abajo si es necesario, para obtener un número entero. Luego, debe imprimir tantas filas de asteriscos como el resultado de esta división, donde cada fila contiene asteriscos igual al número original. Por ejemplo, si el usuario ingresa 8, el programa debe imprimir cuatro filas de '********'. \n4. Asegúrate de que tu programa evite llamadas innecesarias a funciones y optimice la eficiencia donde sea posible. \n5. Tu solución debe manejar adecuadamente los errores y proporcionar mensajes de error claros si el usuario ingresa datos no válidos en cualquier punto.",
+  "Respuesta": [
+    {
+      "Nombre": "solicitar_numero",
+      "Input": "Ninguno",
+      "Output": "int",
+      "Descripcion": "Solicita al usuario ingresar un número entero positivo. Si el número ingresado no está en el rango de 1 a 100, pide al usuario que lo reintente hasta ingresar un número válido."
+    },
+    {
+      "Nombre": "es_primo",
+      "Input": "int",
+      "Output": "bool",
+      "Descripcion": "Recibe un número entero y verifica si es un número primo o no."
+    },
+    {
+      "Nombre": "imprimir_asteriscos_primo",
+      "Input": "int",
+      "Output": "Ninguno",
+      "Descripcion": "Recibe un número entero y, si es primo, imprime una fila de asteriscos igual al número ingresado."
+    },
+    {
+      "Nombre": "calcular_division",
+      "Input": "int",
+      "Output": "int",
+      "Descripcion": "Recibe un número entero, lo divide entre 2 y redondea hacia abajo para obtener un número entero."
+    },
+    {
+      "Nombre": "imprimir_asteriscos_no_primo",
+      "Input": "int, int",
+      "Output": "Ninguno",
+      "Descripcion": "Recibe dos números enteros, el primero es el número original y el segundo es el resultado de dividir el número original entre 2. Imprime tantas filas de asteriscos como el segundo número, donde cada fila contiene asteriscos igual al número original."
+    },
+    {
+      "Nombre": "manejar_errores_entrada",
+      "Input": "Ninguno",
+      "Output": "Ninguno",
+      "Descripcion": "Maneja los errores de entrada y proporciona mensajes de error claros si el usuario ingresa datos no válidos."
+    }
+  ],
+  "Tags": [
+    "Validación de rango",
+    "Lógica de control de flujo no especificada",
+    "Operaciones adicionales no requeridas",
+    "Cumplimiento de la descripción funcional",
+    "Impresión de filas de asteriscos",
+    "Verificación de números primos",
+    "Eficiencia en la implementación",
+    "Respuestas ausentes o incorrectas"
+  ],
+  "Date": {
+    "$date": "2024-05-05T23:12:11.479Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6638e4b63f20426de8282598"
+  },
+  "Usuario": {
+    "$oid": "660f267a5ed19e10bed60c83"
+  },
+  "Titulo": "Problema de división de grupos ",
+  "Problema": "Los alumnos de un curso se han dividido en dos grupos A y B de acuerdo al sexo y el nombre. El grupo A está formado por las mujeres con un nombre anterior a la M y los hombres con un nombre posterior a la N y el grupo B por el resto. Escribir un programa que pregunte al usuario su nombre y sexo, y muestre por pantalla el grupo que le corresponde.",
+  "Respuesta": [
+    {
+      "Nombre": "solicitar_datos_usuario",
+      "Input": "ninguno",
+      "Output": "nombre_usuario, sexo_usuario",
+      "Descripcion": "Esta función solicita al usuario que ingrese su nombre y su sexo, y devuelve ambos datos."
+    },
+    {
+      "Nombre": "determinar_grupo",
+      "Input": "nombre_usuario, sexo_usuario",
+      "Output": "grupo",
+      "Descripcion": "Recibe el nombre y el sexo del usuario y determina a qué grupo pertenece según las reglas dadas: Grupo A para mujeres con nombre anterior a la M y hombres con nombre posterior a la N, y Grupo B para el resto."
+    },
+    {
+      "Nombre": "mostrar_grupo",
+      "Input": "grupo",
+      "Output": "ninguno",
+      "Descripcion": "Esta función recibe el grupo al que pertenece el usuario y muestra por pantalla el grupo correspondiente."
+    }
+  ],
+  "Tags": [
+    "input",
+    "condicionales",
+    "string"
+  ],
+  "Date": {
+    "$date": "2024-05-06T10:09:58.884Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6638e4e23f20426de828259f"
+  },
+  "Usuario": {
+    "$oid": "660f267a5ed19e10bed60c83"
+  },
+  "Titulo": "Problema del cobro en la empresa",
+  "Problema": "Escribir un programa para una empresa que tiene salas de juegos para todas las edades y quiere calcular de forma automática el precio que debe cobrar a sus clientes por entrar. El programa debe preguntar al usuario la edad del cliente y mostrar el precio de la entrada. Si el cliente es menor de 4 años puede entrar gratis, si tiene entre 4 y 18 años debe pagar 5€ y si es mayor de 18 años, 10€.",
+  "Respuesta": [
+    {
+      "Nombre": "calcular_precio_entrada",
+      "Input": "edad",
+      "Output": "precio",
+      "Descripcion": "Esta función recibe la edad del cliente como input y retorna el precio de la entrada según la edad."
+    },
+    {
+      "Nombre": "solicitar_edad_usuario",
+      "Input": "ninguno",
+      "Output": "edad",
+      "Descripcion": "Esta función solicita al usuario que introduzca la edad del cliente y la retorna."
+    },
+    {
+      "Nombre": "mostrar_precio",
+      "Input": "precio",
+      "Output": "ninguno",
+      "Descripcion": "Recibe el precio de la entrada y lo muestra al usuario."
+    }
+  ],
+  "Tags": [
+    "condicionales",
+    "input"
+  ],
+  "Date": {
+    "$date": "2024-05-06T10:10:42.534Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6638e5813f20426de82825a7"
+  },
+  "Usuario": {
+    "$oid": "660f267a5ed19e10bed60c83"
+  },
+  "Titulo": "Problema de la declaración de renta",
+  "Problema": "Los tramos impositivos para la declaración de la renta en un determinado país son los siguientes:\n\nRenta\t| Tipo impositivo\nMenos de 10000€\t| 5%\nEntre 10000€ y 20000€\t| 15%\nEntre 20000€ y 35000€\t| 20%\nEntre 35000€ y 60000€\t| 30%\nMás de 60000€\t| 45%\nEscribir un programa que pregunte al usuario su renta anual y muestre por pantalla el tipo impositivo que le corresponde.",
+  "Respuesta": [
+    {
+      "Nombre": "obtener_renta_usuario",
+      "Input": "Ninguno",
+      "Output": "float",
+      "Descripcion": "Esta función solicita al usuario que ingrese su renta anual y devuelve ese valor en formato float."
+    },
+    {
+      "Nombre": "calcular_tipo_impositivo",
+      "Input": "float",
+      "Output": "float",
+      "Descripcion": "Recibe la renta anual del usuario como un float y devuelve el tipo impositivo correspondiente según los tramos definidos."
+    },
+    {
+      "Nombre": "mostrar_tipo_impositivo",
+      "Input": "float",
+      "Output": "Ninguno",
+      "Descripcion": "Recibe el tipo impositivo calculado y muestra por pantalla el porcentaje del tipo impositivo que corresponde a la renta del usuario."
+    }
+  ],
+  "Tags": [
+    "input",
+    "condicionales"
+  ],
+  "Date": {
+    "$date": "2024-05-06T10:13:21.655Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6638e62d3f20426de82825b0"
+  },
+  "Usuario": {
+    "$oid": "660f267a5ed19e10bed60c83"
+  },
+  "Titulo": "Problema de la hipotenusa de un triángulo",
+  "Problema": "Haz una calculadora básica que permita realizar el cálculo de la hipotenusa de un triángulo, vigilando que ningún cateto debe ser menor o igual a cero. Si se diera el caso, imprimir «Error» por pantalla.",
+  "Respuesta": [
+    {
+      "Nombre": "validar_catetos",
+      "Input": "cateto_a, cateto_b",
+      "Output": "booleano",
+      "Descripcion": "Esta función recibe dos números que representan los catetos de un triángulo y devuelve verdadero si ambos catetos son mayores a cero, de lo contrario devuelve falso."
+    },
+    {
+      "Nombre": "calcular_hipotenusa",
+      "Input": "cateto_a, cateto_b",
+      "Output": "hipotenusa",
+      "Descripcion": "Recibe los valores de los catetos del triángulo, asumiendo que ya fueron validados como mayores a cero, y devuelve el valor de la hipotenusa calculada mediante el teorema de Pitágoras."
+    },
+    {
+      "Nombre": "imprimir_resultado",
+      "Input": "resultado",
+      "Output": "None",
+      "Descripcion": "Esta función recibe un resultado, que puede ser un número o un mensaje de error, e imprime este resultado por pantalla."
+    }
+  ],
+  "Tags": [
+    "input",
+    "condicionales"
+  ],
+  "Date": {
+    "$date": "2024-05-06T10:16:13.740Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6638e6913f20426de82825ba"
+  },
+  "Usuario": {
+    "$oid": "660f267a5ed19e10bed60c83"
+  },
+  "Titulo": "Problema del año bisiesto",
+  "Problema": "Desarrollar un programa en Python que determine si el año introducido es un año bisiesto o no. Sabiendo que…\n\n1.Si el año es uniformemente divisible por 4, vaya al paso 2. De lo contrario, vaya al paso 5.\n2.Si el año es uniformemente divisible por 100, vaya al paso 3. De lo contrario, vaya al paso 4.\n3.Si el año es uniformemente divisible por 400, vaya al paso 4. De lo contrario, vaya al paso 5.\n4.El año es un año bisiesto (tiene 366 días).\n5.El año no es un año bisiesto (tiene 365 días).",
+  "Respuesta": [
+    {
+      "Nombre": "es_divisible_por_4",
+      "Input": "año",
+      "Output": "booleano",
+      "Descripcion": "Determina si el año es uniformemente divisible por 4."
+    },
+    {
+      "Nombre": "es_divisible_por_100",
+      "Input": "año",
+      "Output": "booleano",
+      "Descripcion": "Determina si el año es uniformemente divisible por 100."
+    },
+    {
+      "Nombre": "es_divisible_por_400",
+      "Input": "año",
+      "Output": "booleano",
+      "Descripcion": "Determina si el año es uniformemente divisible por 400."
+    },
+    {
+      "Nombre": "es_año_bisiesto",
+      "Input": "año",
+      "Output": "booleano",
+      "Descripcion": "Determina si el año es bisiesto según las reglas dadas, utilizando las funciones previas para verificar las condiciones."
+    }
+  ],
+  "Tags": [
+    "conficionales",
+    "input"
+  ],
+  "Date": {
+    "$date": "2024-05-06T10:17:53.556Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6638e7573f20426de82825c5"
+  },
+  "Usuario": {
+    "$oid": "660f267a5ed19e10bed60c83"
+  },
+  "Titulo": "Problema desbloqueo celular",
+  "Problema": "Tenemos la pantalla del móvil bloqueada. Partiendo de un PIN_SECRETO, intentaremos desbloquear la pantalla. Tenemos hasta 3 intentos. Simula el proceso con Python. En caso de acceder, lanza al usuario 'login correcto'. Sino, 'llamando al policía'.",
+  "Respuesta": [
+    {
+      "Nombre": "solicitar_pin",
+      "Input": "ninguno",
+      "Output": "string",
+      "Descripcion": "Esta función no recibe ningún input y devuelve un string que es el PIN introducido por el usuario."
+    },
+    {
+      "Nombre": "verificar_pin",
+      "Input": "PIN_SECRETO (string), pin_introducido (string)",
+      "Output": "booleano",
+      "Descripcion": "Recibe el PIN_SECRETO y el pin_introducido por el usuario, compara ambos y devuelve True si son iguales, False si son diferentes."
+    },
+    {
+      "Nombre": "intentos_login",
+      "Input": "PIN_SECRETO (string), max_intentos (int)",
+      "Output": "string",
+      "Descripcion": "Recibe el PIN_SECRETO y el número máximo de intentos permitidos. Utiliza las funciones solicitar_pin y verificar_pin para permitir hasta 'max_intentos' de login. Devuelve 'login correcto' si el usuario introduce el PIN correcto, o 'llamando al policía' si se superan los intentos."
+    }
+  ],
+  "Tags": [
+    "condicional",
+    "bucles"
+  ],
+  "Date": {
+    "$date": "2024-05-06T10:21:11.075Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6638e7c03f20426de82825db"
+  },
+  "Usuario": {
+    "$oid": "660f267a5ed19e10bed60c83"
+  },
+  "Titulo": "Problema de la moneda",
+  "Problema": "Desarrolle un programa que genere aleatoriamente el lanzamiento de una moneda e indique el resultado del éste.",
+  "Respuesta": [
+    {
+      "Nombre": "generar_numero_aleatorio",
+      "Input": "None",
+      "Output": "int",
+      "Descripcion": "Genera un número aleatorio entre 0 y 1, donde 0 representa cara y 1 representa cruz."
+    },
+    {
+      "Nombre": "convertir_numero_a_resultado",
+      "Input": "int",
+      "Output": "str",
+      "Descripcion": "Convierte el número generado (0 o 1) en un string que representa el resultado del lanzamiento de la moneda, siendo 'Cara' para 0 y 'Cruz' para 1."
+    },
+    {
+      "Nombre": "imprimir_resultado",
+      "Input": "str",
+      "Output": "None",
+      "Descripcion": "Imprime el resultado del lanzamiento de la moneda."
+    }
+  ],
+  "Tags": [
+    "condicionales",
+    "random"
+  ],
+  "Date": {
+    "$date": "2024-05-06T10:22:56.738Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6638e8163f20426de82825e8"
+  },
+  "Usuario": {
+    "$oid": "660f267a5ed19e10bed60c83"
+  },
+  "Titulo": "Problema IMC",
+  "Problema": "El riesgo de que una persona sufra enfermedades coronarias depende de su edad y su índice de masa corporal:\n\n                |     edad < 45\t|edad ≥ 45\nIMC < 22|\tbajo\t|medio\nIMC ≥ 22|\tmedio\t|alto\nEl índice de masa corporal (IMC) es el cuociente entre el peso del individuo en kilos y el cuadrado de su altura en metros.\n\nEscriba un programa que reciba como entrada la altura, el peso y la edad de una persona, y entregue su IMC en conjunto a su condición de riesgo.",
+  "Respuesta": [
+    {
+      "Nombre": "calcular_imc",
+      "Input": "peso (float), altura (float)",
+      "Output": "IMC (float)",
+      "Descripcion": "Calcula el índice de masa corporal basado en el peso y altura de una persona."
+    },
+    {
+      "Nombre": "determinar_riesgo",
+      "Input": "edad (int), IMC (float)",
+      "Output": "riesgo (string)",
+      "Descripcion": "Determina el nivel de riesgo de enfermedades coronarias basado en la edad y el IMC de la persona."
+    },
+    {
+      "Nombre": "mostrar_resultados",
+      "Input": "IMC (float), riesgo (string)",
+      "Output": "None",
+      "Descripcion": "Muestra el IMC y la condición de riesgo de la persona."
+    }
+  ],
+  "Tags": [
+    "condicionales",
+    "input"
+  ],
+  "Date": {
+    "$date": "2024-05-06T10:24:22.975Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6638e93a3f20426de828260d"
+  },
+  "Usuario": {
+    "$oid": "660f267a5ed19e10bed60c83"
+  },
+  "Titulo": "Calculadora",
+  "Problema": "Vamos a diseñar una calculadora que se enciende y hasta que no tecleamos 'SAL' no se apaga.\n\nEsta calculadora funciona de la siguiente manera:\n\nRecogemos los datos A y B\nSi operación es 1 calcula la raíz cuadrada de la suma de A y B\nSi operación es 2 calcula A / B. Vigilamos que B no sea 0...\nSi la operación es 3 calculamos la siguiente fórmula: ( A * B ) / 2.5",
+  "Respuesta": [
+    {
+      "Nombre": "recoger_datos",
+      "Input": "Ninguno",
+      "Output": "A, B",
+      "Descripcion": "Esta funcion solicita al usuario que ingrese los valores de A y B y los retorna."
+    },
+    {
+      "Nombre": "seleccionar_operacion",
+      "Input": "Ninguno",
+      "Output": "operacion",
+      "Descripcion": "Pide al usuario que elija una operacion del 1 al 3 y devuelve esa seleccion."
+    },
+    {
+      "Nombre": "calcular_suma",
+      "Input": "A, B",
+      "Output": "suma de A y B",
+      "Descripcion": "Toma dos numeros como entrada y devuelve su suma."
+    },
+    {
+      "Nombre": "calcular_raiz_cuadrada",
+      "Input": "numero",
+      "Output": "raiz cuadrada del numero",
+      "Descripcion": "Calcula la raiz cuadrada del numero proporcionado."
+    },
+    {
+      "Nombre": "calcular_division",
+      "Input": "A, B",
+      "Output": "resultado de A / B",
+      "Descripcion": "Divide A entre B y devuelve el resultado. Asegura que B no sea 0."
+    },
+    {
+      "Nombre": "calcular_formula",
+      "Input": "A, B",
+      "Output": "resultado de (A * B) / 2.5",
+      "Descripcion": "Realiza el calculo de (A * B) / 2.5 y devuelve el resultado."
+    },
+    {
+      "Nombre": "verificar_continuidad",
+      "Input": "Ninguno",
+      "Output": "Booleano",
+      "Descripcion": "Verifica si el usuario desea continuar o salir del programa tecleando 'SAL'. Devuelve True para continuar o False para salir."
+    }
+  ],
+  "Tags": [
+    "condicionales",
+    "bucles"
+  ],
+  "Date": {
+    "$date": "2024-05-06T10:29:14.221Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6638e9883f20426de828261c"
+  },
+  "Usuario": {
+    "$oid": "660f267a5ed19e10bed60c83"
+  },
+  "Titulo": "Problema comparación de palabras",
+  "Problema": "Escriba un programa que pida al usuario dos palabras, y que indique cuál de ellas es la más larga y por cuántas letras lo es.",
+  "Respuesta": [
+    {
+      "Nombre": "solicitar_palabras",
+      "Input": "ninguno",
+      "Output": "palabra1, palabra2",
+      "Descripcion": "Esta función solicita al usuario que ingrese dos palabras y las devuelve."
+    },
+    {
+      "Nombre": "calcular_longitud",
+      "Input": "palabra1, palabra2",
+      "Output": "longitud1, longitud2",
+      "Descripcion": "Recibe dos palabras y devuelve la longitud de cada una."
+    },
+    {
+      "Nombre": "comparar_longitudes",
+      "Input": "longitud1, longitud2",
+      "Output": "palabra_mas_larga, diferencia_longitud",
+      "Descripcion": "Compara las longitudes de las dos palabras y devuelve cuál es más larga y por cuántas letras."
+    },
+    {
+      "Nombre": "mostrar_resultado",
+      "Input": "palabra_mas_larga, diferencia_longitud",
+      "Output": "ninguno",
+      "Descripcion": "Muestra al usuario cuál de las dos palabras es más larga y por cuántas letras."
+    }
+  ],
+  "Tags": [
+    "input",
+    "condicionales",
+    "string"
+  ],
+  "Date": {
+    "$date": "2024-05-06T10:30:32.949Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6638e99c3f20426de828262c"
+  },
+  "Usuario": {
+    "$oid": "660f267a5ed19e10bed60c83"
+  },
+  "Titulo": "Contador de letras",
+  "Problema": "Escriba la función contar(letra, palabra) que retorna cuántas veces aparece la letra en la palabra.",
+  "Respuesta": [
+    {
+      "Nombre": "contar",
+      "Input": "letra (str), palabra (str)",
+      "Output": "int",
+      "Descripcion": "Esta función recibe una letra y una palabra, y retorna el número de veces que la letra aparece en la palabra."
+    }
+  ],
+  "Tags": [
+    "bucles",
+    "string"
+  ],
+  "Date": {
+    "$date": "2024-05-06T10:30:52.020Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6638ea2a3f20426de828263d"
+  },
+  "Usuario": {
+    "$oid": "660f267a5ed19e10bed60c83"
+  },
+  "Titulo": "Problema del factorial",
+  "Problema": "Escribe un programa en Python que solicite al usuario ingresar un número entero positivo n. El programa debe calcular y mostrar el factorial de n.\n\nEl factorial de un número entero positivo n, denotado como n!, se calcula como el producto de todos los enteros positivos desde 1 hasta n. Por ejemplo, el factorial de 5 (denotado como 5!) se calcula como 5 x 4 x 3 x 2 x 1, que es igual a 120.",
+  "Respuesta": [
+    {
+      "Nombre": "solicitar_numero",
+      "Input": "Ninguno",
+      "Output": "int",
+      "Descripcion": "Esta función solicita al usuario que ingrese un número entero positivo y lo retorna."
+    },
+    {
+      "Nombre": "validar_numero",
+      "Input": "int",
+      "Output": "bool",
+      "Descripcion": "Recibe un número entero y devuelve True si el número es positivo, de lo contrario devuelve False."
+    },
+    {
+      "Nombre": "calcular_factorial",
+      "Input": "int",
+      "Output": "int",
+      "Descripcion": "Recibe un número entero positivo y calcula su factorial, retornando el resultado."
+    },
+    {
+      "Nombre": "mostrar_resultado",
+      "Input": "int",
+      "Output": "Ninguno",
+      "Descripcion": "Recibe un número entero y muestra el resultado del factorial al usuario."
+    }
+  ],
+  "Tags": [
+    "bucles",
+    "input"
+  ],
+  "Date": {
+    "$date": "2024-05-06T10:33:14.895Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6638ea6b3f20426de828264f"
+  },
+  "Usuario": {
+    "$oid": "660f267a5ed19e10bed60c83"
+  },
+  "Titulo": "Problema de los palíndromos ",
+  "Problema": "Escribe un programa en Python que verifique si una palabra ingresada por el usuario es un palíndromo o no. Un palíndromo es una palabra que se lee igual de adelante hacia atrás como de atrás hacia adelante.",
+  "Respuesta": [
+    {
+      "Nombre": "leer_palabra",
+      "Input": "Ninguno",
+      "Output": "String",
+      "Descripcion": "Esta función solicita al usuario que ingrese una palabra y la retorna como un string."
+    },
+    {
+      "Nombre": "limpiar_y_convertir",
+      "Input": "String",
+      "Output": "String",
+      "Descripcion": "Toma la palabra ingresada, elimina espacios, signos de puntuación y convierte todos los caracteres a minúscula para normalizar la palabra."
+    },
+    {
+      "Nombre": "verificar_palindromo",
+      "Input": "String",
+      "Output": "Boolean",
+      "Descripcion": "Recibe la palabra ya limpia y normalizada, y verifica si es un palíndromo comparando la palabra original con su versión invertida. Retorna True si es palíndromo, False en caso contrario."
+    },
+    {
+      "Nombre": "mostrar_resultado",
+      "Input": "Boolean",
+      "Output": "Ninguno",
+      "Descripcion": "Recibe el resultado de la verificación (True o False) y muestra al usuario si la palabra ingresada es un palíndromo o no mediante un mensaje impreso."
+    }
+  ],
+  "Tags": [
+    "bucles",
+    "string"
+  ],
+  "Date": {
+    "$date": "2024-05-06T10:34:19.255Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6638eab23f20426de8282662"
+  },
+  "Usuario": {
+    "$oid": "660f267a5ed19e10bed60c83"
+  },
+  "Titulo": "Contador de vocales",
+  "Problema": "Escribe un programa en Python que solicite al usuario ingresar una frase. El programa debe contar el número de vocales (mayúsculas y minúsculas) en la frase y mostrar el resultado.",
+  "Respuesta": [
+    {
+      "Nombre": "solicitar_frase",
+      "Input": "Ninguno",
+      "Output": "String",
+      "Descripcion": "Esta función solicita al usuario que ingrese una frase y la retorna."
+    },
+    {
+      "Nombre": "contar_vocales",
+      "Input": "String",
+      "Output": "Diccionario",
+      "Descripcion": "Recibe una frase como input y retorna un diccionario con las vocales como llaves y la cantidad de veces que aparece cada vocal en la frase como valores."
+    },
+    {
+      "Nombre": "mostrar_resultado",
+      "Input": "Diccionario",
+      "Output": "Ninguno",
+      "Descripcion": "Toma el diccionario de vocales contadas y muestra el resultado en un formato legible para el usuario."
+    }
+  ],
+  "Tags": [
+    "bucles",
+    "string"
+  ],
+  "Date": {
+    "$date": "2024-05-06T10:35:30.588Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6638eb193f20426de8282676"
+  },
+  "Usuario": {
+    "$oid": "660f267a5ed19e10bed60c83"
+  },
+  "Titulo": "Problema de los triángulos",
+  "Problema": "Escribe un programa en Python que solicite al usuario ingresar las longitudes de los tres lados de un triángulo y determine el tipo de triángulo basado en esas longitudes.\n\nEl programa debe determinar si el triángulo es equilátero, isósceles o escaleno.\n\nUn triángulo equilátero tiene tres lados iguales.\nUn triángulo isósceles tiene dos lados iguales.\nUn triángulo escaleno tiene tres lados diferentes.",
+  "Respuesta": [
+    {
+      "Nombre": "solicitar_longitudes",
+      "Input": "Ninguno",
+      "Output": "lado1, lado2, lado3",
+      "Descripcion": "Esta función solicita al usuario que ingrese las longitudes de los tres lados del triángulo y devuelve los valores."
+    },
+    {
+      "Nombre": "verificar_tipo_triangulo",
+      "Input": "lado1, lado2, lado3",
+      "Output": "tipo_triangulo",
+      "Descripcion": "Esta función recibe las longitudes de los tres lados del triángulo y determina si es equilátero, isósceles o escaleno."
+    },
+    {
+      "Nombre": "mostrar_resultado",
+      "Input": "tipo_triangulo",
+      "Output": "Ninguno",
+      "Descripcion": "Esta función recibe el tipo de triángulo y muestra al usuario si es equilátero, isósceles o escaleno."
+    }
+  ],
+  "Tags": [
+    "condicionales"
+  ],
+  "Date": {
+    "$date": "2024-05-06T10:37:13.873Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6638ec8e3f20426de828268c"
+  },
+  "Usuario": {
+    "$oid": "660f267a5ed19e10bed60c83"
+  },
+  "Titulo": "Problema del entero positivo",
+  "Problema": "Escribe un programa en Python que solicite al usuario ingresar un número entero positivo. Luego, el programa deberá imprimir la secuencia de números pares desde 0 hasta el número ingresado por el usuario, utilizando un bucle while. Si el número ingresado por el usuario es negativo o cero, el programa debe mostrar un mensaje de error y volver a solicitar al usuario que ingrese un número positivo.",
+  "Respuesta": [
+    {
+      "Nombre": "solicitar_numero",
+      "Input": "Ninguno",
+      "Output": "int",
+      "Descripcion": "Solicita al usuario ingresar un número entero positivo y lo retorna. Si el número es negativo o cero, muestra un mensaje de error y vuelve a solicitar el número hasta que sea válido."
+    },
+    {
+      "Nombre": "imprimir_pares",
+      "Input": "int",
+      "Output": "Ninguno",
+      "Descripcion": "Recibe un número entero positivo como input y utiliza un bucle while para imprimir todos los números pares desde 0 hasta el número ingresado."
+    }
+  ],
+  "Tags": [
+    "bucles"
+  ],
+  "Date": {
+    "$date": "2024-05-06T10:43:26.856Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6638edd73f20426de82826be"
+  },
+  "Usuario": {
+    "$oid": "660f267a5ed19e10bed60c83"
+  },
+  "Titulo": "Problema de adivinar un número",
+  "Problema": "Escribe un programa en Python que genere un número aleatorio entre 1 y 100. Luego, el programa le pedirá al usuario que intente adivinar el número generado. Si el usuario adivina correctamente, el programa imprimirá \"¡Felicidades! Has adivinado el número\". Si el usuario no adivina correctamente, el programa imprimirá \"Lo siento, ese no es el número. Inténtalo de nuevo\" y permitirá al usuario intentarlo nuevamente. El programa continuará ejecutándose hasta que el usuario adivine correctamente el número.\n\nPara este problema, necesitarás importar la función randint del módulo random, que te permitirá generar el número aleatorio.\n\nAquí hay un ejemplo de cómo podría ser la interacción del programa:\n\nAdivina el número entre 1 y 100: 50\nLo siento, ese no es el número. Inténtalo de nuevo.\nAdivina el número entre 1 y 100: 75\nLo siento, ese no es el número. Inténtalo de nuevo.\nAdivina el número entre 1 y 100: 30\nLo siento, ese no es el número. Inténtalo de nuevo.\nAdivina el número entre 1 y 100: 65\nLo siento, ese no es el número. Inténtalo de nuevo.\nAdivina el número entre 1 y 100: 80\n¡Felicidades! Has adivinado el número.",
+  "Respuesta": [
+    {
+      "Nombre": "generar_numero_aleatorio",
+      "Input": "minimo, maximo",
+      "Output": "int",
+      "Descripcion": "Esta función utiliza la función randint del módulo random para generar un número entero aleatorio entre los valores mínimo y máximo proporcionados."
+    },
+    {
+      "Nombre": "solicitar_numero_usuario",
+      "Input": "mensaje",
+      "Output": "int",
+      "Descripcion": "Solicita al usuario que ingrese un número, mostrando un mensaje que indica el rango en el que debe adivinar. Convierte la entrada a entero y la devuelve."
+    },
+    {
+      "Nombre": "comparar_numeros",
+      "Input": "numero_aleatorio, numero_usuario",
+      "Output": "bool",
+      "Descripcion": "Compara el número generado aleatoriamente con el número ingresado por el usuario. Devuelve True si los números son iguales, de lo contrario devuelve False."
+    },
+    {
+      "Nombre": "imprimir_mensaje",
+      "Input": "es_correcto",
+      "Output": "None",
+      "Descripcion": "Imprime un mensaje de felicitación si es_correcto es True, indicando que el usuario ha adivinado el número. Si es False, imprime un mensaje pidiendo al usuario que lo intente nuevamente."
+    },
+    {
+      "Nombre": "juego_adivinanza",
+      "Input": "None",
+      "Output": "None",
+      "Descripcion": "Orquesta el flujo del juego, llamando a las funciones necesarias para generar un número aleatorio, solicitar al usuario que adivine el número, comparar el número del usuario con el número aleatorio y finalmente imprimir el mensaje correspondiente. Repite este proceso hasta que el usuario adivine correctamente."
+    }
+  ],
+  "Tags": [
+    "funcion",
+    "condicional",
+    "bucles"
+  ],
+  "Date": {
+    "$date": "2024-05-06T10:48:55.423Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66390ac30371bb6449a10ca5"
+  },
+  "Usuario": {
+    "$oid": "66380494b8bbbba6d0c68963"
+  },
+  "Titulo": "Optimización de Registro de Usuarios",
+  "Problema": "Desarrolla un programa en Python que solicite al usuario ingresar la información de tres nuevos usuarios de un sistema. Cada usuario debe proporcionar su nombre, apellido, y correo electrónico. El programa debe cumplir con los siguientes requisitos:\n\n1. Utilizar nombres de variables descriptivos para almacenar la información de los usuarios, asegurando la legibilidad del código.\n2. Implementar una función llamada 'validar_correo' que reciba como parámetro el correo electrónico ingresado por el usuario y retorne True si el correo contiene un '@' y un '.', y False en caso contrario. Utiliza esta función para validar los correos electrónicos ingresados.\n3. Evitar la repetición de solicitudes de entrada utilizando bucles y condicionales de manera eficiente.\n4. Asegurar que el código no contenga comentarios innecesarios y que toda la lógica esté implementada dentro de funciones para facilitar la legibilidad y mantenimiento del código.\n\nEl objetivo es practicar la legibilidad del código mediante el uso de nombres de variables descriptivos, la eficiencia al evitar repeticiones innecesarias y la implementación adecuada de funciones para validar datos y organizar el código.",
+  "Respuesta": [
+    {
+      "Nombre": "solicitar_datos_usuario",
+      "Input": "Ninguno",
+      "Output": "Diccionario con nombre, apellido y correo electrónico del usuario",
+      "Descripcion": "Esta función solicita al usuario que ingrese su nombre, apellido y correo electrónico, y retorna un diccionario con esta información."
+    },
+    {
+      "Nombre": "validar_correo",
+      "Input": "correo_electronico (string)",
+      "Output": "True si el correo es válido, False si no lo es",
+      "Descripcion": "Recibe un correo electrónico como entrada y verifica si contiene un '@' y un '.', retornando True si cumple con estas condiciones o False en caso contrario."
+    },
+    {
+      "Nombre": "almacenar_informacion_usuarios",
+      "Input": "Lista de diccionarios con la información de los usuarios",
+      "Output": "Ninguno",
+      "Descripcion": "Toma una lista de diccionarios que contienen la información de los usuarios y los almacena de manera adecuada, asegurando la legibilidad y organización del código."
+    },
+    {
+      "Nombre": "main",
+      "Input": "Ninguno",
+      "Output": "Ninguno",
+      "Descripcion": "Función principal que orquesta el flujo del programa, llamando a las funciones necesarias para solicitar la información de los usuarios, validar los correos electrónicos y almacenar la información de manera adecuada."
+    }
+  ],
+  "Tags": [
+    "Legibilidad",
+    "Eficiencia",
+    "Ausencia de código",
+    "Uso de variables booleanas",
+    "Nombres de variables descriptivos",
+    "Implementación de funciones"
+  ],
+  "Date": {
+    "$date": "2024-05-06T12:52:19.505Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66666dff71a1751016583e84"
+  },
+  "Usuario": {
+    "$oid": "660f25f65ed19e10bed60c74"
+  },
+  "Titulo": "Optimización y Limpieza de Texto en Análisis de Datos",
+  "Problema": "Se te ha dado una lista de comentarios sobre diferentes productos tecnológicos recopilados de una encuesta en línea. Cada comentario puede contener caracteres especiales, espacios innecesarios al inicio o al final, y puede estar en diferentes casos (mayúsculas o minúsculas). Tu tarea es escribir un programa en Python que realice las siguientes operaciones: \n1. Limpieza de texto: Elimina todos los caracteres especiales y espacios innecesarios de cada comentario. Considera como caracteres especiales todo aquel que no sea alfanumérico. \n2. Normalización: Convierte todos los comentarios a minúsculas para estandarizarlos. \n3. Conteo de palabras: Utiliza collections.Counter para contar la frecuencia de cada palabra única en todos los comentarios, después de la limpieza y normalización. \n4. Identificación de palabras comunes: Muestra las 5 palabras más comunes y su frecuencia. \nPara la optimización, asegúrate de que tu solución sea eficiente en términos de tiempo y espacio, especialmente al manejar grandes volúmenes de texto. Considera la posibilidad de implementar funciones auxiliares si es necesario para mantener tu código limpio y legible. Añade comentarios descriptivos a tu código para explicar la lógica detrás de cada paso importante.",
+  "Respuesta": [
+    {
+      "Nombre": "limpiar_texto",
+      "Input": "lista de comentarios",
+      "Output": "lista de comentarios limpios",
+      "Descripcion": "Elimina todos los caracteres especiales y espacios innecesarios de cada comentario, dejando solo caracteres alfanuméricos y espacios simples entre palabras."
+    },
+    {
+      "Nombre": "normalizar_texto",
+      "Input": "lista de comentarios limpios",
+      "Output": "lista de comentarios normalizados",
+      "Descripcion": "Convierte todos los comentarios a minúsculas para estandarizar el formato de texto."
+    },
+    {
+      "Nombre": "contar_palabras",
+      "Input": "lista de comentarios normalizados",
+      "Output": "diccionario con conteo de palabras",
+      "Descripcion": "Utiliza collections.Counter para contar la frecuencia de cada palabra única en todos los comentarios."
+    },
+    {
+      "Nombre": "identificar_palabras_comunes",
+      "Input": "diccionario con conteo de palabras",
+      "Output": "lista de las 5 palabras más comunes y su frecuencia",
+      "Descripcion": "Identifica y muestra las 5 palabras más comunes y su frecuencia a partir del diccionario de conteo de palabras."
+    }
+  ],
+  "Tags": [
+    "Eficiencia",
+    "Limpieza de texto",
+    "Legibilidad",
+    "Manejo de caracteres especiales",
+    "Optimización",
+    "Uso de bucles",
+    "Comentarios descriptivos",
+    "Uso de collections.Counter"
+  ],
+  "Date": {
+    "$date": "2024-06-09T23:07:43.548Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "666731fe0c922c237b5271c2"
+  },
+  "Usuario": {
+    "$oid": "660f25f65ed19e10bed60c74"
+  },
+  "Titulo": "Gestión de Errores y Eficiencia en Funciones",
+  "Problema": "Crea un programa en Python que incluya las siguientes funciones para practicar la gestión de errores, la eficiencia del código, la eliminación de caracteres especiales, la simplificación de código y la verificación de strings vacíos:\n\n1. **leer_lados**: Esta función debe leer dos lados de un triángulo y verificar que sean números positivos. Si no lo son, debe manejar el error adecuadamente.\n\n2. **cuenta_letras**: Esta función debe contar las letras en una cadena de texto, eliminando cualquier carácter especial. Asegúrate de que la función sea eficiente.\n\n3. **imprime_diccionario**: Esta función debe imprimir las claves y valores de un diccionario de manera eficiente.\n\n4. **es_primo**: Esta función debe determinar si un número es primo de manera eficiente.\n\n5. **suma_primos**: Esta función debe sumar todos los números primos en una lista de manera eficiente.\n\n6. **reemplaza_vocales**: Esta función debe reemplazar todas las vocales en una cadena de texto con su versión en minúscula de manera simplificada.\n\n7. **cambio_caso**: Esta función debe cambiar el caso de las letras en una cadena de texto, verificando que la cadena no esté vacía antes de realizar la operación.\n\n**Objetivos:**\n- Practicar la gestión de errores en funciones.\n- Mejorar la eficiencia del código en funciones específicas.\n- Eliminar caracteres especiales de una cadena de texto.\n- Simplificar el código en funciones de reemplazo de caracteres.\n- Verificar que las cadenas de texto no estén vacías antes de realizar operaciones.",
+  "Respuesta": [
+    {
+      "Nombre": "leer_lados",
+      "Input": "lado1: float, lado2: float",
+      "Output": "bool",
+      "Descripcion": "Lee dos lados de un triángulo y verifica que sean números positivos. Si no lo son, maneja el error adecuadamente."
+    },
+    {
+      "Nombre": "cuenta_letras",
+      "Input": "cadena: str",
+      "Output": "int",
+      "Descripcion": "Cuenta las letras en una cadena de texto, eliminando cualquier carácter especial y asegurando que la función sea eficiente."
+    },
+    {
+      "Nombre": "imprime_diccionario",
+      "Input": "diccionario: dict",
+      "Output": "None",
+      "Descripcion": "Imprime las claves y valores de un diccionario de manera eficiente."
+    },
+    {
+      "Nombre": "es_primo",
+      "Input": "numero: int",
+      "Output": "bool",
+      "Descripcion": "Determina si un número es primo de manera eficiente."
+    },
+    {
+      "Nombre": "suma_primos",
+      "Input": "numeros: list[int]",
+      "Output": "int",
+      "Descripcion": "Suma todos los números primos en una lista de manera eficiente."
+    },
+    {
+      "Nombre": "reemplaza_vocales",
+      "Input": "cadena: str",
+      "Output": "str",
+      "Descripcion": "Reemplaza todas las vocales en una cadena de texto con su versión en minúscula de manera simplificada."
+    },
+    {
+      "Nombre": "cambio_caso",
+      "Input": "cadena: str",
+      "Output": "str",
+      "Descripcion": "Cambia el caso de las letras en una cadena de texto, verificando que la cadena no esté vacía antes de realizar la operación."
+    }
+  ],
+  "Tags": [
+    "Gestión de errores",
+    "Eficiencia del código",
+    "Eliminación de caracteres especiales",
+    "Simplificación de código",
+    "Verificación de strings vacíos"
+  ],
+  "Date": {
+    "$date": "2024-06-10T13:03:58.466Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6670f1ef36765f3986dd360c"
+  },
+  "Usuario": {
+    "$oid": "660f25f65ed19e10bed60c74"
+  },
+  "Titulo": "Optimización y Gestión de Errores en Funciones",
+  "Problema": "Crea un conjunto de funciones en Python que aborden los siguientes problemas:\n\n1. **Gestión de errores**: Implementa una función `leer_numero()` que solicite al usuario ingresar un número entero. La función debe manejar errores de entrada (por ejemplo, si el usuario ingresa un valor no numérico) y seguir solicitando hasta que se ingrese un número válido.\n\n2. **Simplificación de código**: Escribe una función `reemplazar_vocales(texto)` que reemplace todas las vocales en una cadena de texto por su versión en minúscula, independientemente de si están en mayúscula o minúscula.\n\n3. **Verificación de strings vacíos**: Implementa una función `cambiar_caso(texto)` que cambie el caso de cada letra en una cadena de texto. La función debe verificar si la cadena está vacía y devolver un mensaje apropiado en ese caso.\n\n4. **Eliminación de caracteres especiales**: Crea una función `contar_letras(texto)` que cuente solo las letras en una cadena de texto, ignorando caracteres especiales y espacios.\n\n5. **Optimización de eficiencia**: Escribe una función `es_primo(n)` que determine si un número es primo. Optimiza la función para que sea más eficiente y añade comentarios descriptivos. Además, implementa una función `suma_primos(limite)` que utilice la criba de Eratóstenes para sumar todos los números primos hasta un límite dado.\n\nAsegúrate de que cada función esté bien documentada y que incluya ejemplos de uso.",
+  "Respuesta": [
+    {
+      "Nombre": "leer_numero",
+      "Input": "Ninguno",
+      "Output": "int",
+      "Descripcion": "Solicita al usuario ingresar un número entero. Maneja errores de entrada y sigue solicitando hasta que se ingrese un número válido."
+    },
+    {
+      "Nombre": "reemplazar_vocales",
+      "Input": "str",
+      "Output": "str",
+      "Descripcion": "Reemplaza todas las vocales en una cadena de texto por su versión en minúscula, independientemente de si están en mayúscula o minúscula."
+    },
+    {
+      "Nombre": "cambiar_caso",
+      "Input": "str",
+      "Output": "str",
+      "Descripcion": "Cambia el caso de cada letra en una cadena de texto. Verifica si la cadena está vacía y devuelve un mensaje apropiado en ese caso."
+    },
+    {
+      "Nombre": "contar_letras",
+      "Input": "str",
+      "Output": "int",
+      "Descripcion": "Cuenta solo las letras en una cadena de texto, ignorando caracteres especiales y espacios."
+    },
+    {
+      "Nombre": "es_primo",
+      "Input": "int",
+      "Output": "bool",
+      "Descripcion": "Determina si un número es primo. Optimiza la función para que sea más eficiente y añade comentarios descriptivos."
+    },
+    {
+      "Nombre": "suma_primos",
+      "Input": "int",
+      "Output": "int",
+      "Descripcion": "Utiliza la criba de Eratóstenes para sumar todos los números primos hasta un límite dado."
+    }
+  ],
+  "Tags": [
+    "Gestión de errores",
+    "Simplificación de código",
+    "Verificación de strings vacíos",
+    "Eliminación de caracteres especiales",
+    "Optimización de eficiencia",
+    "Comentarios descriptivos"
+  ],
+  "Date": {
+    "$date": "2024-06-17T22:33:19.226Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "667c9086648539dbf61b67c2"
+  },
+  "Usuario": {
+    "$oid": "660f25f65ed19e10bed60c74"
+  },
+  "Titulo": "Optimización y Mejora de Funciones en Python",
+  "Problema": "Crea una serie de funciones en Python que aborden los siguientes puntos:\n\n1. **Redondeo opcional**: Escribe una función que tome un número y un parámetro opcional para redondear el número. Si el parámetro no se proporciona, la función no debe redondear el número.\n\n2. **Eficiencia del código**: Reescribe una función que busque un elemento en una lista sin usar el método 'index'.\n\n3. **Legibilidad del código**: Escribe una función que elimine las líneas en blanco innecesarias de un texto dado.\n\n4. **Uso de diccionarios**: Crea una función que convierta una lista de tuplas (clave, valor) en un diccionario.\n\n5. **Gestión de errores**: Implementa una función que permita múltiples intentos para ingresar un número válido, manejando los errores de entrada.\n\n6. **Simplificación de comprensiones de listas**: Escribe una comprensión de lista que convierta todos los caracteres de una lista de strings a minúsculas.\n\n7. **Verificación de strings vacíos**: Crea una función que verifique si una cadena de texto está vacía y devuelva un mensaje apropiado.\n\n8. **Uso de f-strings en bucles**: Reescribe una función que evite el uso de f-strings dentro de un bucle para mejorar la eficiencia.\n\n9. **Implementación de lógica necesaria**: Escribe una función que implemente una lógica específica, como calcular el factorial de un número.\n\n10. **Eliminación de caracteres especiales o espacios**: Crea una función que elimine caracteres especiales y espacios de una cadena de texto.\n\nCada función debe ser clara, eficiente y bien documentada. Asegúrate de incluir ejemplos de uso y pruebas para cada una.",
+  "Respuesta": [
+    {
+      "Nombre": "redondeo_opcional",
+      "Input": "numero, decimales=None",
+      "Output": "float",
+      "Descripcion": "Esta función toma un número y un parámetro opcional para redondear el número. Si el parámetro no se proporciona, la función no redondea el número."
+    },
+    {
+      "Nombre": "buscar_elemento",
+      "Input": "lista, elemento",
+      "Output": "int",
+      "Descripcion": "Esta función busca un elemento en una lista sin usar el método 'index'. Devuelve el índice del elemento si se encuentra, de lo contrario, devuelve -1."
+    },
+    {
+      "Nombre": "eliminar_lineas_blanco",
+      "Input": "texto",
+      "Output": "str",
+      "Descripcion": "Esta función elimina las líneas en blanco innecesarias de un texto dado y devuelve el texto limpio."
+    },
+    {
+      "Nombre": "convertir_a_diccionario",
+      "Input": "lista_tuplas",
+      "Output": "dict",
+      "Descripcion": "Esta función convierte una lista de tuplas (clave, valor) en un diccionario."
+    },
+    {
+      "Nombre": "ingresar_numero_valido",
+      "Input": "intentos",
+      "Output": "int",
+      "Descripcion": "Esta función permite múltiples intentos para ingresar un número válido, manejando los errores de entrada."
+    },
+    {
+      "Nombre": "convertir_a_minusculas",
+      "Input": "lista_strings",
+      "Output": "list",
+      "Descripcion": "Esta función utiliza una comprensión de lista para convertir todos los caracteres de una lista de strings a minúsculas."
+    },
+    {
+      "Nombre": "verificar_cadena_vacia",
+      "Input": "cadena",
+      "Output": "str",
+      "Descripcion": "Esta función verifica si una cadena de texto está vacía y devuelve un mensaje apropiado."
+    },
+    {
+      "Nombre": "evitar_fstrings_en_bucle",
+      "Input": "lista",
+      "Output": "list",
+      "Descripcion": "Esta función reescribe una función para evitar el uso de f-strings dentro de un bucle para mejorar la eficiencia."
+    },
+    {
+      "Nombre": "calcular_factorial",
+      "Input": "numero",
+      "Output": "int",
+      "Descripcion": "Esta función implementa la lógica para calcular el factorial de un número."
+    },
+    {
+      "Nombre": "eliminar_caracteres_especiales",
+      "Input": "cadena",
+      "Output": "str",
+      "Descripcion": "Esta función elimina caracteres especiales y espacios de una cadena de texto."
+    }
+  ],
+  "Tags": [
+    "Redondeo opcional",
+    "Eficiencia del código",
+    "Legibilidad del código",
+    "Uso de diccionarios",
+    "Gestión de errores",
+    "Simplificación de comprensiones de listas",
+    "Verificación de strings vacíos",
+    "Uso de f-strings en bucles",
+    "Implementación de lógica necesaria",
+    "Eliminación de caracteres especiales o espacios"
+  ],
+  "Date": {
+    "$date": "2024-06-26T18:04:54.283Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "667cd87b501df6d3f7fd20ae"
+  },
+  "Usuario": {
+    "$oid": "660f267a5ed19e10bed60c83"
+  },
+  "Titulo": "Problema claves",
+  "Problema": "Una forma común de generar automáticamente passwords, en función de una palabra o frase inicial, suele ser cambiar las vocales por números, incluir letras en minúsculas y mayúscula además de agregar un símbolo. ------------------------------------------------------------------------------------------------------ Escriba un programa que reciba un texto y retorne un password que realice las siguientes transformaciones: Las vocales (a,e,i,o) se deben reemplazar por los números (4,3,1,0), sin importar mayúsculas o minúsculas. La primera letra que aparezca en el password debe ser minúscula y las demás letras subsecuentes deben ser mayúsculas. Los espacios se deben reemplazar por guión bajo. Si la cantidad de caracteres del password resultante es par, al final se debe agregar un asterisco (*), en caso contrario se debe agrear un símbolo de exclamación (!). Suponga que siempre se ingresarán palabras que contengan al menos una consonante. Entrada Un string que incluye al menos una consonante y que puede contener también espacios y números. Salida Un string que representa una password con las características descritas en el enunciado. Ejemplos Entrada Clave dificil Salida cL4V3_D1F1C1L! Entrada 12345 Clave Salida 12345_cL4V3!",
+  "Respuesta": [
+    {
+      "Nombre": "reemplazar_vocales",
+      "Input": "texto",
+      "Output": "texto con vocales reemplazadas",
+      "Descripcion": "Reemplaza las vocales (a, e, i, o) en el texto por los números (4, 3, 1, 0) respectivamente, sin importar mayúsculas o minúsculas."
+    },
+    {
+      "Nombre": "formatear_mayusculas_minusculas",
+      "Input": "texto",
+      "Output": "texto con primera letra en minúscula y el resto en mayúscula",
+      "Descripcion": "Convierte la primera letra del texto a minúscula y las demás letras subsecuentes a mayúsculas."
+    },
+    {
+      "Nombre": "reemplazar_espacios",
+      "Input": "texto",
+      "Output": "texto con espacios reemplazados por guiones bajos",
+      "Descripcion": "Reemplaza todos los espacios en el texto por guiones bajos (_)."
+    },
+    {
+      "Nombre": "agregar_simbolo_final",
+      "Input": "texto",
+      "Output": "texto con símbolo final agregado",
+      "Descripcion": "Agrega un asterisco (*) al final del texto si la cantidad de caracteres del texto es par, o un símbolo de exclamación (!) si es impar."
+    },
+    {
+      "Nombre": "generar_password",
+      "Input": "texto",
+      "Output": "password",
+      "Descripcion": "Genera el password aplicando las funciones de reemplazar vocales, formatear mayúsculas y minúsculas, reemplazar espacios y agregar símbolo final en ese orden."
+    }
+  ],
+  "Tags": [
+    "strings",
+    "listas"
+  ],
+  "Date": {
+    "$date": "2024-06-26T23:11:55.336Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "667cd8b3501df6d3f7fd20c6"
+  },
+  "Usuario": {
+    "$oid": "660f267a5ed19e10bed60c83"
+  },
+  "Titulo": "Problema biblioteca",
+  "Problema": "Desarrolla un programa en el lenguaje de programación de tu elección para gestionar los libros de una biblioteca. El programa debe permitir a los usuarios agregar nuevos libros, buscar libros por título o autor, listar todos los libros disponibles, prestar libros y devolver libros. Cada operación debe ser manejada por una función específica, proporcionando así una interfaz clara y funcional para los usuarios de la biblioteca. Todos los libros estarán guardados dentro de una variable estantería que es una lista que contiene diccionario los cuales tienen como atributo Nombre, autor, prestado que es true si está disponible o false si esta prestado",
+  "Respuesta": [
+    {
+      "Nombre": "agregar_libro",
+      "Input": "estanteria, nombre, autor",
+      "Output": "None",
+      "Descripcion": "Agrega un nuevo libro a la estantería. La estantería es una lista de diccionarios, y cada libro es representado por un diccionario con los atributos 'nombre', 'autor' y 'prestado'."
+    },
+    {
+      "Nombre": "buscar_libro_por_titulo",
+      "Input": "estanteria, titulo",
+      "Output": "lista de diccionarios",
+      "Descripcion": "Busca libros en la estantería que coincidan con el título proporcionado. Devuelve una lista de diccionarios que representan los libros encontrados."
+    },
+    {
+      "Nombre": "buscar_libro_por_autor",
+      "Input": "estanteria, autor",
+      "Output": "lista de diccionarios",
+      "Descripcion": "Busca libros en la estantería que coincidan con el autor proporcionado. Devuelve una lista de diccionarios que representan los libros encontrados."
+    },
+    {
+      "Nombre": "listar_libros_disponibles",
+      "Input": "estanteria",
+      "Output": "lista de diccionarios",
+      "Descripcion": "Lista todos los libros disponibles en la estantería (aquellos que no están prestados). Devuelve una lista de diccionarios que representan los libros disponibles."
+    },
+    {
+      "Nombre": "prestar_libro",
+      "Input": "estanteria, nombre",
+      "Output": "bool",
+      "Descripcion": "Marca un libro como prestado si está disponible. Devuelve True si el préstamo fue exitoso, y False si el libro ya estaba prestado o no se encontró."
+    },
+    {
+      "Nombre": "devolver_libro",
+      "Input": "estanteria, nombre",
+      "Output": "bool",
+      "Descripcion": "Marca un libro como devuelto si estaba prestado. Devuelve True si la devolución fue exitosa, y False si el libro no estaba prestado o no se encontró."
+    }
+  ],
+  "Tags": [
+    "listas",
+    "disccionarios"
+  ],
+  "Date": {
+    "$date": "2024-06-26T23:12:51.741Z"
+  },
+  "__v": 0
+}]
